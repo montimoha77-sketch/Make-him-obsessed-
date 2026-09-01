@@ -1160,6 +1160,7 @@ function animateNumber(id, target){
 let whopCheckoutMounted = false;
 
 function openCheckoutModal(){
+  whop.track('get_instant_access');
   document.getElementById('checkoutOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   document.getElementById('checkoutFallbackLink').href = EBOOK_URL;
