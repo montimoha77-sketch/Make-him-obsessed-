@@ -1049,7 +1049,26 @@ const EUROPE_COUNTRY_CODES = new Set([
   "LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE",
   "GB","CH","NO","IS","LI"
 ]);
-let IS_EU_USER = false;
+// Site languages that, on their own, also count as "Europe" for EUR pricing
+// + the EU checkout, regardless of the visitor's detected country. This
+// works ALONGSIDE the country-based detection above (not instead of it):
+// a visitor is treated as EU if EITHER their country OR their site language
+// says so.
+const EUROPE_TRIGGER_LANGS = new Set(["fr","it","nl","de"]);
+let GEO_IS_EU_USER = false; // result of the IP-country lookup only
+let IS_EU_USER = false;     // combined result (geo OR language) actually used by the checkout + price display
+// Captured once, right here, before either signal has a chance to run, so
+// the price display can be reverted to USD if a visitor's language-based
+// EU status is ever switched off again later (e.g. they change the language
+// back). Reads whatever price text already sits in the markup, so it never
+// needs to be duplicated/hardcoded here.
+const PRICE_USD_ORIGINALS = { old: null, new: null };
+(function captureUsdPriceOriginals(){
+  const oldEl = document.querySelector('.quick-buy-price-old, .offer-price-old');
+  const newEl = document.querySelector('.quick-buy-price-new, .offer-price-new');
+  if(oldEl) PRICE_USD_ORIGINALS.old = oldEl.textContent;
+  if(newEl) PRICE_USD_ORIGINALS.new = newEl.textContent;
+})();
 /* =============================================== */
 /*
   HOW TO GET YOUR WHOP PLAN ID:
@@ -6093,6 +6112,7 @@ function chooseLanguage(lang){
   LANG = QUIZ_CONFIG_BY_LANG[lang] ? lang : 'en';
   applyStaticLang(LANG);
   updateLangSwitchUI();
+  recomputeEuStatus();
   goTo('landing');
 }
 
@@ -6105,6 +6125,7 @@ function switchLanguage(lang){
   LANG = QUIZ_CONFIG_BY_LANG[lang] ? lang : 'en';
   applyStaticLang(LANG);
   updateLangSwitchUI();
+  recomputeEuStatus();
   const menu = document.getElementById('langSwitchMenu');
   if(menu) menu.classList.remove('open');
 
@@ -7460,15 +7481,31 @@ function openCheckoutModal(){
    sales page from USD to the PRICE_EUR_OLD/PRICE_EUR_NEW values set
    in the CONFIG block above, and routes the buy buttons to the EUR
    checkout. Cached in localStorage for a day so repeat visits don't
-   re-fetch. Fails silently to USD if the lookup is blocked/offline. */
+   re-fetch. Fails silently to USD if the lookup is blocked/offline.
+
+   The site language is a second, independent signal for the same EU
+   status (see EUROPE_TRIGGER_LANGS in the CONFIG block): recomputeEuStatus()
+   below is the one place that combines the geo result (GEO_IS_EU_USER)
+   and the language result into the final IS_EU_USER used everywhere, and
+   re-renders the price display every time either signal changes, so the
+   price and the checkout link (openCheckoutModal() above) always agree. */
 function applyRegionPricing(){
-  if(!IS_EU_USER) return;
+  const useEur = IS_EU_USER;
   document.querySelectorAll('.quick-buy-price-old, .offer-price-old').forEach(el => {
-    el.textContent = PRICE_EUR_OLD;
+    el.textContent = useEur ? PRICE_EUR_OLD : (PRICE_USD_ORIGINALS.old !== null ? PRICE_USD_ORIGINALS.old : el.textContent);
   });
   document.querySelectorAll('.quick-buy-price-new, .offer-price-new').forEach(el => {
-    el.textContent = PRICE_EUR_NEW;
+    el.textContent = useEur ? PRICE_EUR_NEW : (PRICE_USD_ORIGINALS.new !== null ? PRICE_USD_ORIGINALS.new : el.textContent);
   });
+}
+
+// Combines the geo signal with the current language into IS_EU_USER, then
+// re-applies pricing. Called whenever either signal changes: from the geo
+// lookup below, and from chooseLanguage()/switchLanguage() whenever the
+// visitor's language changes.
+function recomputeEuStatus(){
+  IS_EU_USER = GEO_IS_EU_USER || EUROPE_TRIGGER_LANGS.has(LANG);
+  applyRegionPricing();
 }
 
 (function detectRegion(){
@@ -7476,8 +7513,8 @@ function applyRegionPricing(){
     const cached = localStorage.getItem('nguRegion');
     const cachedAt = parseInt(localStorage.getItem('nguRegionAt') || '0', 10);
     if(cached && (Date.now() - cachedAt) < 24*60*60*1000){
-      IS_EU_USER = (cached === 'EU');
-      applyRegionPricing();
+      GEO_IS_EU_USER = (cached === 'EU');
+      recomputeEuStatus();
       return;
     }
   }catch(e){}
@@ -7486,14 +7523,14 @@ function applyRegionPricing(){
     .then(r => r.json())
     .then(data => {
       const code = (data && data.country ? data.country : '').toUpperCase();
-      IS_EU_USER = EUROPE_COUNTRY_CODES.has(code);
+      GEO_IS_EU_USER = EUROPE_COUNTRY_CODES.has(code);
       try{
-        localStorage.setItem('nguRegion', IS_EU_USER ? 'EU' : 'OTHER');
+        localStorage.setItem('nguRegion', GEO_IS_EU_USER ? 'EU' : 'OTHER');
         localStorage.setItem('nguRegionAt', String(Date.now()));
       }catch(e){}
-      applyRegionPricing();
+      recomputeEuStatus();
     })
-    .catch(() => { /* lookup failed, page already shows USD by default */ });
+    .catch(() => { /* lookup failed; language-based trigger (if any) still stands via the recomputeEuStatus() call already made in chooseLanguage() */ });
 })();
 
 /* ============ SOCIAL PROOF ============ */
