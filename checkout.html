@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Complete Your Purchase | Make Him Obsessed With You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<script async defer src="https://js.whop.com/static/checkout/loader.js"></script>
+<style>
+:root{--ink:#0F0B0D;--gold:#C9A24B;--gold-soft:#E4C97A;--parchment:#F3E9E4;--wine:#3B0F1A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100%;-webkit-text-size-adjust:none!important;text-size-adjust:none!important;}
+body{
+  font-family:'Manrope',sans-serif;color:var(--parchment);
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -10%,rgba(59,15,26,.55),transparent 60%),
+    radial-gradient(ellipse 100% 60% at 50% 110%,rgba(59,15,26,.4),transparent 60%),
+    var(--ink);
+  padding:24px 16px 40px;-webkit-font-smoothing:antialiased;
+}
+.wrap{width:100%;max-width:480px;margin:0 auto;}
+.logo{display:block;max-width:220px;max-height:100px;width:auto;margin:0 auto 18px;object-fit:contain;}
+.header{text-align:center;margin-bottom:16px;}
+.title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:5px;}
+.sub{font-size:12px;color:rgba(243,233,228,.5);}
+#whop-checkout-mount{min-height:380px;}
+.fallback{text-align:center;font-size:11.5px;color:rgba(243,233,228,.4);margin-top:14px;}
+.fallback a{color:var(--gold-soft);}
+.success{text-align:center;padding:34px 8px 20px;}
+.success-icon{width:48px;height:48px;border-radius:50%;margin:0 auto 16px;background:rgba(201,162,75,.14);border:1px solid rgba(201,162,75,.5);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--gold-soft);}
+.success-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;margin-bottom:4px;}
+.success-sub{font-size:12px;color:rgba(243,233,228,.5);}
+.access{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:16px 24px;margin-top:16px;border-radius:999px;background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:var(--ink);font-weight:700;text-decoration:none;}
+.back{display:block;text-align:center;margin-top:18px;color:var(--gold-soft);font-size:12px;text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" src="logo.png" alt="Make Him Obsessed With You">
+  <div class="header">
+    <div class="title">Complete Your Purchase</div>
+    <div class="sub">Make Him Obsessed With You</div>
+  </div>
+  <div id="whop-checkout-mount"></div>
+  <p class="fallback">Trouble loading? <a href="https://whop.com/joined/make-him-obsessed-aa9b/products/make-him-obsessed-ab/" target="_blank" rel="noopener noreferrer">Open checkout in a new tab</a></p>
+  <a class="back" href="index.html">← Back</a>
+</div>
+<script>
+const WHOP_FILE_URL="https://assets-2-prod.whop.com/public/uploads/2026-09-16/e51bff71-3bbe-4595-80ee-fdde6578d838/application.pdf";
+const WHOP_PLAN_ID="plan_EqN1VxeLY97TD";
+let whopCheckoutMounted=false;
+function mountWhopCheckout(){
+  if(whopCheckoutMounted)return;
+  const mount=document.getElementById('whop-checkout-mount');
+  const div=document.createElement('div');
+  div.id='whop-embedded-checkout';
+  div.setAttribute('data-whop-checkout-plan-id',WHOP_PLAN_ID);
+  div.setAttribute('data-whop-checkout-return-url',window.location.href);
+  div.setAttribute('data-whop-checkout-theme','dark');
+  div.setAttribute('data-whop-checkout-theme-accent-color','#C9A24B');
+  div.setAttribute('data-whop-checkout-theme-background-color','#171012');
+  div.setAttribute('data-whop-checkout-theme-border-radius','14');
+  div.setAttribute('data-whop-checkout-hide-address','true');
+  div.setAttribute('data-whop-checkout-on-complete','onCheckoutComplete');
+  mount.appendChild(div);
+  whopCheckoutMounted=true;
+}
+window.onCheckoutComplete=function(planId,receiptId){
+  document.getElementById('whop-checkout-mount').innerHTML=
+    '<div class="success">'+
+    '<div class="success-icon">✓</div>'+
+    '<div class="success-title">You\'re in.</div>'+
+    '<p class="success-sub">Taking you to your book now... check your email too, in case anything goes wrong.</p>'+
+    '<a href="'+WHOP_FILE_URL+'" class="access">Access Your Book on Whop</a>'+
+    '</div>';
+  setTimeout(function(){window.location.href=WHOP_FILE_URL;},1800);
+};
+mountWhopCheckout();
+</script>
+</body>
+</html>
