@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Complete Your Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --ink:#0F0B0D;
+    --wine:#3B0F1A;
+    --gold:#C9A24B;
+    --gold-soft:#E4C97A;
+    --blush:#E8C4C4;
+    --parchment:#F3E9E4;
+    --rose:#8C2F39;
+    --font-display:'Playfair Display', serif;
+    --font-body:'Manrope', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:var(--font-body);
+    background:
+      radial-gradient(ellipse 120% 80% at 50% -10%, rgba(59,15,26,0.55), transparent 60%),
+      radial-gradient(ellipse 100% 60% at 50% 110%, rgba(59,15,26,0.4), transparent 60%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px),
+      var(--ink);
+    color:var(--parchment);
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center;
+    padding:32px 20px 60px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .brand-header{display:flex; flex-direction:column; align-items:center; gap:8px; margin-bottom:22px;}
+  .logo-img{display:block; max-height:96px; width:auto; max-width:78%; margin:0 auto; mix-blend-mode:screen;}
+  .checkout-wrap{width:100%; max-width:440px;}
+  .checkout-eyebrow{
+    font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gold); font-weight:700; margin-bottom:10px; text-align:center;
+  }
+  .checkout-title{
+    font-family:var(--font-display); font-weight:700; font-size:22px;
+    text-align:center; margin-bottom:6px;
+  }
+  .checkout-sub{
+    font-size:13px; text-align:center; color:rgba(243,233,228,0.65);
+    margin-bottom:24px;
+  }
+  .checkout-card{
+    background:linear-gradient(135deg, rgba(201,162,75,0.12), rgba(59,15,26,0.2));
+    border:1px solid rgba(201,162,75,0.35);
+    border-radius:18px; padding:18px; margin-bottom:18px;
+  }
+  .secure-note{
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    font-size:10.5px; color:rgba(243,233,228,0.5); text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<div class="brand-header">
+  <img class="logo-img" src="logo.png" alt="">
+</div>
+
+<div class="checkout-wrap">
+  <div class="checkout-eyebrow">Make Him Obsessed</div>
+  <div class="checkout-title">Complete Your Order</div>
+  <div class="checkout-sub">Instant digital access &middot; Priced in EUR</div>
+
+  <div class="checkout-card">
+    <!-- Whop embedded checkout (EU / EUR plan) -->
+    <div id="whop-checkout"></div>
+    <script src="https://js.whop.cloud/elements/amber/elements.js" data-whop-elements></script>
+    <script type="module">
+      const checkout = window.WhopElements().checkout.create({
+        plan: "plan_MPbZsrvVkTiMD",
+      });
+
+      checkout.create("checkout").mount("#whop-checkout");
+    </script>
+  </div>
+
+  <div class="secure-note">🔒 Secure checkout &middot; Instant access after purchase</div>
+</div>
+
+</body>
+</html>
