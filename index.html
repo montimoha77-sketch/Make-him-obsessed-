@@ -1041,7 +1041,7 @@ const GOOGLE_FORM_NAME_ENTRY = "entry.434968993";
 const CHECKOUT_URL_USD = "checkout.html";
 const CHECKOUT_URL_EUR = "checkout-eu.html";
 const PRICE_EUR_OLD = "€21";
-const PRICE_EUR_NEW = "€8.49";
+const PRICE_EUR_NEW = "€8.99";
 // Country codes treated as "Europe" for EUR pricing + the EU checkout.
 // EU-27 plus UK, Switzerland, Norway, Iceland, Liechtenstein.
 const EUROPE_COUNTRY_CODES = new Set([
@@ -1054,7 +1054,7 @@ const EUROPE_COUNTRY_CODES = new Set([
 // works ALONGSIDE the country-based detection above (not instead of it):
 // a visitor is treated as EU if EITHER their country OR their site language
 // says so.
-const EUROPE_TRIGGER_LANGS = new Set(["fr","it","nl","de"]);
+const EUROPE_TRIGGER_LANGS = new Set(["fr","it","nl","de","es"]);
 let GEO_IS_EU_USER = false; // result of the IP-country lookup only
 let IS_EU_USER = false;     // combined result (geo OR language) actually used by the checkout + price display
 // Captured once, right here, before either signal has a chance to run, so
