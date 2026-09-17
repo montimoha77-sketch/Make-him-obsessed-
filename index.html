@@ -4618,6 +4618,188 @@ const SINGLE_TRACK_TRANSLATIONS = {
     nameHeadline: "Ta lecture est prête.",
     nameSub: "Entre ton prénom — rien d'autre. Cela personnalise tes scores d'Intérêt, de Communication et de Ses efforts ci-dessous. Aucun e-mail, aucune inscription."
   },
+  it: {
+    questions: [
+      { text: "Come comunica di solito con te?", options: [
+        { label: "Mi scrive regolarmente e fa durare le conversazioni.", comm: 3, interest: 1, effort: 1 },
+        { label: "È altalenante / a volte scompare.", comm: -3, interest: -1, effort: -1 },
+        { label: "Di solito sono io a iniziare le conversazioni.", comm: -1, interest: -1, effort: -2 }
+      ]},
+      { text: "Chi fa di solito il primo passo?", options: [
+        { label: "Prende spesso l'iniziativa.", interest: 2, effort: 3, comm: 0 },
+        { label: "È abbastanza equilibrato.", interest: 1, effort: 1, comm: 0 },
+        { label: "Di solito sono io a prendere l'iniziativa.", interest: -1, effort: -3, comm: 0 }
+      ]},
+      { text: "Come reagisce quando ti allontani un po'?", options: [
+        { label: "Se ne accorge e si avvicina.", interest: 3, effort: 2, comm: 1 },
+        { label: "Mi lascia spazio e non reagisce granché.", interest: -1, effort: 0, comm: 0 },
+        { label: "Sembra perdere interesse.", interest: -2, effort: -2, comm: -1 }
+      ]},
+      { text: "Come ti tratta quando siete insieme?", options: [
+        { label: "Mi dedica attenzione e cerca scuse per stare vicino.", interest: 2, effort: 1, comm: 1 },
+        { label: "È simpatico ma difficile da capire.", interest: 0, effort: -1, comm: -2 },
+        { label: "Ho spesso la sensazione di dover attirare la sua attenzione.", interest: -2, effort: -2, comm: -1 }
+      ]},
+      { text: "Qual è il segnale più grande che ti fa dubitare del suo interesse?", options: [
+        { label: "I suoi segnali contraddittori.", interest: -2, comm: -1, effort: -1 },
+        { label: "La sua comunicazione irregolare.", comm: -3, interest: -1, effort: 0 },
+        { label: "Non si impegna abbastanza.", effort: -3, interest: -1, comm: 0 }
+      ]},
+      { text: "Cosa vuoi davvero sapere di lui?", options: [
+        { label: "Se gli piaccio davvero.", interest: -1, comm: 0, effort: -1 },
+        { label: "Se mi vede come qualcosa di più di un'amica.", interest: -1, effort: 0, comm: -1 },
+        { label: "Se dovrei continuare a inseguirlo.", effort: -2, interest: 0, comm: 0 }
+      ]}
+    ],
+    axes: ["interest","comm","effort"],
+    ranges: { interest: { min: -9, max: 7 }, comm: { min: -10, max: 5 }, effort: { min: -14, max: 7 } },
+    microInsights: {
+      interest: ["Notato, questo dice molto sul suo livello di interesse.", "Questo è un vero segnale di interesse."],
+      comm: ["Questo influisce sulla tua lettura della Comunicazione.", "Schemi di comunicazione come questo contano molto."],
+      effort: ["Questo incide sul livello di impegno che lui mette davvero.", "Questo è un segnale importante riguardo al suo impegno."],
+      neutral: ["Capito, ne terrò conto nella tua lettura."]
+    },
+    resultCopy: {
+      interest: {
+        label: "Interesse",
+        high: "Mostra segnali reali di interesse: prende l'iniziativa, resta vicino e ti dà motivi per credere che non sia solo occasionale.",
+        mid: "Il suo interesse c'è, ma va e viene, abbastanza da tenerti curiosa, non ancora abbastanza da darti certezze.",
+        low: "Lo schema centrale qui è una mancanza di interesse costante: per ora ti fai più domande tu di quante iniziative prenda lui."
+      },
+      comm: {
+        label: "Comunicazione",
+        high: "La comunicazione con lui sembra stabile e facile, un segnale forte, se il resto del quadro corrisponde.",
+        mid: "La comunicazione è funzionale ma irregolare, la conversazione c'è, semplicemente senza un ritmo affidabile per ora.",
+        low: "Lo schema centrale qui è una comunicazione imprevedibile: i segnali contrastanti e i silenzi rendono difficile capire davvero a che punto sei."
+      },
+      effort: {
+        label: "Il suo impegno",
+        high: "Fa uno sforzo reale per colmare la distanza, prende l'iniziativa, nota quando ti allontani e ti dedica del tempo.",
+        mid: "Il suo impegno appare a tratti, presente quando è facile, più difficile da contare quando non lo è.",
+        low: "Lo schema centrale qui è uno squilibrio nell'impegno: per ora sei tu a portare la maggior parte del peso di questa situazione."
+      }
+    },
+    warningCopy: {
+      interest: {
+        label: "Interesse",
+        high: "Anche un forte interesse iniziale può svanire se non riceve il giusto tipo di attenzione. Se smetti di osservare come cambia la sua iniziativa nel tempo, rischi di non accorgerti del momento in cui il suo interesse comincia a raffreddarsi.",
+        mid: "Un interesse irregolare è facile da giustificare nel momento. Se continui a colmare tu i silenzi, rischi di scambiare uno schema altalenante per qualcosa di più stabile di quanto non sia in realtà.",
+        low: "Le tue risposte indicano che la mancanza di un interesse costante è il rischio principale qui. Senza un vero cambiamento, rischi di restare investita in una situazione che non ti restituisce la stessa energia."
+      },
+      comm: {
+        label: "Comunicazione",
+        high: "Una conversazione facile può comunque nascondere una reale mancanza di chiarezza. Se ti concentri solo sulla frequenza delle sue risposte invece che su ciò che dicono davvero, rischi di non notare lo schema più importante.",
+        mid: "Una comunicazione irregolare è facile da giustificare messaggio dopo messaggio. Se non cambia nulla, rischi di abituarti ad accettare meno costanza di quanta una vera connessione richieda.",
+        low: "Le tue risposte indicano che una comunicazione imprevedibile è il rischio principale qui. Senza uno schema più chiaro, la confusione e i segnali contrastanti rischiano di continuare a ripetersi invece di risolversi da soli."
+      },
+      effort: {
+        label: "Il suo impegno",
+        high: "Un impegno visibile ora non garantisce che durerà una volta passata la novità. Se smetti di notare se continua a prendere l'iniziativa, rischi di essere colta di sorpresa da un cambiamento in chi fa le prime mosse.",
+        mid: "Un impegno che compare solo a volte è facile da scambiare per un vero investimento. Se non lo tieni d'occhio, rischi di fare più lavoro tu solo perché sei tu a prestarci attenzione.",
+        low: "Le tue risposte indicano che un vero squilibrio nell'impegno è il rischio principale qui. Senza un cambiamento, questo schema tende a proseguire invece di correggersi, lasciandoti a portare avanti da sola una connessione che lui non eguaglia."
+      }
+    },
+    bridgeMap: {
+      interest: "La tua lettura mostra che il suo interesse è la parte più fragile di questa dinamica al momento, c'è un potenziale reale qui, ma alcuni schemi lo stanno frenando. Il tuo risultato mostra cosa sta succedendo; il libro ti mostra esattamente come far evolvere la situazione a tuo favore.",
+      comm: "La tua lettura mostra che la comunicazione è il punto più debole di questa connessione al momento, c'è un potenziale reale qui, ma alcuni schemi la stanno frenando. Il tuo risultato mostra cosa sta succedendo; il libro ti spiega esattamente come creare la chiarezza che ti manca.",
+      effort: "La tua lettura mostra che l'impegno in questa situazione è attualmente squilibrato, c'è un potenziale reale qui, ma alcuni schemi lo stanno frenando. Il tuo risultato mostra cosa sta succedendo; il libro ti mostra esattamente come far evolvere la dinamica affinché lui inizi a eguagliare la tua energia."
+    },
+    loadingLine: "Analisi dei tuoi schemi in corso…",
+    loadingSubtext: "Confronto delle tue risposte con oltre 10.000 schemi di appuntamenti…",
+    nameHeadline: "La tua lettura è pronta.",
+    nameSub: "Inserisci solo il tuo nome — nient'altro. Personalizza i tuoi punteggi di Interesse, Comunicazione e Il suo impegno qui sotto. Nessuna email, nessuna registrazione."
+  },
+  nl: {
+    questions: [
+      { text: "Hoe communiceert hij meestal met jou?", options: [
+        { label: "Hij schrijft me regelmatig en houdt de gesprekken gaande.", comm: 3, interest: 1, effort: 1 },
+        { label: "Hij is warm en koud / soms verdwijnt hij.", comm: -3, interest: -1, effort: -1 },
+        { label: "Meestal begin ik de gesprekken.", comm: -1, interest: -1, effort: -2 }
+      ]},
+      { text: "Wie zet meestal de eerste stap?", options: [
+        { label: "Hij neemt vaak het initiatief.", interest: 2, effort: 3, comm: 0 },
+        { label: "Het is redelijk in balans.", interest: 1, effort: 1, comm: 0 },
+        { label: "Meestal neem ik het initiatief.", interest: -1, effort: -3, comm: 0 }
+      ]},
+      { text: "Hoe reageert hij als jij een beetje afstand neemt?", options: [
+        { label: "Hij merkt het en komt dichterbij.", interest: 3, effort: 2, comm: 1 },
+        { label: "Hij geeft me de ruimte en reageert niet echt.", interest: -1, effort: 0, comm: 0 },
+        { label: "Hij lijkt zijn interesse te verliezen.", interest: -2, effort: -2, comm: -1 }
+      ]},
+      { text: "Hoe behandelt hij je als jullie samen zijn?", options: [
+        { label: "Hij geeft me aandacht en zoekt redenen om dicht bij me te zijn.", interest: 2, effort: 1, comm: 1 },
+        { label: "Hij is aardig maar moeilijk te doorgronden.", interest: 0, effort: -1, comm: -2 },
+        { label: "Ik heb vaak het gevoel dat ik zijn aandacht moet trekken.", interest: -2, effort: -2, comm: -1 }
+      ]},
+      { text: "Wat is het grootste signaal dat je doet twijfelen aan zijn interesse?", options: [
+        { label: "Zijn tegenstrijdige signalen.", interest: -2, comm: -1, effort: -1 },
+        { label: "Zijn onregelmatige communicatie.", comm: -3, interest: -1, effort: 0 },
+        { label: "Hij doet niet genoeg moeite.", effort: -3, interest: -1, comm: 0 }
+      ]},
+      { text: "Wat wil je echt over hem weten?", options: [
+        { label: "Of hij me echt leuk vindt.", interest: -1, comm: 0, effort: -1 },
+        { label: "Of hij me ziet als meer dan een vriendin.", interest: -1, effort: 0, comm: -1 },
+        { label: "Of ik hem moet blijven achtervolgen.", effort: -2, interest: 0, comm: 0 }
+      ]}
+    ],
+    axes: ["interest","comm","effort"],
+    ranges: { interest: { min: -9, max: 7 }, comm: { min: -10, max: 5 }, effort: { min: -14, max: 7 } },
+    microInsights: {
+      interest: ["Genoteerd, dit zegt veel over zijn interesseniveau.", "Dit is een sterk signaal van interesse."],
+      comm: ["Dit beïnvloedt je uitslag voor Communicatie.", "Communicatiepatronen zoals dit tellen zwaar mee."],
+      effort: ["Dit telt mee in hoeveel moeite hij daadwerkelijk doet.", "Dit is een belangrijk signaal over zijn inzet."],
+      neutral: ["Begrepen, ik neem dit mee in je uitslag."]
+    },
+    resultCopy: {
+      interest: {
+        label: "Interesse",
+        high: "Hij toont echte tekenen van interesse, hij neemt het initiatief, blijft dichtbij en geeft je redenen om te geloven dat het niet slechts toevallig is.",
+        mid: "Zijn interesse is er, maar komt en gaat, genoeg om je nieuwsgierig te houden, nog niet genoeg om je zekerheid te geven.",
+        low: "Het kernpatroon hier is een gebrek aan constante interesse, op dit moment stel jij jezelf meer vragen dan dat hij stappen zet."
+      },
+      comm: {
+        label: "Communicatie",
+        high: "De communicatie met hem voelt stabiel en makkelijk, een sterk signaal, als de rest van het plaatje klopt.",
+        mid: "De communicatie werkt, maar is onregelmatig, het gesprek bestaat, alleen zonder een betrouwbaar ritme op dit moment.",
+        low: "Het kernpatroon hier is onvoorspelbare communicatie, de tegenstrijdige signalen en stiltes maken het moeilijk om echt te weten waar je aan toe bent."
+      },
+      effort: {
+        label: "Zijn inzet",
+        high: "Hij doet echt moeite om de afstand te verkleinen, hij neemt het initiatief, merkt het als jij afstand neemt en maakt tijd voor je vrij.",
+        mid: "Zijn inzet komt met vlagen, aanwezig als het makkelijk is, moeilijker te vinden als dat niet zo is.",
+        low: "Het kernpatroon hier is een onevenwicht in inzet, op dit moment draag jij het grootste deel van het gewicht van deze situatie."
+      }
+    },
+    warningCopy: {
+      interest: {
+        label: "Interesse",
+        high: "Zelfs sterke interesse in het begin kan vervagen als hij niet het juiste soort aandacht krijgt. Als je stopt met opletten hoe zijn initiatief zich in de tijd ontwikkelt, loop je het risico het moment te missen waarop zijn interesse begint af te koelen.",
+        mid: "Onregelmatige interesse is op het moment zelf makkelijk te verklaren. Als jij steeds zelf de stiltes blijft opvullen, loop je het risico een warm-koud patroon aan te zien voor iets stabielers dan het werkelijk is.",
+        low: "Je antwoorden wijzen erop dat een gebrek aan constante interesse hier het grootste risico is. Zonder een echte verandering loop je het risico geïnvesteerd te blijven in een situatie die niet dezelfde energie teruggeeft."
+      },
+      comm: {
+        label: "Communicatie",
+        high: "Een makkelijk gesprek kan toch een echt gebrek aan duidelijkheid verbergen. Als je je alleen richt op hoe vaak hij reageert in plaats van op wat hij écht zegt, loop je het risico het grotere patroon te missen.",
+        mid: "Onregelmatige communicatie is makkelijk te verontschuldigen, bericht na bericht. Als er niets verandert, loop je het risico te wennen aan minder consistentie dan een echte connectie vereist.",
+        low: "Je antwoorden wijzen erop dat onvoorspelbare communicatie hier het grootste risico is. Zonder een duidelijker patroon zullen verwarring en tegenstrijdige signalen zich waarschijnlijk blijven herhalen in plaats van vanzelf op te lossen."
+      },
+      effort: {
+        label: "Zijn inzet",
+        high: "Zichtbare inzet nu garandeert niet dat die blijft nadat de nieuwigheid is verdwenen. Als je stopt met opletten of hij het initiatief blijft nemen, loop je het risico verrast te worden door een verandering in wie de stappen zet.",
+        mid: "Inzet die maar af en toe verschijnt, is makkelijk aan te zien voor echte betrokkenheid. Als je dit niet in de gaten houdt, loop je het risico meer werk te verzetten, simpelweg omdat jij er wél op let.",
+        low: "Je antwoorden wijzen erop dat een echt onevenwicht in inzet hier het grootste risico is. Zonder verandering blijft dit patroon eerder voortduren dan zichzelf herstellen, waardoor jij een connectie blijft dragen die hij niet evenaart."
+      }
+    },
+    bridgeMap: {
+      interest: "Jouw uitslag laat zien dat zijn interesse op dit moment het meest kwetsbare deel van deze dynamiek is, er is hier echt potentieel, maar bepaalde patronen remmen het af. Jouw resultaat laat zien wat er speelt; het boek laat je precies zien hoe je de situatie in jouw voordeel kunt laten evolueren.",
+      comm: "Jouw uitslag laat zien dat communicatie op dit moment het zwakste punt van deze connectie is, er is hier echt potentieel, maar bepaalde patronen remmen het af. Jouw resultaat laat zien wat er speelt; het boek legt je precies uit hoe je de duidelijkheid creëert die je mist.",
+      effort: "Jouw uitslag laat zien dat de inzet in deze situatie op dit moment uit balans is, er is hier echt potentieel, maar bepaalde patronen remmen het af. Jouw resultaat laat zien wat er speelt; het boek laat je precies zien hoe je de dynamiek kunt laten evolueren zodat hij jouw energie begint te evenaren."
+    },
+    loadingLine: "Je patronen worden geanalyseerd…",
+    loadingSubtext: "Je antwoorden worden vergeleken met meer dan 10.000 datingpatronen…",
+    nameHeadline: "Je uitslag is klaar.",
+    nameSub: "Vul alleen je voornaam in — verder niets. Dit personaliseert je scores voor Interesse, Communicatie en Zijn inzet hieronder. Geen e-mail, geen aanmelding."
+  },
 
   de: {
     questions: [
@@ -4804,7 +4986,7 @@ const SINGLE_TRACK_TRANSLATIONS = {
   }
 };
 
-['fr','de','es'].forEach(lang => {
+['fr','de','es','it','nl'].forEach(lang => {
   if (QUIZ_CONFIG_BY_LANG[lang]) {
     QUIZ_CONFIG_BY_LANG[lang].single = SINGLE_TRACK_TRANSLATIONS[lang];
   }
