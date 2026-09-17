@@ -420,18 +420,19 @@
       <div class="warning-reveal-eyebrow">Your Biggest Warning</div>
       <div class="warning-reveal-text" id="warningRevealText"></div>
     </div>
+    <div class="buy-hero">
+      <div class="buy-title" data-i18n="buy.title">Make Him Obsessed</div>
+      <h1 data-i18n="buy.h1">Stop Chasing. <em>Start Being Chosen.</em></h1>
+    </div>
+
     <p class="warning-bridge" id="warningBridge"></p>
 
-    <!-- SPIN-THE-WHEEL DISCOUNT: teaser is shown until the visitor uses
-         their one spin, then permanently replaced by the banner (state is
-         read from localStorage in initWheelDiscountUI()), see the wheel
-         overlay markup and script near the end of the document. -->
-    <div class="wheel-teaser" id="wheelTeaser">
-      <div class="wheel-teaser-icon">🎁</div>
-      <div class="wheel-teaser-title" data-i18n="wheel.teaserTitle">A Discount Is Waiting For You</div>
-      <div class="wheel-teaser-sub" data-i18n="wheel.teaserSub">Spin the wheel for a chance to win up to 100% off the book.</div>
-      <button type="button" class="btn btn-gold btn-glow" id="openWheelBtn" onclick="openWheelModal()" data-i18n="wheel.spinBtn">Spin The Wheel</button>
-    </div>
+    <!-- SPIN-THE-WHEEL DISCOUNT: the teaser (icon/title/sub/button) has been
+         removed from this position; its button now lives under the
+         "Make Him Feel The Difference." tagline inside the quick-buy card
+         below. The banner still appears here once the visitor has spun
+         (state is read from localStorage in initWheelDiscountUI()), see the
+         wheel overlay markup and script near the end of the document. -->
     <div class="wheel-banner" id="wheelBanner">
       <div class="wheel-banner-label" data-i18n="wheel.bannerLabel">🎉 Your Discount Is Ready</div>
       <div class="wheel-banner-value" id="wheelBannerValue"></div>
@@ -440,11 +441,6 @@
         <code id="wheelBannerCode"></code>
         <button type="button" class="discount-copy-btn" id="wheelBannerCopyBtn" onclick="copyWheelCode('wheelBannerCode', this)" data-i18n="wheel.copyBtn">Copy</button>
       </div>
-    </div>
-
-    <div class="buy-hero">
-      <div class="buy-title" data-i18n="buy.title">Make Him Obsessed</div>
-      <h1 data-i18n="buy.h1">Stop Chasing. <em>Start Being Chosen.</em></h1>
     </div>
 
     <!-- Quick-buy: cover, price, and CTA together in one glance, so a
@@ -468,6 +464,7 @@
         </div>
         <div class="quick-buy-note" data-i18n="buy.footerNote">Instant digital access, start reading in minutes.</div>
         <p class="buy-tagline quick-buy-tagline" data-i18n="buy.tagline">Make Him Feel The Difference.</p>
+        <button type="button" class="btn btn-gold quick-buy-btn" id="openWheelBtn" onclick="openWheelModal()" data-i18n="wheel.spinBtn" style="padding:9px 14px;font-size:12px;box-shadow:none;animation:none">Spin The Wheel</button>
       </div>
       <div class="quick-buy-cover">
         <!-- book-cover.webp sits next to index.html and logo.png on GitHub -->
