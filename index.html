@@ -7534,7 +7534,8 @@ function renderResults(){
   // in full, on the Book page (see renderBuyPage()), derived from this same
   // weakest axis so it can never mismatch what's teased here.
   const fullWarning = warningCopy[weakest][weakestBand];
-  const teaserWarning = fullWarning.split(/(?<=[,.])\s/)[0];
+  const teaserSplit = fullWarning.match(/[,.]\s/);
+  const teaserWarning = teaserSplit ? fullWarning.slice(0, teaserSplit.index + 1) : fullWarning;
   document.getElementById('issueText').textContent =
     warningCopy[weakest].label + ': ' + teaserWarning + '…';
 
