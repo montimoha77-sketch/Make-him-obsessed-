@@ -371,7 +371,7 @@ body[data-screen="story"] .proof-toast{display:none !important}
         <path d="M10 10a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" stroke="#F3E9E4" stroke-width="1.4"/>
         <path d="M3.5 17c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5" stroke="#F3E9E4" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
-      <input type="text" class="field-input" id="nameInput" placeholder="Type your first name…" data-i18n-ph="name.placeholder" autocomplete="given-name" name="fname" inputmode="text" maxlength="24">
+      <input type="text" class="field-input" id="nameInput" placeholder="Type your first name…" data-i18n-ph="name.placeholder" autocomplete="given-name" name="fname" inputmode="text" enterkeyhint="go" maxlength="24" onkeydown="if(event.key==='Enter'){event.preventDefault();submitName();}">
     </div>
     <div class="err" id="nameErr" data-i18n="name.err">Enter your name to continue.</div>
     <button class="btn btn-gold btn-glow" onclick="submitName()" data-i18n="name.btn">Unlock My Results</button>
@@ -826,7 +826,7 @@ body[data-screen="story"] .proof-toast{display:none !important}
     <div class="guide-cta" style="margin-top:24px;">
       <div class="guide-cta-title">Not ready yet?</div>
       <p class="guide-cta-body">Get our free dating guide.<br>Enter your name to receive it.</p>
-      <input type="text" class="field-input" id="freeGuideNameInput" placeholder="Your name" aria-label="Your name">
+      <input type="text" class="field-input" id="freeGuideNameInput" placeholder="Your name" aria-label="Your name" enterkeyhint="go" onkeydown="if(event.key==='Enter'){event.preventDefault();getFreeGuide();}">
       <div class="err" id="freeGuideNameErr">Enter your name to continue.</div>
       <button class="btn btn-gold" onclick="getFreeGuide()">Get the Free Guide</button>
     </div>
