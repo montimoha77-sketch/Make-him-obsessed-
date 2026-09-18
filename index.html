@@ -152,8 +152,8 @@
   <!-- SCREEN 1: LANDING, now the first screen the visitor lands on. -->
   <section class="screen" id="screen-landing">
     <div class="eyebrow" data-i18n="landing.eyebrow">The Analyzer</div>
-    <h1 data-i18n="landing.h1">Does He Like You? <em>Find Out What His Actions Really Mean</em></h1>
-    <p class="sub" data-i18n="landing.sub">Six questions. <em>Sixty seconds</em>. Find out if his actions are showing real interest or mixed signals.</p>
+    <h1 data-i18n="landing.h1">Does He Like You? <em>Stop Guessing. See What His Behavior Is Actually Telling You.</em></h1>
+    <p class="sub" data-i18n="landing.sub">6 questions &middot; <em>60 seconds</em> &middot; personalized. Understand the pattern behind his actions, communication &amp; effort.</p>
     <button class="btn btn-gold btn-glow" onclick="goTo('gate')" data-i18n="landing.startBtn">Find Out Now</button>
     
     <div class="preview-row">
@@ -183,8 +183,8 @@
   <!-- SCREEN 1B: LANDING (single track) -->
   <section class="screen" id="screen-landing-single">
     <div class="eyebrow" data-i18n="landingSingle.eyebrow">The Analyzer</div>
-    <h1 data-i18n="landingSingle.h1">Does He Like You? <em>Find Out What His Actions Really Mean</em></h1>
-    <p class="sub" data-i18n="landingSingle.sub">Six questions. <em>Sixty seconds</em>. Find out if his actions are showing real interest or mixed signals.</p>
+    <h1 data-i18n="landingSingle.h1">Does He Like You? <em>Stop Guessing. See What His Behavior Is Actually Telling You.</em></h1>
+    <p class="sub" data-i18n="landingSingle.sub">6 questions &middot; <em>60 seconds</em> &middot; personalized. Understand the pattern behind his actions, communication &amp; effort.</p>
     <button class="btn btn-gold btn-glow" onclick="goTo('quiz')" data-i18n="landingSingle.startBtn">Find Out Now</button>
     
     <div class="preview-row">
@@ -316,8 +316,8 @@
   <!-- SCREEN 5: RESULTS -->
   <section class="screen" id="screen-results">
     <div class="eyebrow" data-i18n="results.eyebrow">Your Reading</div>
-    <h1 id="resultsHeadline">Here's what the pattern shows.</h1>
-    <p class="sub" data-i18n="results.teaseSub">This is only the surface. What's really driving his behavior and what to do next is on the next page.</p>
+    <h1 id="resultsHeadline">Here's What His Pattern Shows.</h1>
+    <p class="sub" data-i18n="results.teaseSub">Your answers reveal the surface pattern. There's more behind it, and what to do next.</p>
     <div class="rings" id="ringsWrap"></div>
     <div class="results-details">
       <div class="card">
@@ -329,7 +329,7 @@
         <div class="card-text card-text-blurred" id="issueText"></div>
         <div class="card-lock-row">
           <span class="lock-icon">🔒</span>
-          <span data-i18n="results.lockedHint">Tap to see what this actually means</span>
+          <span data-i18n="results.lockedHint">See What This Actually Means</span>
         </div>
       </div>
     </div>
@@ -424,8 +424,9 @@
     </div>
     <div class="buy-hero">
       <div class="buy-title" data-i18n="buy.title">Make Him Obsessed</div>
-      <h1 data-i18n="buy.h1">Stop Chasing. <em>Start Being Chosen.</em></h1>
+      <h1 data-i18n="buy.h1">Understand Him. <em>Stop Guessing What To Do Next.</em></h1>
     </div>
+    <p class="sub" data-i18n="buy.subCopy">Go deeper into the psychology behind attraction, emotional connection, mixed signals &amp; his behavior.</p>
 
     <p class="warning-bridge" id="warningBridge"></p>
 
@@ -6557,6 +6558,12 @@ function goTo(name, fromBack){
     if (name === 'results') {
       gtag('event', 'quiz_complete');
     }
+    if (name === 'proof') {
+      gtag('event', 'biggest_warning_click');
+    }
+    if (name === 'buy') {
+      gtag('event', 'book_page_view');
+    }
   }
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   target.classList.add('active');
@@ -6870,7 +6877,7 @@ function renderResults(){
   const base = HEADLINE_BASE[LANG];
   headlineEl.textContent = base
     ? (userName ? `${base}, ${userName}.` : `${base}.`)
-    : (userName ? `Here's what the pattern shows, ${userName}.` : "Here's what the pattern shows.");
+    : (userName ? `Here's What His Pattern Shows, ${userName}.` : "Here's What His Pattern Shows.");
 
   const ringsWrap = document.getElementById('ringsWrap');
   ringsWrap.innerHTML = '';
@@ -7340,7 +7347,7 @@ async function buildShareCardCanvas(){
   const strongest = sorted[0];
   const weakest = sorted[sorted.length - 1];
 
-  const headlineBase = HEADLINE_BASE[LANG] || "Here's what the pattern shows";
+  const headlineBase = HEADLINE_BASE[LANG] || "Here's What His Pattern Shows";
   const headline = userName ? `${headlineBase}, ${userName}` : headlineBase;
   const strengthLine = resultCopy[strongest].label + ' \u2014 ' + resultCopy[strongest][band(computed[strongest])];
   const growthLine = warningCopy[weakest].label + ' \u2014 ' + warningCopy[weakest][band(computed[weakest])];
@@ -7940,7 +7947,10 @@ function getFreeGuide(){
     if (!tipEl) return;
     setTimeout(function(){
       showFabTip();
-      setInterval(showFabTip, 15000);
+      setTimeout(function(){
+        showFabTip();
+        setInterval(showFabTip, 20000);
+      }, 15000);
     }, 5000);
   }
 
