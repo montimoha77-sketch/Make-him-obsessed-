@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="https://raw.githubusercontent.com/montimoha77-sketch/Make-him-obsessed-/main/">
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -46,10 +47,8 @@
 .chat-fab-tip{position:fixed;right:18px;bottom:84px;z-index:899;max-width:190px;padding:9px 13px;border-radius:14px 14px 4px 14px;background:linear-gradient(165deg,rgba(59,15,26,0.97),rgba(15,11,13,0.97));border:1px solid rgba(201,162,75,0.45);color:var(--parchment);font-family:var(--font-body);font-size:12.5px;font-weight:500;line-height:1.4;box-shadow:0 10px 26px -8px rgba(0,0,0,0.55);opacity:0;transform:translateY(6px);pointer-events:none;transition:opacity .35s ease,transform .35s ease;cursor:pointer;text-align:left}.chat-fab-tip.show{opacity:1;pointer-events:auto;transform:translateY(0)}.chat-fab-tip.show:hover{border-color:rgba(201,162,75,0.75)}@media (max-width:480px){.chat-fab-tip{right:14px;max-width:60vw}}</style>
 <style id="story-journey-style">
 /* ============ STORY JOURNEY (Reviews -> Story -> Book) ============
-   Fully namespaced under .story-journey / .sj- so nothing here can leak
-   into or be affected by any other screen's CSS. Reuses the site's own
-   --ink/--wine/--gold/--gold-soft/--parchment tokens and font stack so it
-   reads as one continuous site rather than a bolted-on page. */
+   Motion remains fully namespaced to the Story screen. Resting layout,
+   typography, color and geometry are unchanged. */
 body[data-screen="story"] .chat-fab,
 body[data-screen="story"] .chat-fab-tip{display:none !important}
 body[data-screen="story"] .proof-toast{display:none !important}
@@ -61,52 +60,54 @@ body[data-screen="story"] .proof-toast{display:none !important}
 .story-journey .sj-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700;opacity:.85}
 .sj-track{position:relative;display:flex;flex-direction:column;align-items:center}
 .sj-step{width:100%;max-width:360px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:4px 6px}
-.sj-node{position:relative;width:40px;height:37px;margin-bottom:18px;opacity:.3;transform:scale(.84);transition:opacity .8s ease,transform .8s cubic-bezier(.34,1.56,.64,1)}
-.sj-heart{width:100%;height:100%;display:block;fill:rgba(243,233,228,0.16);transition:fill .8s ease,filter .8s ease}
-.sj-step.sj-active .sj-node{opacity:1;transform:scale(1);animation:sjHeartbeat 2.6s ease-in-out .35s infinite}
+.sj-node{position:relative;width:40px;height:37px;margin-bottom:18px;opacity:.3;transform:scale(.84);transform-origin:50% 56%;transition:opacity 1.15s cubic-bezier(.22,1,.36,1),transform 1.15s cubic-bezier(.22,1,.36,1);will-change:transform,opacity,filter}
+.sj-heart{width:100%;height:100%;display:block;fill:url(#sjHeartGradActive);transform-origin:50% 56%;transition:filter 1.15s cubic-bezier(.22,1,.36,1)}
+.sj-step.sj-active .sj-node{opacity:1;transform:scale(1)}
 .sj-step.sj-active .sj-heart{fill:url(#sjHeartGradActive);filter:drop-shadow(0 0 12px rgba(228,201,122,0.55))}
-@keyframes sjHeartbeat{0%,100%{transform:scale(1)}42%{transform:scale(1.1)}58%{transform:scale(0.98)}75%{transform:scale(1.04)}}
-@media (prefers-reduced-motion:reduce){.sj-step.sj-active .sj-node{animation:none}.sj-node,.sj-heart{transition:none}}
-.sj-connector{width:2px;height:52px;margin:0 auto -9px;position:relative;background:rgba(243,233,228,0.1);overflow:hidden;flex-shrink:0}
-.sj-connector-fill{position:absolute;left:0;top:0;width:100%;height:0%;background:linear-gradient(180deg,var(--gold),var(--gold-soft));transition:height 1.1s ease;box-shadow:0 0 8px rgba(228,201,122,0.5)}
+.sj-step.sj-current-heart .sj-node.sj-beating{animation:sjHeartbeat 860ms cubic-bezier(.22,.61,.36,1) both}
+.sj-step.sj-current-heart .sj-node.sj-beating .sj-heart{animation:sjHeartGlow 860ms cubic-bezier(.22,.61,.36,1) both}
+@keyframes sjHeartbeat{0%{transform:scale(1) translate3d(0,0,0) rotate(0deg)}9%{transform:scale(1.075) translate3d(.18px,-.12px,0) rotate(.12deg)}18%{transform:scale(.992) translate3d(-.12px,.08px,0) rotate(-.08deg)}29%{transform:scale(1.04) translate3d(.1px,-.06px,0) rotate(.06deg)}43%{transform:scale(1) translate3d(0,0,0) rotate(0deg)}100%{transform:scale(1) translate3d(0,0,0) rotate(0deg)}}
+@keyframes sjHeartGlow{0%,100%{filter:drop-shadow(0 0 12px rgba(228,201,122,0.55))}10%{filter:drop-shadow(0 0 17px rgba(228,201,122,0.68))}30%{filter:drop-shadow(0 0 14px rgba(228,201,122,0.61))}48%{filter:drop-shadow(0 0 12px rgba(228,201,122,0.55))}}
+.sj-connector{width:2px;height:52px;margin:0 auto -9px;position:relative;background:transparent;overflow:visible;flex-shrink:0}
+.sj-connector-fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(180deg,var(--gold),var(--gold-soft));transition:height 1.8s cubic-bezier(.16,1,.3,1);box-shadow:0 0 8px rgba(228,201,122,0.5);will-change:height,filter}
+.sj-connector-fill::after{content:'';position:absolute;left:50%;bottom:0;width:6px;height:6px;border-radius:50%;background:var(--gold-soft);opacity:.78;filter:blur(.4px);transform:translate(-50%,50%) scale(.82);box-shadow:0 0 8px rgba(228,201,122,0.66);transition:transform 1.8s cubic-bezier(.16,1,.3,1),opacity .45s ease}
 .sj-connector.sj-grown .sj-connector-fill{height:100%}
-@media (prefers-reduced-motion:reduce){.sj-connector-fill{transition:none}}
+.sj-connector.sj-grown .sj-connector-fill::after{opacity:.46;transform:translate(-50%,50%) scale(1)}
+.sj-connector.sj-line-beating .sj-connector-fill{animation:sjLinePulse 860ms cubic-bezier(.22,.61,.36,1) both}
+@keyframes sjLinePulse{0%,100%{filter:brightness(1);box-shadow:0 0 8px rgba(228,201,122,0.5)}10%{filter:brightness(1.12);box-shadow:0 0 11px rgba(228,201,122,0.62)}30%{filter:brightness(1.06);box-shadow:0 0 9px rgba(228,201,122,0.56)}48%{filter:brightness(1);box-shadow:0 0 8px rgba(228,201,122,0.5)}}
 .sj-content{display:flex;flex-direction:column;align-items:center;gap:14px;padding:2px 4px}
-.sj-phrase{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,5.2vw,22px);line-height:1.4;letter-spacing:-0.005em;color:var(--parchment);opacity:0;transform:translateY(14px);transition:opacity .95s ease,transform .95s ease;max-width:320px}
-.sj-phrase.sj-in{opacity:1;transform:translateY(0)}
+.sj-phrase{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,5.2vw,22px);line-height:1.4;letter-spacing:-0.005em;color:var(--parchment);opacity:0;filter:blur(6px);transform:translate3d(0,11px,0) scale(.995);transition:opacity 1.45s cubic-bezier(.16,1,.3,1),filter 1.6s cubic-bezier(.16,1,.3,1),transform 1.6s cubic-bezier(.16,1,.3,1);max-width:320px;will-change:opacity,filter,transform}
+.sj-phrase.sj-in{opacity:1;filter:blur(0);transform:translate3d(0,0,0) scale(1)}
 .sj-phrase-quiet{color:var(--parchment)}
 .sj-phrase-em{font-style:italic;color:var(--gold-soft)}
 .sj-phrase-label{font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
-@media (prefers-reduced-motion:reduce){.sj-phrase{transition:none}}
-.sj-dims-row{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;opacity:0;transform:translateY(14px);transition:opacity .95s ease,transform .95s ease}
-.sj-dims-row.sj-in{opacity:1;transform:translateY(0)}
+.sj-dims-row{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;opacity:0;filter:blur(5px);transform:translate3d(0,10px,0) scale(.995);transition:opacity 1.4s cubic-bezier(.16,1,.3,1),filter 1.55s cubic-bezier(.16,1,.3,1),transform 1.55s cubic-bezier(.16,1,.3,1)}
+.sj-dims-row.sj-in{opacity:1;filter:blur(0);transform:translate3d(0,0,0) scale(1)}
 .sj-dim-chip{font-size:11.5px;padding:7px 14px;border-radius:999px;border:1px solid rgba(201,162,75,0.4);color:var(--gold-soft);background:rgba(201,162,75,0.07);font-weight:700;letter-spacing:.02em}
 .sj-step-warning .sj-node{filter:none}
-.sj-warning-card{position:relative;width:100%;max-width:340px;background:linear-gradient(160deg,rgba(139,15,26,0.4),rgba(15,11,13,0.65));border:1px solid rgba(201,162,75,0.65);border-radius:16px;padding:18px 18px 20px;margin-top:2px;box-shadow:0 0 0 1px rgba(201,162,75,0.08) inset,0 10px 26px rgba(0,0,0,0.38);opacity:0;transform:translateY(14px);transition:opacity .95s ease,transform .95s ease}
-.sj-warning-card.sj-in{opacity:1;transform:translateY(0);animation:sjWarningPulse 2.8s ease-in-out .7s infinite}
-@keyframes sjWarningPulse{0%,100%{box-shadow:0 0 0 1px rgba(201,162,75,0.08) inset,0 10px 26px rgba(0,0,0,0.38),0 0 16px rgba(228,201,122,0.1)}50%{box-shadow:0 0 0 1px rgba(201,162,75,0.08) inset,0 10px 26px rgba(0,0,0,0.38),0 0 26px rgba(228,201,122,0.28)}}
-@media (prefers-reduced-motion:reduce){.sj-warning-card,.sj-dims-row{transition:none}.sj-warning-card.sj-in{animation:none}}
+.sj-warning-card{position:relative;width:100%;max-width:340px;background:linear-gradient(160deg,rgba(139,15,26,0.4),rgba(15,11,13,0.65));border:1px solid rgba(201,162,75,0.65);border-radius:16px;padding:18px 18px 20px;margin-top:2px;box-shadow:0 0 0 1px rgba(201,162,75,0.08) inset,0 10px 26px rgba(0,0,0,0.38);opacity:0;filter:blur(5px);transform:translate3d(0,11px,0) scale(.995);transition:opacity 1.45s cubic-bezier(.16,1,.3,1),filter 1.6s cubic-bezier(.16,1,.3,1),transform 1.6s cubic-bezier(.16,1,.3,1)}
+.sj-warning-card.sj-in{opacity:1;filter:blur(0);transform:translate3d(0,0,0) scale(1);animation:sjWarningPulse 3.8s cubic-bezier(.4,0,.2,1) 1.4s infinite}
+@keyframes sjWarningPulse{0%,100%{box-shadow:0 0 0 1px rgba(201,162,75,0.08) inset,0 10px 26px rgba(0,0,0,0.38),0 0 16px rgba(228,201,122,0.1)}50%{box-shadow:0 0 0 1px rgba(201,162,75,0.08) inset,0 10px 26px rgba(0,0,0,0.38),0 0 23px rgba(228,201,122,0.23)}}
 .sj-warning-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);font-weight:800;margin-bottom:8px}
 .sj-warning-text{font-size:14.5px;line-height:1.6;color:var(--parchment)}
 .sj-rita{width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;background:linear-gradient(160deg,rgba(201,162,75,0.1),rgba(59,15,26,0.24));border:1px solid rgba(201,162,75,0.35);border-radius:20px;padding:26px 22px 24px;margin:2px auto 0}
-.sj-rita-title{font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.35;color:var(--parchment);opacity:0;transform:translateY(14px);transition:opacity .95s ease,transform .95s ease}
-.sj-rita-title.sj-in{opacity:1;transform:translateY(0)}
-.sj-rita-sub{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:16px;color:var(--gold-soft);opacity:0;transform:translateY(14px);transition:opacity .95s ease,transform .95s ease}
-.sj-rita-sub.sj-in{opacity:1;transform:translateY(0)}
-.sj-rita-body{font-size:13.5px;line-height:1.6;color:rgba(243,233,228,0.78);max-width:270px;opacity:0;transform:translateY(14px);transition:opacity .95s ease,transform .95s ease}
-.sj-rita-body.sj-in{opacity:1;transform:translateY(0)}
-.sj-rita .sj-reveal-btn{margin-top:6px;width:auto;padding:13px 26px;opacity:0;transform:translateY(14px);transition:opacity .95s ease,transform .95s ease}
-.sj-rita .sj-reveal-btn.sj-in{opacity:1;transform:translateY(0)}
-@media (prefers-reduced-motion:reduce){.sj-rita-title,.sj-rita-sub,.sj-rita-body,.sj-rita .sj-reveal-btn{transition:none}}
+.sj-rita-title,.sj-rita-sub,.sj-rita-body,.sj-rita .sj-reveal-btn{opacity:0;filter:blur(5px);transform:translate3d(0,11px,0) scale(.995);transition:opacity 1.45s cubic-bezier(.16,1,.3,1),filter 1.6s cubic-bezier(.16,1,.3,1),transform 1.6s cubic-bezier(.16,1,.3,1)}
+.sj-rita-title{font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.35;color:var(--parchment)}
+.sj-rita-sub{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:16px;color:var(--gold-soft)}
+.sj-rita-body{font-size:13.5px;line-height:1.6;color:rgba(243,233,228,0.78);max-width:270px}
+.sj-rita .sj-reveal-btn{margin-top:6px;width:auto;padding:13px 26px}
+.sj-rita-title.sj-in,.sj-rita-sub.sj-in,.sj-rita-body.sj-in,.sj-rita .sj-reveal-btn.sj-in{opacity:1;filter:blur(0);transform:translate3d(0,0,0) scale(1)}
 .sj-step-final .sj-content{margin-top:2px}
 .sj-final-cta{margin-top:8px;width:100%;max-width:280px}
 .sj-connector-quiet{background:rgba(243,233,228,0.06)}
+@media (prefers-reduced-motion:reduce){
+  .sj-node,.sj-heart,.sj-connector-fill,.sj-connector-fill::after,.sj-phrase,.sj-dims-row,.sj-warning-card,.sj-rita-title,.sj-rita-sub,.sj-rita-body,.sj-rita .sj-reveal-btn{animation:none !important;transition:none !important;filter:none !important}
+}
 @media (max-width:420px){
   .sj-step{max-width:100%;padding:0 2px}
   .sj-phrase{font-size:clamp(17px,5.6vw,20px);max-width:290px}
   .sj-warning-card,.sj-rita{max-width:100%}
-}
-</style>
+}</style>
 </head>
 <body>
 
@@ -549,7 +550,7 @@ body[data-screen="story"] .proof-toast{display:none !important}
             <p class="sj-phrase sj-phrase-quiet">It's also about the connection you create.</p>
             <p class="sj-phrase sj-phrase-quiet">The way you communicate.</p>
             <p class="sj-phrase sj-phrase-quiet">The way he feels around you.</p>
-            <p class="sj-phrase sj-phrase-quiet">And whether the attraction keeps growing.</p>
+            <p class="sj-phrase sj-phrase-em">And whether the attraction keeps growing.</p>
           </div>
         </div>
 
@@ -585,8 +586,6 @@ body[data-screen="story"] .proof-toast{display:none !important}
             <p class="sj-phrase sj-phrase-em">Because you learned how to create a stronger connection.</p>
           </div>
         </div>
-
-        <div class="sj-connector" data-sj-connector="5"><span class="sj-connector-fill"></span></div>
 
         <!-- 6. Rita — reuses the existing Ask Rita chat (toggleChat()); no
              floating bubble, notification, or auto-message on this screen,
@@ -7572,36 +7571,21 @@ function renderBuyPage(){
   initWheelDiscountUI();
 }
 
-/* ============ STORY JOURNEY: personalized warning + scroll reveal ============
-   Called every time the user reaches screen-story (from Reviews, or via
-   resumeQuizProgress()). Reuses the exact same weakest-axis result as
-   Results/Reviews/Book (via getPersonalization()), so the warning shown
-   here always matches what was teased on Results and what the Book page
-   goes on to answer. The scroll-driven reveal (hearts, connecting line,
-   staggered phrase-by-phrase text) is set up once via initStoryJourney()
-   and simply re-personalizes the warning text on every subsequent visit. */
+/* ============ STORY JOURNEY: personalized warning + cinematic scroll reveal ============ */
 function renderStoryPage(){
   const { warningCopy, weakest, weakestBand } = getPersonalization();
   const labelEl = document.getElementById('sjWarningLabel');
   const textEl = document.getElementById('sjWarningText');
   if(labelEl) labelEl.textContent = warningCopy[weakest].label;
   if(textEl) textEl.textContent = warningCopy[weakest][weakestBand];
-
   initStoryJourney();
 }
 
-// Guards below so this only ever wires up once per page load, no matter
-// how many times the visitor comes back to this screen (back button,
-// resume-after-refresh, language switch, etc.).
 let storyJourneyInitialized = false;
-
-// The reveal is scroll-driven rather than timer-driven: each sentence only
-// appears once the reader has scrolled it up into the TOP 75% of the
-// screen. Because of that, the bottom quarter of the screen always stays
-// empty as a pause point until the next scroll, and the Story always
-// resumes from exactly where it stopped -- this single rootMargin drives
-// that behavior for every heart and every sentence, all the way through.
-const SJ_REVEAL_MARGIN = '0px 0px -25% 0px';
+const SJ_REVEAL_MARGIN = '0px 0px -29% 0px';
+const SJ_REVEAL_GAP = 210;
+const SJ_HEARTBEAT_CYCLE = 3200;
+const SJ_HEARTBEAT_DURATION = 860;
 
 function initStoryJourney(){
   const track = document.querySelector('#screen-story .sj-track');
@@ -7626,51 +7610,84 @@ function initStoryJourney(){
   const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const trackedSections = new Set();
   const steps = Array.prototype.slice.call(track.querySelectorAll('.sj-step, .sj-rita'));
-  const pieces = Array.prototype.slice.call(
-    track.querySelectorAll('.sj-phrase, .sj-dims-row, .sj-warning-card, .sj-rita-title, .sj-rita-sub, .sj-rita-body, .sj-reveal-btn')
-  );
+  const pieces = Array.prototype.slice.call(track.querySelectorAll('.sj-phrase, .sj-dims-row, .sj-warning-card, .sj-rita-title, .sj-rita-sub, .sj-rita-body, .sj-reveal-btn'));
 
   if(reduceMotion || !('IntersectionObserver' in window)){
-    // No animated/scroll-driven reveal: show everything immediately
-    // rather than leaving the story permanently hidden.
     steps.forEach(function(el){ activateStoryStep(el, trackedSections); });
     pieces.forEach(function(p){ p.classList.add('sj-in'); });
     steps.forEach(function(el){ growConnectorAfter(el); });
     return;
   }
 
-  // Heart nodes: each one lights up and starts its heartbeat pulse the
-  // moment its step is scrolled up into that same top-75% zone.
+  const revealQueue = [];
+  const queuedPieces = new Set();
+  let revealTimer = null;
+
+  function scheduleReveal(){
+    if(revealTimer || !revealQueue.length) return;
+    revealTimer = setTimeout(function revealNext(){
+      revealTimer = null;
+      const next = revealQueue.shift();
+      if(next){
+        queuedPieces.delete(next);
+        if(!next.classList.contains('sj-in')){
+          next.classList.add('sj-in');
+          growConnectorIfStepDone(next);
+        }
+      }
+      if(revealQueue.length) scheduleReveal();
+    }, revealQueue.length === 1 ? 90 : SJ_REVEAL_GAP);
+  }
+
   const stepObserver = new IntersectionObserver(function(entries){
+    entries.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
     entries.forEach(function(entry){
       if(entry.isIntersecting){
         activateStoryStep(entry.target, trackedSections);
-        stepObserver.unobserve(entry.target); // each heart only ever needs to activate once
+        stepObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0, rootMargin: SJ_REVEAL_MARGIN });
+  }, { threshold: .01, rootMargin: SJ_REVEAL_MARGIN });
   steps.forEach(function(el){ stepObserver.observe(el); });
 
-  // Sentences / pieces: revealed one at a time, each only once it has
-  // been scrolled up into that top-75% zone -- so the Story keeps
-  // progressing normally, but the final 25% of the screen stays empty
-  // as a pause point until the reader scrolls again.
+  function queuePiece(piece){
+    if(piece.classList.contains('sj-in') || queuedPieces.has(piece)) return;
+    queuedPieces.add(piece);
+    revealQueue.push(piece);
+    pieceObserver.unobserve(piece);
+  }
+
   const pieceObserver = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.classList.add('sj-in');
-        pieceObserver.unobserve(entry.target);
-        growConnectorIfStepDone(entry.target);
+    entries.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+    entries.forEach(function(entry){ if(entry.isIntersecting) queuePiece(entry.target); });
+    scheduleReveal();
+  }, { threshold: .01, rootMargin: SJ_REVEAL_MARGIN });
+  pieces.forEach(function(p){ pieceObserver.observe(p); });
+
+  let endScrollFrame = null;
+  window.addEventListener('scroll', function(){
+    if(endScrollFrame) return;
+    endScrollFrame = requestAnimationFrame(function(){
+      endScrollFrame = null;
+      const atStoryEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 12;
+      if(atStoryEnd && document.body.getAttribute('data-screen') === 'story'){
+        pieces.forEach(queuePiece);
+        scheduleReveal();
       }
     });
-  }, { threshold: 0, rootMargin: SJ_REVEAL_MARGIN });
-  pieces.forEach(function(p){ pieceObserver.observe(p); });
+  }, { passive:true });
 }
 
 function activateStoryStep(el, trackedSections){
   if(el.classList.contains('sj-active')) return;
-  el.classList.add('sj-active'); // triggers the heart's CSS-driven glow/heartbeat
-  sjStartHeartbeatDriver(el); // syncs the heartbeat sound + subtle vibration to this heart's pulse
+  el.classList.add('sj-active');
+  document.querySelectorAll('#screen-story .sj-current-heart').forEach(function(active){
+    if(active !== el) active.classList.remove('sj-current-heart');
+  });
+  if(el.classList.contains('sj-step')){
+    el.classList.add('sj-current-heart');
+    sjStartHeartbeatDriver(el);
+  }
 
   const stepNum = el.getAttribute('data-sj-step');
   if(stepNum && !trackedSections.has(stepNum) && typeof gtag === 'function'){
@@ -7680,9 +7697,6 @@ function activateStoryStep(el, trackedSections){
   }
 }
 
-// The connecting line into the next heart only draws itself once every
-// sentence in this section has been revealed, so one discovery visibly
-// leads into the next rather than every line being present from the start.
 function growConnectorIfStepDone(piece){
   const step = piece.closest('.sj-step, .sj-rita');
   if(!step) return;
@@ -7693,26 +7707,12 @@ function growConnectorIfStepDone(piece){
 
 function growConnectorAfter(el){
   const next = el.nextElementSibling;
-  if(next && next.classList && next.classList.contains('sj-connector')){
-    next.classList.add('sj-grown');
-  }
+  if(next && next.classList && next.classList.contains('sj-connector')) next.classList.add('sj-grown');
 }
 
-// ============ HEARTBEAT SOUND + SUBTLE VIBRATION ============
-// Plays the 'heartbeat' effect loaded into the existing sfx system (see
-// loadSfx('heartbeat', 'sounds/heartbeat.mp3') in the sound-system setup
-// below) through its own quiet gain node -- reusing the same sfxContext/
-// sfxBuffers as the button/answer/notification sounds (so it benefits
-// from the same autoplay-unlock and tab-visibility pause/resume handling)
-// without changing how loud those other three sounds play. Alongside it,
-// where supported, a very short/subtle navigator.vibrate() pulse fires in
-// sync. Both are timed to the CSS "sjHeartbeat" animation on the currently
-// active heart (2.6s cycle, .35s delay, peak scale at 42% of the cycle --
-// see @keyframes sjHeartbeat above). Only the most recently activated
-// heart drives this, so multiple hearts pulsing at once as the reader
-// scrolls further down never overlap into a noisy pile-up of sound.
 let sjHeartbeatTimer = null;
 let sjHeartbeatDriverEl = null;
+let sjHeartbeatCleanupTimer = null;
 
 function playHeartbeatSfx(){
   if(!sfxContext || !sfxBuffers.heartbeat) return;
@@ -7720,39 +7720,50 @@ function playHeartbeatSfx(){
   const source = sfxContext.createBufferSource();
   source.buffer = sfxBuffers.heartbeat;
   const gain = sfxContext.createGain();
-  gain.gain.value = 0.32; // subtle -- quieter than the UI click/notification effects
+  gain.gain.value = 0.26;
   source.connect(gain);
   gain.connect(sfxContext.destination);
   source.start(0);
 }
 
-function sjPlayHeartbeatBeat(){
+function sjPlayHeartbeatBeat(el){
+  if(!el || sjHeartbeatDriverEl !== el || document.body.getAttribute('data-screen') !== 'story' || document.hidden) return;
+  const node = el.querySelector('.sj-node');
+  const connector = el.previousElementSibling && el.previousElementSibling.classList.contains('sj-connector') ? el.previousElementSibling : null;
+  if(node){
+    node.classList.remove('sj-beating');
+    void node.offsetWidth;
+    node.classList.add('sj-beating');
+  }
+  if(connector && connector.classList.contains('sj-grown')) connector.classList.add('sj-line-beating');
   playHeartbeatSfx();
   if(navigator.vibrate){
-    try{ navigator.vibrate(16); }catch(e){} // short, subtle pulse -- not a strong buzz
+    try{ navigator.vibrate([7, 82, 11]); }catch(e){}
   }
+  if(sjHeartbeatCleanupTimer) clearTimeout(sjHeartbeatCleanupTimer);
+  sjHeartbeatCleanupTimer = setTimeout(function(){
+    if(node) node.classList.remove('sj-beating');
+    if(connector) connector.classList.remove('sj-line-beating');
+  }, SJ_HEARTBEAT_DURATION);
 }
 
 function sjStartHeartbeatDriver(el){
   if(sjHeartbeatTimer){ clearTimeout(sjHeartbeatTimer); sjHeartbeatTimer = null; }
   sjHeartbeatDriverEl = el;
 
-  const CYCLE = 2600; // matches "sjHeartbeat 2.6s" in the CSS animation
-  const FIRST_BEAT = 350 + Math.round(CYCLE * 0.42); // the .35s CSS delay + the 42% peak-scale point in the keyframe
-
   function scheduleNext(){
     sjHeartbeatTimer = setTimeout(function(){
       if(sjHeartbeatDriverEl !== el) return;
-      sjPlayHeartbeatBeat();
+      sjPlayHeartbeatBeat(el);
       scheduleNext();
-    }, CYCLE);
+    }, SJ_HEARTBEAT_CYCLE);
   }
 
   sjHeartbeatTimer = setTimeout(function(){
     if(sjHeartbeatDriverEl !== el) return;
-    sjPlayHeartbeatBeat();
+    sjPlayHeartbeatBeat(el);
     scheduleNext();
-  }, FIRST_BEAT);
+  }, 720);
 }
 
 // Toggles one of the premium "guide highlights" accordion cards (Inside
