@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make Him Obsessed</title>
+<script>
+  /* GitHub Pages clean URLs: any path that isn't a real file (/quiz, /story, /reviews, /book, ...)
+     lands here. Forward it to index.html as "/?/route" (path and query preserved);
+     the decoder at the top of index.html's <head> restores the clean URL before the app starts.
+
+     pathSegmentsToKeep: 0 for a custom domain / username.github.io root (the default).
+     Set to 1 only if the site lives at username.github.io/repo-name/. */
+  var pathSegmentsToKeep = 0;
+
+  var l = window.location;
+  try{ sessionStorage.setItem('spaRef', document.referrer); }catch(e){} // so index.html can restore the real referrer
+  l.replace(
+    l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+    l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+    l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+    (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+    l.hash
+  );
+</script>
+</head>
+<body></body>
+</html>

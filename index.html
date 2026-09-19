@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+/* GitHub Pages clean URLs: 404.html hands unknown paths to this page as "/?/route".
+   Put the real path back in the address bar before anything else runs.
+   Kept above <base> so the URL resolves against this page, not the base. */
+(function(l){
+  if(l.search[1] === '/'){
+    var decoded = l.search.slice(1).split('&').map(function(s){ return s.replace(/~and~/g, '&'); }).join('?');
+    window.history.replaceState(null, null, l.origin + l.pathname.slice(0, -1) + decoded + l.hash);
+    // The redirect hop hides where the visitor really came from; 404.html saved it, so analytics still sees it.
+    try{
+      var ref = sessionStorage.getItem('spaRef');
+      sessionStorage.removeItem('spaRef');
+      if(ref !== null) Object.defineProperty(document, 'referrer', { get: function(){ return ref; } });
+    }catch(e){}
+  }
+}(window.location));
+</script>
 <base href="https://raw.githubusercontent.com/montimoha77-sketch/Make-him-obsessed-/main/">
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -5514,9 +5531,10 @@ function loadQuizProgress(){
 // back on whichever resumable screen they last had progress on, with their
 // language, quiz track, answers-so-far/scores, and name restored first, so
 // that screen renders exactly as it would have without the interruption.
-function resumeQuizProgress(){
+function resumeQuizProgress(forceScreen){
   const saved = loadQuizProgress();
   if(!saved) return;
+  if(forceScreen) saved.screen = forceScreen; // the URL names the screen; the saved answers/language/track are still restored
 
   if(QUIZ_CONFIG_BY_LANG[saved.lang]){
     LANG = saved.lang;
@@ -5720,6 +5738,38 @@ try{
 }catch(err){
   historyNavSupported = false;
 }
+
+/* ============ CLEAN URLS (GitHub Pages) ============
+   /  /quiz  /story  /reviews  /book  all serve this one page (404.html + the
+   decoder at the top of <head> make direct visits/refresh work). Screens
+   that have no route of their own (guides, ...) leave the URL as it is.
+   URLs are built absolute (origin + path) because the <base> tag above would
+   otherwise resolve a path-only URL onto raw.githubusercontent.com, which
+   pushState/replaceState refuse. */
+const ROUTE_SCREENS = { '': 'landing', quiz: 'quiz', story: 'story', reviews: 'proof', book: 'buy' };
+const SCREEN_ROUTES = { landing: '', gate: 'quiz', quiz: 'quiz', loading: 'quiz', name: 'quiz', results: 'quiz', proof: 'reviews', story: 'story', buy: 'book' };
+const ROUTE_BASE = (function(){
+  // '' when served from a domain root; '/repo-name' on a username.github.io/repo-name site.
+  const full = location.pathname.replace(/index\.html$/, '');
+  let p = full.replace(/\/+$/, '');
+  const last = p.split('/').pop();
+  // No trailing slash means the path ends in a page name (/quiz, /repo-name/quiz, an unknown /privacy): drop it.
+  if(last && (full === p || Object.prototype.hasOwnProperty.call(ROUTE_SCREENS, last.toLowerCase()))) p = p.slice(0, -last.length - 1);
+  return p;
+})();
+function screenForPath(){
+  let p = location.pathname;
+  if(ROUTE_BASE && p.indexOf(ROUTE_BASE) === 0) p = p.slice(ROUTE_BASE.length);
+  const key = p.replace(/index\.html$/, '').replace(/^\/+|\/+$/g, '').toLowerCase();
+  return Object.prototype.hasOwnProperty.call(ROUTE_SCREENS, key) ? ROUTE_SCREENS[key] : null;
+}
+function urlForScreen(name){
+  // First render of the page, or a screen without its own route: leave the URL alone.
+  if(currentScreenName === null || !Object.prototype.hasOwnProperty.call(SCREEN_ROUTES, name)) return location.href;
+  return location.origin + ROUTE_BASE + '/' + SCREEN_ROUTES[name] + location.search;
+}
+function siteRootUrl(){ return location.origin + ROUTE_BASE + '/' + location.search; }
+const INITIAL_ROUTE_SCREEN = screenForPath(); // read now, before the first goTo() runs
 
 function cfg(){
   const dict = QUIZ_CONFIG_BY_LANG[LANG] || QUIZ_CONFIG_BY_LANG.en;
@@ -7417,10 +7467,37 @@ if(window.location.hash === '#reviews'){
   if(bridge && !bridge.textContent){
     bridge.textContent = "See what's inside, and how it can help you understand attraction on a deeper level.";
   }
+} else if(INITIAL_ROUTE_SCREEN && INITIAL_ROUTE_SCREEN !== 'landing'){
+  openRouteScreen(INITIAL_ROUTE_SCREEN);
 } else {
   // No explicit deep link — resume in-progress/completed quiz state from
   // this device, if any (see the QUIZ PROGRESS AUTOSAVE block above).
   resumeQuizProgress();
+}
+// Make the address bar / current history entry match the screen that ended up showing.
+if(historyNavSupported && currentScreenName){
+  try{ history.replaceState({screen: currentScreenName}, '', urlForScreen(currentScreenName)); }
+  catch(err){ historyNavSupported = false; }
+}
+
+// Clean-URL entry point (/quiz, /story, /reviews, /book), used above.
+function openRouteScreen(name){
+  const saved = loadQuizProgress();
+  if(name === 'quiz'){
+    // Pick up a quiz already in progress (questions, loading, name, results);
+    // otherwise start at the first quiz step.
+    if(saved && SCREEN_ROUTES[saved.screen] === 'quiz') resumeQuizProgress();
+    else goTo('gate', true);
+    return;
+  }
+  if(saved){ resumeQuizProgress(name); return; }
+  goTo(name, true);
+  if(name === 'proof'){
+    const bridge = document.getElementById('offerBridge');
+    if(bridge && !bridge.textContent){
+      bridge.textContent = "See what's inside, and how it can help you understand attraction on a deeper level.";
+    }
+  }
 }
 
 function chooseGate(mode){
@@ -7466,7 +7543,7 @@ function backToStart(){
   // history stack from this point.
   if(historyNavSupported){
     try{
-      history.replaceState({screen:'landing'}, '', location.pathname + location.search);
+      history.replaceState({screen:'landing'}, '', urlForScreen('landing'));
     }catch(err){
       historyNavSupported = false;
     }
@@ -7508,7 +7585,7 @@ function goBack(){
 // whenever the visitor (or the button above) steps back through them —
 // so the page itself is never left, and never goes blank.
 window.addEventListener('popstate', function(e){
-  const name = (e.state && e.state.screen) || 'landing';
+  const name = (e.state && e.state.screen) || screenForPath() || 'landing';
   if(screenHistory.length) screenHistory.pop();
   goTo(name, true);
 });
@@ -7604,9 +7681,9 @@ function goTo(name, fromBack){
   if(!fromBack && historyNavSupported){
     try{
       if(currentScreenName === null){
-        history.replaceState({screen: name}, '', location.pathname + location.search);
+        history.replaceState({screen: name}, '', urlForScreen(name));
       } else {
-        history.pushState({screen: name}, '', location.pathname + location.search);
+        history.pushState({screen: name}, '', urlForScreen(name));
       }
     }catch(err){
       historyNavSupported = false;
@@ -8768,7 +8845,7 @@ async function buildShareCardCanvas(){
   ctx.fillText(cardBrandLine(), W / 2, wmDividerY + 60);
   try{ ctx.letterSpacing = '0px'; }catch(e){}
 
-  let site = (window.location.hostname + window.location.pathname)
+  let site = (window.location.hostname + ROUTE_BASE)
     .replace(/\/index\.html$/, '').replace(/\/$/, '');
   ctx.fillStyle = 'rgba(243,233,228,0.5)';
   ctx.font = '500 24px Manrope, sans-serif';
@@ -8811,7 +8888,7 @@ async function shareSite(btn){
   const shareData = {
     title: 'The Analyzer, Relationship Quiz',
     text: 'I just took this relationship quiz, try it for yourself:',
-    url: window.location.href
+    url: siteRootUrl()
   };
   if(navigator.share){
     try{ await navigator.share(shareData); }catch(err){ /* user cancelled, no action needed */ }
@@ -8835,7 +8912,7 @@ async function shareForDiscount(btn){
   const shareData = {
     title: 'The Analyzer, Relationship Quiz',
     text: 'I just took this relationship quiz, try it for yourself:',
-    url: window.location.href
+    url: siteRootUrl()
   };
   if(navigator.share){
     try{
