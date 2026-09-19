@@ -125,6 +125,78 @@ body[data-screen="story"] .proof-toast{display:none !important}
   .sj-phrase{font-size:clamp(17px,5.6vw,20px);max-width:290px}
   .sj-warning-card,.sj-rita{max-width:100%}
 }</style>
+<style>
+/* ============ SITE MENU (hamburger + slide-in panel) ============
+   Same gold-on-ink glass look as the language switcher / back button. The
+   language switcher is nudged left to make room for the menu button. */
+.menu-btn{position:fixed;top:14px;right:14px;z-index:60;width:32px;height:32px;padding:0;display:flex;align-items:center;justify-content:center;background:rgba(15,11,13,0.85);border:1px solid rgba(201,162,75,0.35);border-radius:50%;color:var(--gold-soft);cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);-webkit-tap-highlight-color:transparent;transition:border-color .15s ease,background .3s ease}
+.menu-btn::before{content:'';position:absolute;inset:-6px}
+.menu-btn:hover{border-color:var(--gold)}
+.menu-btn:focus-visible,.menu-link:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px}
+.menu-btn-bars{position:relative;display:block;width:16px;height:12px}
+.menu-btn-bars span{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:currentColor;transform-origin:center;transition:transform .45s cubic-bezier(.65,0,.35,1),opacity .25s ease}
+.menu-btn-bars span:nth-child(1){top:0}
+.menu-btn-bars span:nth-child(2){top:5px}
+.menu-btn-bars span:nth-child(3){top:10px}
+body.menu-open .menu-btn{z-index:1030;border-color:var(--gold);background:rgba(15,11,13,0.95)}
+body.menu-open .menu-btn-bars span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+body.menu-open .menu-btn-bars span:nth-child(2){opacity:0;transform:scaleX(0)}
+body.menu-open .menu-btn-bars span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+.lang-switch{right:54px}
+@media (max-width:420px){.lang-switch{right:50px}.menu-btn{top:10px;right:10px}}
+.menu-backdrop{position:fixed;inset:0;z-index:1010;background:rgba(6,4,5,0.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
+body.menu-open .menu-backdrop{opacity:1;visibility:visible;transition:opacity .4s ease}
+.menu-panel{position:fixed;top:0;right:0;bottom:0;z-index:1020;width:min(340px,88vw);padding:78px 28px 34px;overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(165deg,rgba(59,15,26,0.97),rgba(15,11,13,0.99));border-left:1px solid rgba(201,162,75,0.35);box-shadow:-30px 0 70px -20px rgba(0,0,0,0.85);transform:translateX(100%);visibility:hidden;transition:transform .5s cubic-bezier(.22,1,.36,1),visibility 0s linear .5s;outline:none}
+body.menu-open .menu-panel{transform:translateX(0);visibility:visible;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.menu-list{list-style:none}
+.menu-list li{opacity:0;transform:translateX(16px);transition:opacity .25s ease,transform .25s ease}
+body.menu-open .menu-list li{opacity:1;transform:none;transition:opacity .5s ease,transform .55s cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--i) * 40ms + 140ms)}
+.menu-link{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 2px;font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.25;letter-spacing:.005em;color:var(--parchment);text-decoration:none;-webkit-tap-highlight-color:transparent;transition:color .15s ease,padding-left .25s ease}
+.menu-link:hover{color:var(--gold-soft);padding-left:8px}
+.menu-link[aria-current="page"]{color:var(--gold-soft)}
+.menu-link[aria-current="page"]::after{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--gold-soft);box-shadow:0 0 8px rgba(228,201,122,0.6)}
+.menu-link.menu-link-sub{font-family:var(--font-body);font-weight:600;font-size:13.5px;letter-spacing:.01em;color:rgba(243,233,228,0.62);padding:9px 2px}
+.menu-link.menu-link-sub:hover{color:var(--gold-soft)}
+.menu-sep{height:1px;margin:10px 0;background:linear-gradient(90deg,transparent,rgba(201,162,75,0.4),transparent)}
+@media (min-width:768px){.menu-panel{width:360px;padding:84px 34px 40px}}
+@media (max-height:600px){.menu-link{padding-top:9px;padding-bottom:9px}.menu-link.menu-link-sub{padding-top:7px;padding-bottom:7px}}
+@media (prefers-reduced-motion:reduce){.menu-btn-bars span,.menu-panel,.menu-backdrop,.menu-list li{transition-duration:.01s;transition-delay:0s !important}}
+</style>
+<style id="site-footer-style">
+/* ============ SITE FOOTER ============
+   Sits at the bottom of .stage (same 440px column as every screen). Uses the
+   existing gold / parchment / ink tokens and the menu's link styling.
+   Hidden only during the quiz steps so the funnel has no exits mid-question. */
+.site-footer{position:relative;margin-top:46px;padding-top:28px;padding-bottom:36px;text-align:left}  /* bottom room keeps the fixed chat button/tip off the copyright line */
+.site-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,162,75,0.4),transparent)}
+.site-footer-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"explore legal" "explore connect";column-gap:24px;row-gap:22px;align-items:start}
+.site-footer-col.sf-explore{grid-area:explore}
+.site-footer-col.sf-legal{grid-area:legal}
+.site-footer-col.sf-connect{grid-area:connect}
+.site-footer-title{font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+.site-footer-list{list-style:none;margin:0;padding:0}
+.site-footer-link{display:block;padding:9px 0;font-family:var(--font-body);font-size:13.5px;font-weight:600;line-height:1.35;letter-spacing:.005em;color:rgba(243,233,228,0.68);text-decoration:none;-webkit-tap-highlight-color:transparent;transition:color .15s ease,transform .2s ease}
+.site-footer-link:hover{color:var(--gold-soft);transform:translateX(3px)}
+.site-footer-link:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px;border-radius:4px;color:var(--gold-soft)}
+.site-footer-copy{margin-top:26px;padding-top:16px;border-top:1px solid rgba(243,233,228,0.08);text-align:center;font-family:var(--font-body);font-size:11.5px;line-height:1.5;letter-spacing:.01em;color:rgba(243,233,228,0.4)}
+body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body[data-screen="loading"] .site-footer,body[data-screen="name"] .site-footer{display:none}
+@media (prefers-reduced-motion:reduce){.site-footer-link{transition:none}.site-footer-link:hover{transform:none}}
+</style>
+<style id="resume-prompt-style">
+/* ============ RESUME PROGRESS PROMPT ============
+   Shown only on a plain (non-deep-link) visit, only when this device has
+   saved quiz progress (see QUIZ PROGRESS AUTOSAVE further down the page).
+   Reuses the same overlay/modal visual language as the existing wheel and
+   share-card modals (ink/wine gradient, gold border, riseIn/fadeSlide
+   motion) so it looks native to the site rather than bolted on. */
+.resume-prompt-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(15,11,13,0.88);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:22px}
+.resume-prompt-overlay.active{display:flex}
+.resume-prompt-modal{position:relative;width:100%;max-width:340px;background:linear-gradient(165deg,rgba(59,15,26,0.6),rgba(15,11,13,0.94));border:1px solid rgba(201,162,75,0.45);border-radius:22px;padding:28px 22px 24px;text-align:center;box-shadow:0 30px 70px -18px rgba(0,0,0,0.85);animation:fadeSlide .3s ease both}
+.resume-prompt-title{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--parchment);margin-bottom:14px}
+.resume-prompt-text{font-family:var(--font-body);font-size:13.5px;line-height:1.6;color:rgba(243,233,228,0.75);margin-bottom:22px}
+.resume-prompt-actions{display:flex;flex-direction:column;gap:12px}
+@media (prefers-reduced-motion:reduce){.resume-prompt-modal{animation:none}}
+</style>
 </head>
 <body>
 
@@ -181,6 +253,31 @@ body[data-screen="story"] .proof-toast{display:none !important}
   <span>Back to Start</span>
 </button>
 
+<!-- SITE MENU: hamburger button (fixed top-right, next to the language switcher)
+     and its slide-in panel. Sits outside .stage like the other persistent header
+     controls. Behaviour lives in the small script at the end of the page. -->
+<button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
+  <span class="menu-btn-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<nav class="menu-panel" id="menuPanel" aria-label="Site menu" aria-hidden="true" tabindex="-1">
+  <ul class="menu-list">
+    <li style="--i:0"><a class="menu-link" data-path="" data-screen="landing">Home</a></li>
+    <li style="--i:1"><a class="menu-link" data-path="quiz" data-screen="gate">Does He Like You?</a></li>
+    <li style="--i:2"><a class="menu-link" data-path="story" data-screen="story">Our Story</a></li>
+    <li style="--i:3"><a class="menu-link" data-path="book" data-screen="buy">The Book</a></li>
+    <li style="--i:4"><a class="menu-link" data-path="reviews" data-screen="proof">Reviews</a></li>
+    <li class="menu-sep" role="separator" style="--i:5"></li>
+    <li style="--i:6"><a class="menu-link" data-path="faq">FAQ</a></li>
+    <li style="--i:7"><a class="menu-link" data-path="contact">Contact</a></li>
+    <li style="--i:8"><a class="menu-link" data-path="purchase">Purchase</a></li>
+    <li class="menu-sep" role="separator" style="--i:9"></li>
+    <li style="--i:10"><a class="menu-link menu-link-sub" data-path="privacy">Privacy Policy</a></li>
+    <li style="--i:11"><a class="menu-link menu-link-sub" data-path="terms">Terms of Service</a></li>
+    <li style="--i:12"><a class="menu-link menu-link-sub" data-path="refund">Refund Policy</a></li>
+  </ul>
+</nav>
+
 <!-- ============ AI CHAT WIDGET: "Ask Rita" (added) ============
      Sits outside .stage, same as the language switcher and back button
      above, so it persists across every screen. Talks to a separate
@@ -205,6 +302,21 @@ body[data-screen="story"] .proof-toast{display:none !important}
     <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()" aria-label="Send message">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
     </button>
+  </div>
+</div>
+
+<!-- RESUME PROGRESS PROMPT: sits outside .stage (like the language switcher,
+     back button, and wheel/share overlays) so it can sit on top of the
+     homepage on load. Only ever shown by showResumePromptIfSaved() near the
+     bottom of the page's init script — see QUIZ PROGRESS AUTOSAVE. -->
+<div class="resume-prompt-overlay" id="resumePromptOverlay" role="dialog" aria-modal="true" aria-label="Resume where you left off">
+  <div class="resume-prompt-modal">
+    <div class="resume-prompt-title">Welcome back ❤️</div>
+    <p class="resume-prompt-text">You were in the middle of something last time. Would you like to continue where you left off?</p>
+    <div class="resume-prompt-actions">
+      <button type="button" class="btn btn-gold" onclick="resumePromptContinue()">Continue where I left off</button>
+      <button type="button" class="btn-outline" onclick="resumePromptRestart()">Start from the beginning</button>
+    </div>
   </div>
 </div>
 
@@ -1190,6 +1302,42 @@ body[data-screen="story"] .proof-toast{display:none !important}
       <button class="btn btn-gold" onclick="goTo('proof')" data-i18n="guide7.ctaBtn">Start Reading How to Make Him Obsessed With You →</button>
     </div>
   </section>
+
+
+  <!-- SITE FOOTER: hrefs are filled in by the small script at the end of the page
+       (same routing as the site menu; the <base> tag would otherwise resolve
+       relative links onto raw.githubusercontent.com). Threads / TikTok URLs are
+       the same ones already used by the .social-footer icons above. -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="site-footer-grid">
+      <nav class="site-footer-col sf-explore" aria-label="Explore">
+        <h2 class="site-footer-title">Explore</h2>
+        <ul class="site-footer-list">
+          <li><a class="site-footer-link" data-path="" data-screen="landing">Home</a></li>
+          <li><a class="site-footer-link" data-path="quiz" data-screen="gate">Does He Like You?</a></li>
+          <li><a class="site-footer-link" data-path="book" data-screen="buy">The Book</a></li>
+          <li><a class="site-footer-link" data-path="reviews" data-screen="proof">Reviews</a></li>
+          <li><a class="site-footer-link" data-path="faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <nav class="site-footer-col sf-legal" aria-label="Legal">
+        <h2 class="site-footer-title">Legal</h2>
+        <ul class="site-footer-list">
+          <li><a class="site-footer-link" data-path="privacy">Privacy Policy</a></li>
+          <li><a class="site-footer-link" data-path="terms">Terms of Service</a></li>
+          <li><a class="site-footer-link" data-path="refund">Refund Policy</a></li>
+        </ul>
+      </nav>
+      <nav class="site-footer-col sf-connect" aria-label="Connect">
+        <h2 class="site-footer-title">Connect</h2>
+        <ul class="site-footer-list">
+          <li><a class="site-footer-link" href="https://www.threads.com/@_obsessionmethod?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">Threads</a></li>
+          <li><a class="site-footer-link" href="https://www.tiktok.com/@makehimobsssd" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="site-footer-copy">&copy; <span data-year>2026</span> Make Him Obsessed. All rights reserved.</p>
+  </footer>
 
 </div>
 
@@ -5577,6 +5725,34 @@ function resumeQuizProgress(forceScreen){
   goTo(saved.screen, true);
 }
 
+/* ============ RESUME PROGRESS PROMPT ============
+   On a plain visit (no deep link, no #reviews hash) the homepage always
+   renders first now — see the init block below, which calls this instead
+   of auto-resuming. If saved progress exists on this device, this shows a
+   small prompt over the homepage and lets the visitor choose; it never
+   redirects them on its own. */
+function showResumePromptIfSaved(){
+  if(loadQuizProgress()){
+    const overlay = document.getElementById('resumePromptOverlay');
+    if(overlay) overlay.classList.add('active');
+  }
+}
+function hideResumePrompt(){
+  const overlay = document.getElementById('resumePromptOverlay');
+  if(overlay) overlay.classList.remove('active');
+}
+function resumePromptContinue(){
+  hideResumePrompt();
+  resumeQuizProgress();
+}
+function resumePromptRestart(){
+  hideResumePrompt();
+  clearQuizProgress();
+  // Already on the homepage (goTo('landing') ran earlier during init) — no
+  // further navigation needed, this just makes sure nothing stale is left
+  // to resume into later.
+}
+
 /* ============ SOUND SYSTEM ============ */
 // Background music stays a simple looping <audio> element — that's the
 // right tool for a long, continuously-streamed track.
@@ -7470,9 +7646,11 @@ if(window.location.hash === '#reviews'){
 } else if(INITIAL_ROUTE_SCREEN && INITIAL_ROUTE_SCREEN !== 'landing'){
   openRouteScreen(INITIAL_ROUTE_SCREEN);
 } else {
-  // No explicit deep link — resume in-progress/completed quiz state from
-  // this device, if any (see the QUIZ PROGRESS AUTOSAVE block above).
-  resumeQuizProgress();
+  // No explicit deep link — the homepage is already showing (goTo('landing')
+  // ran above via chooseLanguage). If this device has saved quiz progress,
+  // ask before resuming instead of jumping straight back into it (see the
+  // QUIZ PROGRESS AUTOSAVE block above and RESUME PROGRESS PROMPT below).
+  showResumePromptIfSaved();
 }
 // Make the address bar / current history entry match the screen that ended up showing.
 if(historyNavSupported && currentScreenName){
@@ -9540,6 +9718,104 @@ function getFreeGuide(){
       if (sendBtn) sendBtn.disabled = false;
     });
   };
+})();
+</script>
+<script>
+/* ============ SITE MENU behaviour ============
+   In-app pages (Home, quiz, story, book, reviews) switch screens with the
+   existing goTo(); the other entries are ordinary links to their own URLs.
+   Hrefs are built absolute because of the <base> tag. */
+(function(){
+  var body = document.body;
+  var btn = document.getElementById('menuBtn');
+  var panel = document.getElementById('menuPanel');
+  var backdrop = document.getElementById('menuBackdrop');
+  if(!btn || !panel || !backdrop) return;
+  var links = Array.prototype.slice.call(panel.querySelectorAll('.menu-link'));
+
+  links.forEach(function(a){
+    a.href = location.origin + ROUTE_BASE + '/' + a.getAttribute('data-path');
+    a.addEventListener('click', function(e){
+      var screen = a.getAttribute('data-screen');
+      if(!screen) return;                       // separate page: let the link navigate
+      if(e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // open-in-new-tab etc.
+      e.preventDefault();
+      setOpen(false);
+      if(SCREEN_ROUTES[currentScreenName] === a.getAttribute('data-path')) return;  // already on it
+      goTo(screen);
+    });
+  });
+
+  function isOpen(){ return body.classList.contains('menu-open'); }
+
+  function setOpen(open, keepFocus){
+    if(open === isOpen()) return;
+    if(open){
+      var langMenu = document.getElementById('langSwitchMenu');
+      if(langMenu) langMenu.classList.remove('open');
+      links.forEach(function(a){
+        if(a.getAttribute('data-screen') && SCREEN_ROUTES[currentScreenName] === a.getAttribute('data-path')){
+          a.setAttribute('aria-current', 'page');
+        } else {
+          a.removeAttribute('aria-current');
+        }
+      });
+    }
+    body.classList.toggle('menu-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if(open){ panel.scrollTop = 0; try{ panel.focus({preventScroll:true}); }catch(err){} }
+    else if(!keepFocus && panel.contains(document.activeElement)){ btn.focus({preventScroll:true}); }
+  }
+
+  btn.addEventListener('click', function(){ setOpen(!isOpen()); });
+  backdrop.addEventListener('click', function(){ setOpen(false); });
+
+  document.addEventListener('keydown', function(e){
+    if(!isOpen()) return;
+    if(e.key === 'Escape'){ setOpen(false, true); btn.focus({preventScroll:true}); return; }
+    if(e.key === 'Tab'){                         // keep keyboard focus inside the open menu
+      var ring = [btn].concat(links);
+      var i = ring.indexOf(document.activeElement);
+      if(e.shiftKey && i <= 0){ e.preventDefault(); ring[ring.length - 1].focus(); }
+      else if(!e.shiftKey && i === ring.length - 1){ e.preventDefault(); btn.focus(); }
+    }
+  });
+
+  // Don't let the page scroll behind the open menu.
+  backdrop.addEventListener('touchmove', function(e){ e.preventDefault(); }, { passive: false });
+  backdrop.addEventListener('wheel', function(e){ e.preventDefault(); }, { passive: false });
+  panel.addEventListener('touchmove', function(e){
+    if(panel.scrollHeight <= panel.clientHeight) e.preventDefault();
+  }, { passive: false });
+
+  // Browser Back/Forward or a restored tab: never leave the menu hanging open.
+  window.addEventListener('popstate', function(){ setOpen(false, true); });
+  window.addEventListener('pageshow', function(){ setOpen(false, true); });
+})();
+</script>
+<script>
+/* ============ SITE FOOTER links ============
+   Same routing as the site menu: Home / quiz / book / reviews switch screens
+   with the existing goTo(); FAQ and the legal pages are ordinary links to
+   their own URLs. Hrefs are built absolute because of the <base> tag. */
+(function(){
+  var footer = document.getElementById('siteFooter');
+  if(!footer) return;
+  var yr = footer.querySelector('[data-year]');
+  if(yr) yr.textContent = new Date().getFullYear();
+  Array.prototype.forEach.call(footer.querySelectorAll('a[data-path]'), function(a){
+    a.href = location.origin + ROUTE_BASE + '/' + a.getAttribute('data-path');
+    a.addEventListener('click', function(e){
+      var screen = a.getAttribute('data-screen');
+      if(!screen) return;                       // separate page: let the link navigate
+      if(e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // open-in-new-tab etc.
+      e.preventDefault();
+      if(SCREEN_ROUTES[currentScreenName] === a.getAttribute('data-path')){ window.scrollTo(0, 0); return; }  // already on it
+      goTo(screen);
+    });
+  });
 })();
 </script>
 </body>
