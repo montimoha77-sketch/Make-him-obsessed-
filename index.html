@@ -67,11 +67,14 @@
    Motion remains fully namespaced to the Story screen. Resting layout,
    typography, color and geometry are unchanged. */
 body[data-screen="story"] .chat-fab,
-body[data-screen="story"] .chat-fab-tip{display:none !important}
-body[data-screen="story"] .proof-toast{display:none !important}
-#screen-story{padding-top:6px}
-#screen-story .brand-header{margin-bottom:10px;min-height:64px}
-#screen-story .logo-img{max-height:64px}
+body[data-screen="story"] .chat-fab-tip,
+body[data-screen="journey"] .chat-fab,
+body[data-screen="journey"] .chat-fab-tip{display:none !important}
+body[data-screen="story"] .proof-toast,
+body[data-screen="journey"] .proof-toast{display:none !important}
+#screen-story,#screen-journey{padding-top:6px}
+#screen-story .brand-header,#screen-journey .brand-header{margin-bottom:10px;min-height:64px}
+#screen-story .logo-img,#screen-journey .logo-img{max-height:64px}
 .story-journey{position:relative;padding-bottom:12px}
 .story-journey .sj-intro{text-align:center;margin:2px 0 30px}
 .story-journey .sj-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700;opacity:.85}
@@ -158,6 +161,26 @@ body.menu-open .menu-list li{opacity:1;transform:none;transition:opacity .5s eas
 .menu-link.menu-link-sub{font-family:var(--font-body);font-weight:600;font-size:13.5px;letter-spacing:.01em;color:rgba(243,233,228,0.62);padding:9px 2px}
 .menu-link.menu-link-sub:hover{color:var(--gold-soft)}
 .menu-sep{height:1px;margin:10px 0;background:linear-gradient(90deg,transparent,rgba(201,162,75,0.4),transparent)}
+.buy-trust{margin-top:8px;font-size:10.5px;line-height:1.5;color:rgba(243,233,228,0.6)}
+.buy-trust.buy-trust-center{text-align:center;margin:10px 0 0}
+.buy-trust a{display:block;margin-top:2px;color:var(--gold-soft);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.card-text-rest{margin-top:2px}
+.buy-wheel-link{display:block;margin:10px auto 0;font-size:11.5px;font-weight:600;color:rgba(243,233,228,0.55)}
+.buy-wheel-link:hover{color:var(--gold-soft)}
+.quick-buy-info .buy-inside-link{align-self:center;font-size:11.5px;font-weight:700;margin-top:-2px}
+.quick-buy-extras{display:flex;flex-direction:column;align-items:center;gap:6px;margin:-4px 0 20px;padding:12px 14px;text-align:center;border:1px solid rgba(243,233,228,0.1);border-radius:14px;background:rgba(243,233,228,0.03)}
+.quick-buy-extras .quick-buy-note{font-size:11.5px;color:rgba(243,233,228,0.72)}
+.quick-buy-extras .buy-trust{margin-top:0;text-align:center}
+.quick-buy-extras .buy-tagline{margin:2px 0 0;font-size:12.5px}
+.quick-buy-extras .buy-wheel-link{margin:0 auto}
+.book-toc{margin:4px 0 26px;padding:18px 18px 16px;background:linear-gradient(160deg,rgba(201,162,75,0.10),rgba(59,15,26,0.22));border:1px solid rgba(201,162,75,0.32);border-radius:16px}
+.book-toc-title{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--gold-soft);margin-bottom:8px}
+.book-toc-list{list-style:none}
+.book-toc-list li{display:flex;align-items:baseline;gap:12px;padding:10px 0;border-top:1px solid rgba(243,233,228,0.08);font-size:14px;line-height:1.4;color:rgba(243,233,228,0.9)}
+.book-toc-list li:first-child{border-top:0}
+.book-toc-num{flex-shrink:0;min-width:22px;font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--gold)}
+.book-toc-takeaway{margin-top:12px;padding:12px 14px;border-radius:12px;background:rgba(15,11,13,0.45);border:1px solid rgba(201,162,75,0.25);font-size:12.5px;line-height:1.55;color:rgba(243,233,228,0.82)}
+.book-toc-takeaway strong{color:var(--gold-soft)}
 @media (min-width:768px){.menu-panel{width:360px;padding:84px 34px 40px}}
 @media (max-height:600px){.menu-link{padding-top:9px;padding-bottom:9px}.menu-link.menu-link-sub{padding-top:7px;padding-bottom:7px}}
 @media (prefers-reduced-motion:reduce){.menu-btn-bars span,.menu-panel,.menu-backdrop,.menu-list li{transition-duration:.01s;transition-delay:0s !important}}
@@ -272,9 +295,10 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
     <li style="--i:7"><a class="menu-link" data-path="contact">Contact</a></li>
     <li style="--i:8"><a class="menu-link" data-path="purchase">Purchase</a></li>
     <li class="menu-sep" role="separator" style="--i:9"></li>
-    <li style="--i:10"><a class="menu-link menu-link-sub" data-path="privacy">Privacy Policy</a></li>
-    <li style="--i:11"><a class="menu-link menu-link-sub" data-path="terms">Terms of Service</a></li>
-    <li style="--i:12"><a class="menu-link menu-link-sub" data-path="refund">Refund Policy</a></li>
+    <li style="--i:10"><a class="menu-link menu-link-sub" data-path="guides" data-screen="guides" data-i18n="guides.eyebrow">Free Guides</a></li>
+    <li style="--i:11"><a class="menu-link menu-link-sub" data-path="privacy">Privacy Policy</a></li>
+    <li style="--i:12"><a class="menu-link menu-link-sub" data-path="terms">Terms of Service</a></li>
+    <li style="--i:13"><a class="menu-link menu-link-sub" data-path="refund">Refund Policy</a></li>
   </ul>
 </nav>
 
@@ -520,7 +544,8 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
       </div>
       <div class="card card-locked" id="warningCard" onclick="goTo('proof')">
         <div class="card-label" data-i18n="results.warningLabel">Biggest Warning</div>
-        <div class="card-text card-text-blurred" id="issueText"></div>
+        <div class="card-text" id="issueText"></div>
+        <div class="card-text card-text-blurred card-text-rest" id="issueTextRest" aria-hidden="true"></div>
         <div class="card-lock-row">
           <span class="lock-icon">🔒</span>
           <span data-i18n="results.lockedHint">See What This Actually Means</span>
@@ -593,7 +618,7 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
       </div>
     </div>
 
-    <button class="btn btn-gold btn-glow" onclick="goTo('story')" data-i18n="proof.nextBtn">Reveal Your Biggest Warning</button>
+    <button class="btn btn-gold btn-glow" onclick="goTo('journey')" data-i18n="proof.nextBtn">Reveal Your Biggest Warning</button>
     <p class="footer-note" data-i18n="proof.footerNote">Your results were unique to your answers, this isn't generic advice.</p>
   <div class="social-footer" aria-label="Social media">
   <a href="https://www.threads.com/@_obsessionmethod?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer" aria-label="Threads">
@@ -605,17 +630,8 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
 </div>
   </section>
 
-  <!-- ============ STORY JOURNEY (added) ============
-       Sits between Reviews (screen-proof) and the Book page (screen-buy).
-       Purely narrative: no results dashboard, no bullet lists, no sales
-       copy until the very last line. The personalized Biggest Warning
-       that used to render at the top of screen-buy now lives here instead
-       (see #sjWarningText, filled by renderStoryPage() via the same
-       getPersonalization() used by Results/Reviews/Book), so it is never
-       duplicated between this screen and the Book page.
-       Entirely namespaced under .story-journey / .sj- and #screen-story,
-       so nothing here touches any other screen's markup, CSS, or JS. -->
-  <section class="screen" id="screen-story">
+  <!-- Shared heart shape/gradient for the Our Story and Your Story screens; lives outside
+       both so it stays available whichever one is showing. -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
       <defs>
         <linearGradient id="sjHeartGradActive" x1="0" y1="0" x2="1" y2="1">
@@ -628,6 +644,17 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
       </symbol>
     </svg>
 
+  <!-- ============ STORY JOURNEY (added) ============
+       Sits between Reviews (screen-proof) and the Book page (screen-buy).
+       Purely narrative: no results dashboard, no bullet lists, no sales
+       copy until the very last line. The personalized Biggest Warning
+       that used to render at the top of screen-buy now lives here instead
+       (see #sjWarningText, filled by renderStoryPage() via the same
+       getPersonalization() used by Results/Reviews/Book), so it is never
+       duplicated between this screen and the Book page.
+       Entirely namespaced under .story-journey / .sj- and #screen-story,
+       so nothing here touches any other screen's markup, CSS, or JS. -->
+  <section class="screen" id="screen-story">
         <div class="story-journey">
       <div class="sj-intro">
         <div class="sj-eyebrow" data-i18n="story.eyebrow">Our Story</div>
@@ -727,6 +754,130 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
     </div>
   </section>
 
+  <!-- ============ YOUR STORY (added) ============
+       The personal, viewer-centred journey shown after Reviews (screen-proof) and
+       before the Book (screen-buy). "Our Story" (screen-story, in the menu) is the
+       brand's own story; this one is about the visitor and shows their Biggest Warning. -->
+  <section class="screen" id="screen-journey">
+    <div class="story-journey">
+      <div class="sj-intro">
+        <div class="sj-eyebrow" data-i18n="journey.eyebrow">Your Story</div>
+      </div>
+
+      <div class="sj-track">
+
+        <!-- 1. Why she came here -->
+        <div class="sj-step" data-sj-step="1">
+          <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
+          <div class="sj-content">
+            <p class="sj-phrase" data-i18n="journey.s1_1">You came here because you wanted to know.</p>
+            <p class="sj-phrase" data-i18n="journey.s1_2">Does he really like you?</p>
+            <p class="sj-phrase" data-i18n="journey.s1_3">Does he actually want you?</p>
+            <p class="sj-phrase" data-i18n="journey.s1_4">Why does he act this way?</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s1_5">You didn't want another guess.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s1_6">You wanted an answer.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s1_7">So you decided to find out.</p>
+          </div>
+        </div>
+
+        <div class="sj-connector" data-sj-connector="1"><span class="sj-connector-fill"></span></div>
+
+        <!-- 2. The analysis -->
+        <div class="sj-step" data-sj-step="2">
+          <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
+          <div class="sj-content">
+            <p class="sj-phrase" data-i18n="journey.s2_1">You took the 60-second analysis.</p>
+            <p class="sj-phrase" data-i18n="journey.s2_2">And suddenly, his behavior started making more sense.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s2_3">You could see the pattern behind his actions.</p>
+            <div class="sj-dims-row">
+              <span class="sj-dim-chip" data-i18n="journey.chip1">Interest</span>
+              <span class="sj-dim-chip" data-i18n="journey.chip2">Communication</span>
+              <span class="sj-dim-chip" data-i18n="journey.chip3">Effort</span>
+            </div>
+            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s2_4">His actions were telling you something.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s2_5">You just needed to know how to read them.</p>
+          </div>
+        </div>
+
+        <div class="sj-connector" data-sj-connector="2"><span class="sj-connector-fill"></span></div>
+
+        <!-- 3. What she realized -->
+        <div class="sj-step" data-sj-step="3">
+          <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
+          <div class="sj-content">
+            <p class="sj-phrase" data-i18n="journey.s3_1">But understanding him is only half of it.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s3_2">Because attraction isn't just about whether he likes you.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s3_3">It's also about the connection you create.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s3_4">The way you communicate.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s3_5">The way he feels around you.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s3_6">And whether the attraction keeps growing.</p>
+          </div>
+        </div>
+
+        <div class="sj-connector" data-sj-connector="3"><span class="sj-connector-fill"></span></div>
+
+        <!-- 4. Biggest Warning (personalized — moved from screen-buy) -->
+        <div class="sj-step sj-step-warning" data-sj-step="4">
+          <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
+          <div class="sj-content">
+            <p class="sj-phrase" data-i18n="journey.s4_1">And then there was one thing you couldn't ignore…</p>
+            <p class="sj-phrase sj-phrase-label" data-i18n="journey.s4_2">Your Biggest Warning</p>
+            <div class="sj-warning-card" id="sjWarningCard">
+              <div class="sj-warning-label" id="sjWarningLabel"></div>
+              <div class="sj-warning-text" id="sjWarningText"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sj-connector" data-sj-connector="4"><span class="sj-connector-fill"></span></div>
+
+        <!-- 5. The future she actually wants -->
+        <div class="sj-step" data-sj-step="5">
+          <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
+          <div class="sj-content">
+            <p class="sj-phrase" data-i18n="journey.s5_1">Now imagine something different.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_2">A relationship where you don't have to chase his attention.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_3">Where you don't overthink every text.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_4">Where you feel wanted instead of wondering where you stand.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_5">Where communication feels natural.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_6">Where attraction feels mutual.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_7">Where you feel confident in the connection you're creating.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s5_8">Not because you learned how to chase harder.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s5_9">Because you learned how to create a stronger connection.</p>
+          </div>
+        </div>
+
+        <!-- 6. Rita — reuses the existing Ask Rita chat (toggleChat()); no
+             floating bubble, notification, or auto-message on this screen,
+             see the .chat-fab / .chat-fab-tip rules and the showFabTip()/
+             showProofToast() screen checks. -->
+        <div class="sj-rita" data-sj-step="rita" id="sjRitaCard">
+          <p class="sj-rita-title" data-i18n="journey.rita1">Still wondering what his behavior means?</p>
+          <p class="sj-rita-sub" data-i18n="journey.rita2">Ask Rita.</p>
+          <p class="sj-rita-body" data-i18n="journey.rita3">Tell her what happened. She'll help you make sense of it.</p>
+          <button type="button" class="btn btn-outline sj-reveal-btn" id="sjRitaBtn" data-i18n="journey.ritaBtn">Talk to Rita</button>
+        </div>
+
+        <div class="sj-connector" data-sj-connector="6"><span class="sj-connector-fill"></span></div>
+
+        <!-- 7. Final desire-based CTA -->
+        <div class="sj-step sj-step-final" data-sj-step="6">
+          <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
+          <div class="sj-content">
+            <p class="sj-phrase" data-i18n="journey.s6_1">You know what you want now.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s6_2">To feel wanted.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s6_3">To feel confident.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s6_4">To understand the connection you're creating.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s6_5">To stop second-guessing every move.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s6_6">So…</p>
+            <button type="button" class="btn btn-gold btn-glow sj-final-cta sj-reveal-btn" id="sjFinalCta" data-i18n="journey.finalBtn">Show Me How →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- SCREEN 7: DEDICATED OFFER PAGE -->
   <section class="screen" id="screen-buy">
     <!-- The personalized Biggest Warning now lives on the Story Journey
@@ -765,20 +916,17 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
       <div class="quick-buy-hang-pos">
         <div class="hang-item sway-a">
           <div class="hang-string quick-buy-hang-string"></div>
-          <div class="hang-chip quick-buy-hang-chip" data-i18n="buy.hangChip">Limited-Time Offer</div>
+          <div class="hang-chip quick-buy-hang-chip" data-i18n="buy.hangChip">Launch Price</div>
         </div>
       </div>
       <div class="quick-buy-info">
         <div class="quick-buy-price-row">
-          <span class="quick-buy-price-old">$23</span>
           <span class="quick-buy-price-new">$8.99</span>
         </div>
         <div class="quick-buy-btn-wrap">
           <button class="btn btn-gold btn-glow quick-buy-btn" id="ebookBtnTop" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()" data-i18n="buy.ctaBtn">Get Instant Access</button>
         </div>
-        <div class="quick-buy-note" data-i18n="buy.footerNote">Instant digital access, start reading in minutes.</div>
-        <p class="buy-tagline quick-buy-tagline" data-i18n="buy.tagline">Make Him Feel The Difference.</p>
-        <button type="button" class="btn btn-gold quick-buy-btn" id="openWheelBtn" onclick="openWheelModal()" data-i18n="wheel.spinBtn" style="padding:9px 14px;font-size:12px;box-shadow:none;animation:none">Spin The Wheel</button>
+        <button type="button" class="text-link buy-inside-link" onclick="var t=document.getElementById('bookToc');if(t)t.scrollIntoView({behavior:'smooth',block:'start'})" data-i18n="buy.insideLink">See what's inside ↓</button>
       </div>
       <div class="quick-buy-cover">
         <!-- book-cover.webp sits next to index.html and logo.png on GitHub -->
@@ -791,6 +939,17 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
           <img class="platform-badge-img platform-badge-kindle" loading="lazy" decoding="async" src="badge-kindle.png" alt="Kindle" width="296" height="170">
         </div>
       </div>
+    </div>
+
+    <!-- Small secondary box under the card: delivery note, checkout/refund info, tagline, prize wheel. -->
+    <div class="quick-buy-extras">
+      <div class="quick-buy-note" data-i18n="buy.footerNote">Instant digital access, start reading in minutes.</div>
+      <div class="buy-trust">
+        <span data-i18n="buy.trustLine">🔒 Secure checkout · 17 pages · 20–30 min read</span>
+        <a class="buy-refund-link" data-path="refund" target="_blank" rel="noopener" data-i18n="buy.refundLink">All sales are final · Refund Policy</a>
+      </div>
+      <p class="buy-tagline quick-buy-tagline" data-i18n="buy.tagline">Make Him Feel The Difference.</p>
+      <button type="button" class="text-link buy-wheel-link" id="openWheelBtn" onclick="openWheelModal()" data-i18n="wheel.spinBtn">Spin The Wheel</button>
     </div>
 
     <p class="buy-desc" id="buyDesc1">You don't need another dating tip.</p>
@@ -876,22 +1035,41 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
       </div>
     </div>
 
+    <!-- Look inside: the book's 10 chapters, so buyers can see exactly what they get. -->
+    <div class="book-toc" id="bookToc">
+      <div class="book-toc-title" data-i18n="buy.tocTitle">What You'll Learn</div>
+      <ol class="book-toc-list">
+        <li><span class="book-toc-num">01</span><span lang="en">Stop Chasing – The Attraction Killer</span></li>
+        <li><span class="book-toc-num">02</span><span lang="en">The Power of Mystery</span></li>
+        <li><span class="book-toc-num">03</span><span lang="en">Become the Prize</span></li>
+        <li><span class="book-toc-num">04</span><span lang="en">Emotional Connection</span></li>
+        <li><span class="book-toc-num">05</span><span lang="en">Psychology of Scarcity</span></li>
+        <li><span class="book-toc-num">06</span><span lang="en">What Men Secretly Notice</span></li>
+        <li><span class="book-toc-num">07</span><span lang="en">Common Mistakes That Push Him Away</span></li>
+        <li><span class="book-toc-num">08</span><span lang="en">How to Stay on His Mind</span></li>
+        <li><span class="book-toc-num">09</span><span lang="en">Build a Life He Wants to Be Part Of</span></li>
+        <li><span class="book-toc-num">10</span><span lang="en">Attraction vs. Obsession</span></li>
+      </ol>
+      <div class="book-toc-takeaway" data-i18n="buy.tocTakeaway"><strong>Key Takeaway:</strong> This book is about becoming so grounded, interesting, and emotionally intelligent that attraction becomes a natural side effect — not a performance.</div>
+    </div>
+
     <div class="offer-hang-wrap">
       <div class="hang-item sway-a">
         <div class="hang-string"></div>
-        <div class="hang-chip" data-i18n="buy.hangChip">Limited-Time Offer</div>
+        <div class="hang-chip" data-i18n="buy.hangChip">Launch Price</div>
       </div>
     </div>
     <div class="offer-card">
-      <div class="offer-card-eyebrow" data-i18n="buy.offerEyebrow">Your Reading Bonus</div>
       <div class="offer-price-row">
-        <span class="offer-price-old">$23</span>
         <span class="offer-price-new">$8.99</span>
       </div>
-      <div class="offer-card-note" data-i18n="buy.offerNote">Reserved exclusively for your results</div>
     </div>
     <button class="btn btn-gold btn-glow" id="ebookBtn" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()" data-i18n="buy.ctaBtn">Get Instant Access</button>
     <p class="footer-note" data-i18n="buy.footerNote">Instant digital access, start reading in minutes.</p>
+    <div class="buy-trust buy-trust-center">
+      <span data-i18n="buy.trustLine">🔒 Secure checkout · 17 pages · 20–30 min read</span>
+      <a class="buy-refund-link" data-path="refund" target="_blank" rel="noopener" data-i18n="buy.refundLink">All sales are final · Refund Policy</a>
+    </div>
     <p class="buy-tagline" data-i18n="buy.tagline">Make Him Feel The Difference.</p>
 
     <div class="offer-topics">
@@ -932,13 +1110,6 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
         </div>
       </div>
 
-    <div class="guide-cta" style="margin-top:24px;">
-      <div class="guide-cta-title">Not ready yet?</div>
-      <p class="guide-cta-body">Get our free dating guide.<br>Enter your name to receive it.</p>
-      <input type="text" class="field-input" id="freeGuideNameInput" placeholder="Your name" aria-label="Your name" enterkeyhint="go" onkeydown="if(event.key==='Enter'){event.preventDefault();getFreeGuide();}">
-      <div class="err" id="freeGuideNameErr">Enter your name to continue.</div>
-      <button class="btn btn-gold" onclick="getFreeGuide()">Get the Free Guide</button>
-    </div>
     </div>
 
   <div class="social-footer" aria-label="Social media">
@@ -5591,7 +5762,7 @@ const CARD_LABELS = {
   it: { strongest: "PUNTO DI FORZA", growth: "MARGINE DI CRESCITA", prepare: "Preparazione della tua scheda…", linkFallback: "Fai tu il test" },
   hi: { strongest: "सबसे बड़ी ताकत", growth: "सुधार की गुंजाइश", prepare: "आपका कार्ड तैयार हो रहा है…", linkFallback: "खुद क्विज़ लें" }
 };
-let storyJourneyInitialized = false;
+let storyJourneyInitialized = {};  // per screen: 'story' (Our Story) and 'journey' (Your Story)
 const SJ_REVEAL_MARGIN = '0px 0px -29% 0px';
 const SJ_REVEAL_GAP = 210;
 const SJ_HEARTBEAT_CYCLE = 3200;
@@ -5620,7 +5791,7 @@ const QUIZ_PROGRESS_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000; // 30 days — older 
 // Only these screens represent quiz progress worth resuming into. Earlier
 // screens (landing, the couple/single gate, free guides, etc.) have nothing
 // riding on them yet, so they're never saved or restored.
-const RESUMABLE_SCREENS = new Set(['quiz', 'loading', 'name', 'results', 'proof', 'story', 'buy']);
+const RESUMABLE_SCREENS = new Set(['quiz', 'loading', 'name', 'results', 'proof', 'story', 'journey', 'buy']);
 
 function saveQuizProgress(){
   if(!RESUMABLE_SCREENS.has(currentScreenName)) return;
@@ -5896,14 +6067,14 @@ try{
 }
 
 /* ============ CLEAN URLS (GitHub Pages) ============
-   /  /quiz  /story  /reviews  /book  all serve this one page (404.html + the
-   decoder at the top of <head> make direct visits/refresh work). Screens
-   that have no route of their own (guides, ...) leave the URL as it is.
+   /  /quiz  /story  /reviews  /book  /guides  /guide-1 ... /guide-7  all serve this one
+   page (404.html + the decoder at the top of <head> make direct visits/refresh
+   work). Screens that have no route of their own leave the URL as it is.
    URLs are built absolute (origin + path) because the <base> tag above would
    otherwise resolve a path-only URL onto raw.githubusercontent.com, which
    pushState/replaceState refuse. */
-const ROUTE_SCREENS = { '': 'landing', quiz: 'quiz', story: 'story', reviews: 'proof', book: 'buy' };
-const SCREEN_ROUTES = { landing: '', gate: 'quiz', quiz: 'quiz', loading: 'quiz', name: 'quiz', results: 'quiz', proof: 'reviews', story: 'story', buy: 'book' };
+const ROUTE_SCREENS = { '': 'landing', quiz: 'quiz', story: 'story', reviews: 'proof', book: 'buy', guides: 'guides', 'guide-1': 'guide1', 'guide-2': 'guide2', 'guide-3': 'guide3', 'guide-4': 'guide4', 'guide-5': 'guide5', 'guide-6': 'guide6', 'guide-7': 'guide7' };
+const SCREEN_ROUTES = { landing: '', gate: 'quiz', quiz: 'quiz', loading: 'quiz', name: 'quiz', results: 'quiz', proof: 'reviews', story: 'story', buy: 'book', guides: 'guides', guide1: 'guide-1', guide2: 'guide-2', guide3: 'guide-3', guide4: 'guide-4', guide5: 'guide-5', guide6: 'guide-6', guide7: 'guide-7' };
 const ROUTE_BASE = (function(){
   // '' when served from a domain root; '/repo-name' on a username.github.io/repo-name site.
   const full = location.pathname.replace(/index\.html$/, '');
@@ -6023,6 +6194,50 @@ const STATIC_STRINGS = {
     "story.s6_4": "Il s'agit de comprendre la dynamique, te comprendre toi-même, et savoir quoi faire quand tu aimes vraiment quelqu'un.",
     "story.s6_5": "C'est pourquoi Make Him Obsessed existe.",
     "story.finalBtn": "Montre-moi comment →",
+    "journey.eyebrow": "Ton Histoire",
+    "journey.s1_1": "Tu es ici parce que tu voulais savoir.",
+    "journey.s1_2": "Est-ce que tu lui plais vraiment ?",
+    "journey.s1_3": "Est-ce qu'il a vraiment envie de toi ?",
+    "journey.s1_4": "Pourquoi agit-il comme ça ?",
+    "journey.s1_5": "Tu ne voulais pas deviner une fois de plus.",
+    "journey.s1_6": "Tu voulais une réponse.",
+    "journey.s1_7": "Alors tu as décidé de le découvrir.",
+    "journey.s2_1": "Tu as fait l'analyse de 60 secondes.",
+    "journey.s2_2": "Et soudain, son comportement a commencé à avoir plus de sens.",
+    "journey.s2_3": "Tu pouvais voir le schéma derrière ses actions.",
+    "journey.chip1": "Intérêt",
+    "journey.chip2": "Communication",
+    "journey.chip3": "Effort",
+    "journey.s2_4": "Ses actions te disaient quelque chose.",
+    "journey.s2_5": "Il te suffisait de savoir les lire.",
+    "journey.s3_1": "Mais le comprendre, ce n'est que la moitié du chemin.",
+    "journey.s3_2": "Parce que l'attraction, ce n'est pas seulement savoir s'il t'aime bien.",
+    "journey.s3_3": "C'est aussi la connexion que tu crées.",
+    "journey.s3_4": "Ta façon de communiquer.",
+    "journey.s3_5": "La façon dont il se sent avec toi.",
+    "journey.s3_6": "Et de savoir si l'attraction continue de grandir.",
+    "journey.s4_1": "Et puis, il y avait une chose que tu ne pouvais pas ignorer…",
+    "journey.s4_2": "Ton Plus Grand Avertissement",
+    "journey.s5_1": "Maintenant, imagine quelque chose de différent.",
+    "journey.s5_2": "Une relation où tu n'as pas besoin de courir après son attention.",
+    "journey.s5_3": "Où tu ne te prends pas la tête à chaque texto.",
+    "journey.s5_4": "Où tu sens qu'il te désire, au lieu de te demander où tu en es.",
+    "journey.s5_5": "Où la communication est naturelle.",
+    "journey.s5_6": "Où l'attraction est réciproque.",
+    "journey.s5_7": "Où tu as confiance dans la connexion que tu crées.",
+    "journey.s5_8": "Pas parce que tu as appris à courir encore plus après lui.",
+    "journey.s5_9": "Mais parce que tu as appris à créer une connexion plus forte.",
+    "journey.rita1": "Tu te demandes encore ce que signifie son comportement ?",
+    "journey.rita2": "Demande à Rita.",
+    "journey.rita3": "Raconte-lui ce qui s'est passé. Elle t'aidera à y voir clair.",
+    "journey.ritaBtn": "Parler à Rita",
+    "journey.s6_1": "Tu sais maintenant ce que tu veux.",
+    "journey.s6_2": "Te sentir désirée.",
+    "journey.s6_3": "Te sentir en confiance.",
+    "journey.s6_4": "Comprendre la connexion que tu crées.",
+    "journey.s6_5": "Arrêter de douter de chacun de tes gestes.",
+    "journey.s6_6": "Alors…",
+    "journey.finalBtn": "Montre-moi comment →",
     "buy.desc1": "Tu n'as pas besoin d'un énième conseil de rencontre.",
     "buy.desc2": "Tu as besoin de comprendre pourquoi il s'éloigne… pourquoi il perd de l'intérêt… et pourquoi certaines femmes restent gravées dans l'esprit d'un homme bien après avoir quitté la pièce.",
     "buy.desc3": "Ce guide ne repose ni sur la manipulation, ni sur des jeux, ni sur de fausses astuces de texto.",
@@ -6053,7 +6268,7 @@ const STATIC_STRINGS = {
     "buy.l3_1": "Lis sur ton téléphone, ta tablette ou ton ordinateur.",
     "buy.l3_2": "Termine-le en une soirée.",
     "buy.l3_3": "Applique-le immédiatement à ta relation actuelle ou future.",
-    "buy.hangChip": "Offre à Durée Limitée",
+    "buy.hangChip": "Prix de Lancement",
     "wheel.teaserTitle": "Une Réduction T'Attend",
     "wheel.teaserSub": "Fais tourner la roue pour tenter de gagner jusqu'à 100% de réduction sur le livre.",
     "wheel.spinBtn": "Faire Tourner La Roue",
@@ -6080,6 +6295,11 @@ const STATIC_STRINGS = {
     "buy.faq3a": "C'est un guide de 17 pages, court et pratique, conçu pour être lu en 20 à 30 minutes environ.",
     "buy.ctaBtn": "Accès Instantané",
     "buy.footerNote": "Accès numérique instantané, commence ta lecture en quelques minutes.",
+    "buy.trustLine": "🔒 Paiement sécurisé · 17 pages · 20 à 30 min de lecture",
+    "buy.refundLink": "Toutes les ventes sont définitives · Politique de remboursement",
+    "buy.insideLink": "Voir ce qu'il y a dedans ↓",
+    "buy.tocTitle": "Ce que tu vas apprendre",
+    "buy.tocTakeaway": "<strong>À retenir :</strong> Ce livre t'apprend à devenir si ancrée, intéressante et émotionnellement intelligente que l'attraction devient un effet secondaire naturel, et non une performance.",
 
     "guides.quizBtn": "Faire le Quiz →",
     "guides.eyebrow": "Guides Gratuits",
@@ -6295,6 +6515,50 @@ const STATIC_STRINGS = {
     "story.s6_4": "Het gaat erom de dynamiek te begrijpen, jezelf te begrijpen, en te weten wat je moet doen als je echt van iemand houdt.",
     "story.s6_5": "Daarom bestaat Make Him Obsessed.",
     "story.finalBtn": "Laat me zien hoe →",
+    "journey.eyebrow": "Jouw Verhaal",
+    "journey.s1_1": "Je bent hier omdat je het wilde weten.",
+    "journey.s1_2": "Vindt hij je echt leuk?",
+    "journey.s1_3": "Wil hij je echt?",
+    "journey.s1_4": "Waarom gedraagt hij zich zo?",
+    "journey.s1_5": "Je wilde niet nog een keer gissen.",
+    "journey.s1_6": "Je wilde een antwoord.",
+    "journey.s1_7": "Dus besloot je het uit te zoeken.",
+    "journey.s2_1": "Je deed de analyse van 60 seconden.",
+    "journey.s2_2": "En plotseling begon zijn gedrag meer zin te krijgen.",
+    "journey.s2_3": "Je kon het patroon achter zijn acties zien.",
+    "journey.chip1": "Interesse",
+    "journey.chip2": "Communicatie",
+    "journey.chip3": "Inzet",
+    "journey.s2_4": "Zijn acties vertelden je iets.",
+    "journey.s2_5": "Je moest ze alleen leren lezen.",
+    "journey.s3_1": "Maar hem begrijpen is nog maar de helft van de weg.",
+    "journey.s3_2": "Want aantrekkingskracht gaat niet alleen over of hij je leuk vindt.",
+    "journey.s3_3": "Het gaat ook om de connectie die jij creëert.",
+    "journey.s3_4": "De manier waarop je communiceert.",
+    "journey.s3_5": "Hoe hij zich voelt in jouw buurt.",
+    "journey.s3_6": "En of de aantrekkingskracht blijft groeien.",
+    "journey.s4_1": "En toen was er iets dat je niet kon negeren…",
+    "journey.s4_2": "Jouw Grootste Waarschuwing",
+    "journey.s5_1": "Stel je nu iets anders voor.",
+    "journey.s5_2": "Een relatie waarin je zijn aandacht niet hoeft achterna te lopen.",
+    "journey.s5_3": "Waarin je niet over elk berichtje piekert.",
+    "journey.s5_4": "Waarin je je begeerd voelt, in plaats van je af te vragen waar je staat.",
+    "journey.s5_5": "Waarin communicatie vanzelf gaat.",
+    "journey.s5_6": "Waarin de aantrekkingskracht wederzijds is.",
+    "journey.s5_7": "Waarin je vertrouwt op de connectie die je opbouwt.",
+    "journey.s5_8": "Niet omdat je leerde hem nóg meer achterna te lopen.",
+    "journey.s5_9": "Maar omdat je leerde een sterkere connectie te creëren.",
+    "journey.rita1": "Vraag je je nog steeds af wat zijn gedrag betekent?",
+    "journey.rita2": "Vraag het Rita.",
+    "journey.rita3": "Vertel haar wat er is gebeurd. Zij helpt je het helder te zien.",
+    "journey.ritaBtn": "Praat met Rita",
+    "journey.s6_1": "Nu weet je wat je wilt.",
+    "journey.s6_2": "Je begeerd voelen.",
+    "journey.s6_3": "Je zelfverzekerd voelen.",
+    "journey.s6_4": "De connectie begrijpen die je opbouwt.",
+    "journey.s6_5": "Stoppen met twijfelen aan elke stap die je zet.",
+    "journey.s6_6": "Dus…",
+    "journey.finalBtn": "Laat me zien hoe →",
     "buy.desc1": "Je hebt geen zoveelste datingtip nodig.",
     "buy.desc2": "Je moet begrijpen waarom hij afstand neemt… waarom hij interesse verliest… en waarom sommige vrouwen nog lang in gedachten blijven nadat ze de kamer hebben verlaten.",
     "buy.desc3": "Deze gids is niet gebaseerd op manipulatie, spelletjes of nepte tekst-trucjes.",
@@ -6325,7 +6589,7 @@ const STATIC_STRINGS = {
     "buy.l3_1": "Lees op elke telefoon, tablet of computer.",
     "buy.l3_2": "Maak hem in één avond uit.",
     "buy.l3_3": "Pas het direct toe op je huidige of toekomstige relatie.",
-    "buy.hangChip": "Tijdelijke Aanbieding",
+    "buy.hangChip": "Lanceerprijs",
     "buy.offerEyebrow": "Jouw Leesbonus",
     "buy.offerNote": "Exclusief gereserveerd voor jouw resultaten",
     "buy.chip1": "Mannenpsychologie",
@@ -6342,6 +6606,11 @@ const STATIC_STRINGS = {
     "buy.faq3a": "Het is een gids van 17 pagina's, kort, praktisch en bedoeld om in ongeveer 20 tot 30 minuten te lezen.",
     "buy.ctaBtn": "Directe Toegang",
     "buy.footerNote": "Directe digitale toegang, begin binnen enkele minuten met lezen.",
+    "buy.trustLine": "🔒 Veilig afrekenen · 17 pagina's · 20–30 min leestijd",
+    "buy.refundLink": "Alle verkopen zijn definitief · Terugbetalingsbeleid",
+    "buy.insideLink": "Bekijk wat erin zit ↓",
+    "buy.tocTitle": "Wat je gaat leren",
+    "buy.tocTakeaway": "<strong>Kernboodschap:</strong> Dit boek gaat over zo gegrond, interessant en emotioneel intelligent worden dat aantrekkingskracht een natuurlijk neveneffect wordt, geen optreden.",
     "shared.freeGuidesBtn": "📖 Lees de Gratis Gidsen",
     "guides.quizBtn": "Doe de Quiz →",
     "guides.eyebrow": "Gratis Gidsen",
@@ -6566,6 +6835,50 @@ const STATIC_STRINGS = {
     "story.s6_4": "Se trata de entender la dinámica, entenderte a ti misma y saber qué hacer cuando alguien te gusta de verdad.",
     "story.s6_5": "Por eso existe Make Him Obsessed.",
     "story.finalBtn": "Muéstrame cómo →",
+    "journey.eyebrow": "Tu Historia",
+    "journey.s1_1": "Estás aquí porque querías saberlo.",
+    "journey.s1_2": "¿De verdad le gustas?",
+    "journey.s1_3": "¿De verdad te desea?",
+    "journey.s1_4": "¿Por qué actúa así?",
+    "journey.s1_5": "No querías adivinar una vez más.",
+    "journey.s1_6": "Querías una respuesta.",
+    "journey.s1_7": "Así que decidiste averiguarlo.",
+    "journey.s2_1": "Hiciste el análisis de 60 segundos.",
+    "journey.s2_2": "Y de repente, su comportamiento empezó a tener más sentido.",
+    "journey.s2_3": "Podías ver el patrón detrás de sus acciones.",
+    "journey.chip1": "Interés",
+    "journey.chip2": "Comunicación",
+    "journey.chip3": "Esfuerzo",
+    "journey.s2_4": "Sus acciones te decían algo.",
+    "journey.s2_5": "Solo necesitabas saber leerlas.",
+    "journey.s3_1": "Pero entenderlo es solo la mitad del camino.",
+    "journey.s3_2": "Porque la atracción no se trata solo de si le gustas.",
+    "journey.s3_3": "También es la conexión que creas.",
+    "journey.s3_4": "La forma en que te comunicas.",
+    "journey.s3_5": "Cómo se siente él a tu lado.",
+    "journey.s3_6": "Y si la atracción sigue creciendo.",
+    "journey.s4_1": "Y luego había algo que no podías ignorar…",
+    "journey.s4_2": "Tu Mayor Advertencia",
+    "journey.s5_1": "Ahora imagina algo diferente.",
+    "journey.s5_2": "Una relación donde no tienes que perseguir su atención.",
+    "journey.s5_3": "Donde no le das vueltas a cada mensaje.",
+    "journey.s5_4": "Donde te sientes deseada, en lugar de preguntarte en qué punto estás.",
+    "journey.s5_5": "Donde la comunicación se siente natural.",
+    "journey.s5_6": "Donde la atracción es mutua.",
+    "journey.s5_7": "Donde confías en la conexión que estás creando.",
+    "journey.s5_8": "No porque aprendiste a perseguirlo aún más.",
+    "journey.s5_9": "Sino porque aprendiste a crear una conexión más fuerte.",
+    "journey.rita1": "¿Todavía te preguntas qué significa su comportamiento?",
+    "journey.rita2": "Pregúntale a Rita.",
+    "journey.rita3": "Cuéntale lo que pasó. Ella te ayudará a verlo con claridad.",
+    "journey.ritaBtn": "Hablar con Rita",
+    "journey.s6_1": "Ahora sabes lo que quieres.",
+    "journey.s6_2": "Sentirte deseada.",
+    "journey.s6_3": "Sentirte segura.",
+    "journey.s6_4": "Entender la conexión que estás creando.",
+    "journey.s6_5": "Dejar de cuestionar cada uno de tus pasos.",
+    "journey.s6_6": "Así que…",
+    "journey.finalBtn": "Muéstrame cómo →",
     "buy.desc1": "No necesitas otro consejo de citas.",
     "buy.desc2": "Necesitas entender por qué se aleja… por qué pierde el interés… y por qué algunas mujeres se quedan en la mente de un hombre mucho después de haber salido de la habitación.",
     "buy.desc3": "Esta guía no se basa en manipulación, juegos ni trucos falsos de mensajes de texto.",
@@ -6596,7 +6909,7 @@ const STATIC_STRINGS = {
     "buy.l3_1": "Léelo en cualquier teléfono, tableta u ordenador.",
     "buy.l3_2": "Termínalo en una sola tarde.",
     "buy.l3_3": "Aplícalo de inmediato a tu relación actual o futura.",
-    "buy.hangChip": "Oferta Por Tiempo Limitado",
+    "buy.hangChip": "Precio de Lanzamiento",
     "wheel.teaserTitle": "Un Descuento Te Está Esperando",
     "wheel.teaserSub": "Gira la ruleta para tener la oportunidad de ganar hasta un 100% de descuento en el libro.",
     "wheel.spinBtn": "Girar La Ruleta",
@@ -6623,6 +6936,11 @@ const STATIC_STRINGS = {
     "buy.faq3a": "Es una guía de 17 páginas, corta y práctica, diseñada para leerse en unos 20 a 30 minutos.",
     "buy.ctaBtn": "Acceso Instantáneo",
     "buy.footerNote": "Acceso digital instantáneo, empieza a leer en minutos.",
+    "buy.trustLine": "🔒 Pago seguro · 17 páginas · 20–30 min de lectura",
+    "buy.refundLink": "Todas las ventas son definitivas · Política de reembolso",
+    "buy.insideLink": "Mira qué incluye ↓",
+    "buy.tocTitle": "Lo que aprenderás",
+    "buy.tocTakeaway": "<strong>Idea clave:</strong> Este libro trata de volverte tan segura, interesante y emocionalmente inteligente que la atracción se convierte en un efecto secundario natural, no en una actuación.",
     "chat.headerTitle": "Pregúntale a Rita",
     "chat.headerSub": "Tus preguntas de pareja, respondidas",
     "shared.freeGuidesBtn": "📖 Lee las Guías Gratuitas",
@@ -6821,7 +7139,7 @@ const STATIC_STRINGS = {
     "buy.l3_1": "Baca di ponsel, tablet, atau komputer mana pun.",
     "buy.l3_2": "Selesaikan dalam satu malam.",
     "buy.l3_3": "Terapkan langsung ke hubunganmu saat ini atau di masa depan.",
-    "buy.hangChip": "Penawaran Waktu Terbatas",
+    "buy.hangChip": "Harga Peluncuran",
     "buy.offerEyebrow": "Bonus Bacaanmu",
     "buy.offerNote": "Disediakan khusus untuk hasilmu",
     "buy.chip1": "Psikologi pria",
@@ -6837,7 +7155,12 @@ const STATIC_STRINGS = {
     "buy.faq3q": "Seberapa panjang panduan ini?",
     "buy.faq3a": "Ini adalah panduan 17 halaman yang singkat, praktis, dan dirancang untuk dibaca dalam waktu sekitar 20-30 menit.",
     "buy.ctaBtn": "Akses Instan",
-    "buy.footerNote": "Akses digital instan, mulai membaca dalam hitungan menit."
+    "buy.footerNote": "Akses digital instan, mulai membaca dalam hitungan menit.",
+    "buy.trustLine": "🔒 Pembayaran aman · 17 halaman · 20–30 menit baca",
+    "buy.refundLink": "Semua penjualan bersifat final · Kebijakan Pengembalian Dana",
+    "buy.insideLink": "Lihat isinya ↓",
+    "buy.tocTitle": "Yang akan kamu pelajari",
+    "buy.tocTakeaway": "<strong>Intinya:</strong> Buku ini tentang menjadi begitu mantap, menarik, dan cerdas secara emosional sehingga daya tarik menjadi efek samping alami, bukan sebuah pertunjukan."
   },
   it: {
     "landing.eyebrow": "L'Analizzatore",
@@ -6920,6 +7243,50 @@ const STATIC_STRINGS = {
     "story.s6_4": "Si tratta di capire la dinamica, capire te stessa e sapere cosa fare quando ti piace davvero qualcuno.",
     "story.s6_5": "Ecco perché Make Him Obsessed esiste.",
     "story.finalBtn": "Mostrami come →",
+    "journey.eyebrow": "La Tua Storia",
+    "journey.s1_1": "Sei qui perché volevi saperlo.",
+    "journey.s1_2": "Gli piaci davvero?",
+    "journey.s1_3": "Ti desidera davvero?",
+    "journey.s1_4": "Perché si comporta così?",
+    "journey.s1_5": "Non volevi indovinare ancora una volta.",
+    "journey.s1_6": "Volevi una risposta.",
+    "journey.s1_7": "Così hai deciso di scoprirlo.",
+    "journey.s2_1": "Hai fatto l'analisi di 60 secondi.",
+    "journey.s2_2": "E all'improvviso, il suo comportamento ha iniziato ad avere più senso.",
+    "journey.s2_3": "Potevi vedere lo schema dietro le sue azioni.",
+    "journey.chip1": "Interesse",
+    "journey.chip2": "Comunicazione",
+    "journey.chip3": "Impegno",
+    "journey.s2_4": "Le sue azioni ti stavano dicendo qualcosa.",
+    "journey.s2_5": "Dovevi solo saperle leggere.",
+    "journey.s3_1": "Ma capirlo è solo metà del percorso.",
+    "journey.s3_2": "Perché l'attrazione non riguarda solo se gli piaci.",
+    "journey.s3_3": "È anche la connessione che crei.",
+    "journey.s3_4": "Il modo in cui comunichi.",
+    "journey.s3_5": "Come si sente lui quando è con te.",
+    "journey.s3_6": "E se l'attrazione continua a crescere.",
+    "journey.s4_1": "E poi c'era una cosa che non potevi ignorare…",
+    "journey.s4_2": "Il Tuo Avvertimento Principale",
+    "journey.s5_1": "Ora immagina qualcosa di diverso.",
+    "journey.s5_2": "Una relazione in cui non devi rincorrere la sua attenzione.",
+    "journey.s5_3": "Dove non rimugini su ogni messaggio.",
+    "journey.s5_4": "Dove ti senti desiderata, invece di chiederti a che punto siete.",
+    "journey.s5_5": "Dove la comunicazione è naturale.",
+    "journey.s5_6": "Dove l'attrazione è reciproca.",
+    "journey.s5_7": "Dove ti fidi della connessione che stai costruendo.",
+    "journey.s5_8": "Non perché hai imparato a rincorrerlo ancora di più.",
+    "journey.s5_9": "Ma perché hai imparato a creare una connessione più forte.",
+    "journey.rita1": "Ti chiedi ancora cosa significhi il suo comportamento?",
+    "journey.rita2": "Chiedi a Rita.",
+    "journey.rita3": "Raccontale cosa è successo. Ti aiuterà a vederci chiaro.",
+    "journey.ritaBtn": "Parla con Rita",
+    "journey.s6_1": "Ora sai cosa vuoi.",
+    "journey.s6_2": "Sentirti desiderata.",
+    "journey.s6_3": "Sentirti sicura di te.",
+    "journey.s6_4": "Capire la connessione che stai costruendo.",
+    "journey.s6_5": "Smettere di mettere in dubbio ogni tua mossa.",
+    "journey.s6_6": "Quindi…",
+    "journey.finalBtn": "Mostrami come →",
     "buy.desc1": "Non ti serve un altro consiglio sugli appuntamenti.",
     "buy.desc2": "Devi capire perché si allontana… perché perde interesse… e perché alcune donne restano nella mente di un uomo molto dopo aver lasciato la stanza.",
     "buy.desc3": "Questa guida non si basa su manipolazione, giochetti o falsi trucchi da messaggio.",
@@ -6950,7 +7317,7 @@ const STATIC_STRINGS = {
     "buy.l3_1": "Leggilo su qualsiasi telefono, tablet o computer.",
     "buy.l3_2": "Finiscilo in una sola serata.",
     "buy.l3_3": "Applicalo subito alla tua relazione attuale o futura.",
-    "buy.hangChip": "Offerta a Tempo Limitato",
+    "buy.hangChip": "Prezzo di Lancio",
     "buy.offerEyebrow": "Il Tuo Bonus di Lettura",
     "buy.offerNote": "Riservato esclusivamente per i tuoi risultati",
     "buy.chip1": "Psicologia maschile",
@@ -6967,6 +7334,11 @@ const STATIC_STRINGS = {
     "buy.faq3a": "È una guida di 17 pagine, breve e pratica, pensata per essere letta in circa 20-30 minuti.",
     "buy.ctaBtn": "Accesso Istantaneo",
     "buy.footerNote": "Accesso digitale istantaneo, inizia a leggere in pochi minuti.",
+    "buy.trustLine": "🔒 Pagamento sicuro · 17 pagine · 20–30 min di lettura",
+    "buy.refundLink": "Tutte le vendite sono definitive · Politica di rimborso",
+    "buy.insideLink": "Guarda cosa contiene ↓",
+    "buy.tocTitle": "Cosa imparerai",
+    "buy.tocTakeaway": "<strong>Concetto chiave:</strong> Questo libro parla di diventare così centrata, interessante ed emotivamente intelligente che l'attrazione diventa un effetto collaterale naturale, non una recita.",
     "shared.freeGuidesBtn": "📖 Leggi le Guide Gratuite",
     "guides.quizBtn": "Fai il Quiz →",
     "guides.eyebrow": "Guide Gratuite",
@@ -7178,7 +7550,7 @@ const STATIC_STRINGS = {
     "buy.l3_1": "किसी भी फ़ोन, टैबलेट या कंप्यूटर पर पढ़ें।",
     "buy.l3_2": "इसे एक ही शाम में खत्म करें।",
     "buy.l3_3": "इसे तुरंत अपने मौजूदा या भविष्य के रिश्ते पर लागू करें।",
-    "buy.hangChip": "सीमित समय की पेशकश",
+    "buy.hangChip": "लॉन्च मूल्य",
     "buy.offerEyebrow": "आपका रीडिंग बोनस",
     "buy.offerNote": "विशेष रूप से आपके परिणामों के लिए आरक्षित",
     "buy.chip1": "पुरुष मनोविज्ञान",
@@ -7194,7 +7566,12 @@ const STATIC_STRINGS = {
     "buy.faq3q": "यह गाइड कितनी लंबी है?",
     "buy.faq3a": "यह 17 पन्नों की एक छोटी, व्यावहारिक गाइड है, जिसे लगभग 20-30 मिनट में पढ़ा जा सकता है।",
     "buy.ctaBtn": "तुरंत एक्सेस",
-    "buy.footerNote": "तुरंत डिजिटल एक्सेस, कुछ ही मिनटों में पढ़ना शुरू करें।"
+    "buy.footerNote": "तुरंत डिजिटल एक्सेस, कुछ ही मिनटों में पढ़ना शुरू करें।",
+    "buy.trustLine": "🔒 सुरक्षित चेकआउट · 17 पेज · 20–30 मिनट का पठन",
+    "buy.refundLink": "सभी बिक्री अंतिम हैं · रिफंड पॉलिसी",
+    "buy.insideLink": "अंदर क्या है देखें ↓",
+    "buy.tocTitle": "आप क्या सीखेंगी",
+    "buy.tocTakeaway": "<strong>मुख्य बात:</strong> यह किताब खुद में इतनी स्थिर, दिलचस्प और भावनात्मक रूप से समझदार बनने के बारे में है कि आकर्षण एक स्वाभाविक परिणाम बन जाए, कोई दिखावा नहीं।"
   },
   de: {
     "landing.eyebrow": "Der Analyzer",
@@ -7281,6 +7658,50 @@ const STATIC_STRINGS = {
     "story.s6_4": "Es geht darum, die Dynamik zu verstehen, dich selbst zu verstehen und zu wissen, was du tun kannst, wenn du jemanden wirklich magst.",
     "story.s6_5": "Deshalb existiert Make Him Obsessed.",
     "story.finalBtn": "Zeig mir, wie →",
+    "journey.eyebrow": "Deine Geschichte",
+    "journey.s1_1": "Du bist hier, weil du es wissen wolltest.",
+    "journey.s1_2": "Mag er dich wirklich?",
+    "journey.s1_3": "Will er dich wirklich?",
+    "journey.s1_4": "Warum verhält er sich so?",
+    "journey.s1_5": "Du wolltest nicht noch eine Vermutung.",
+    "journey.s1_6": "Du wolltest eine Antwort.",
+    "journey.s1_7": "Also hast du beschlossen, es herauszufinden.",
+    "journey.s2_1": "Du hast die 60-Sekunden-Analyse gemacht.",
+    "journey.s2_2": "Und plötzlich ergab sein Verhalten mehr Sinn.",
+    "journey.s2_3": "Du konntest das Muster hinter seinen Handlungen erkennen.",
+    "journey.chip1": "Interesse",
+    "journey.chip2": "Kommunikation",
+    "journey.chip3": "Einsatz",
+    "journey.s2_4": "Seine Taten wollten dir etwas sagen.",
+    "journey.s2_5": "Du musstest nur wissen, wie man sie liest.",
+    "journey.s3_1": "Aber ihn zu verstehen, ist nur die halbe Wahrheit.",
+    "journey.s3_2": "Denn Anziehung hängt nicht nur davon ab, ob er dich mag.",
+    "journey.s3_3": "Es geht auch um die Verbindung, die du aufbaust.",
+    "journey.s3_4": "Um die Art, wie du kommunizierst.",
+    "journey.s3_5": "Um das Gefühl, das er in deiner Nähe hat.",
+    "journey.s3_6": "Und darum, ob die Anziehung weiter wächst.",
+    "journey.s4_1": "Und dann gab es eine Sache, die du nicht ignorieren konntest…",
+    "journey.s4_2": "Deine Größte Warnung",
+    "journey.s5_1": "Stell dir jetzt etwas anderes vor.",
+    "journey.s5_2": "Eine Beziehung, in der du seiner Aufmerksamkeit nicht hinterherlaufen musst.",
+    "journey.s5_3": "In der du nicht jede Nachricht zerdenkst.",
+    "journey.s5_4": "In der du dich begehrt fühlst, statt dich zu fragen, wo du stehst.",
+    "journey.s5_5": "In der sich Kommunikation natürlich anfühlt.",
+    "journey.s5_6": "In der die Anziehung auf Gegenseitigkeit beruht.",
+    "journey.s5_7": "In der du der Verbindung vertraust, die du aufbaust.",
+    "journey.s5_8": "Nicht, weil du gelernt hast, noch mehr hinterherzulaufen.",
+    "journey.s5_9": "Sondern weil du gelernt hast, eine stärkere Verbindung zu schaffen.",
+    "journey.rita1": "Fragst du dich noch, was sein Verhalten bedeutet?",
+    "journey.rita2": "Frag Rita.",
+    "journey.rita3": "Erzähl ihr, was passiert ist. Sie hilft dir, es zu verstehen.",
+    "journey.ritaBtn": "Mit Rita sprechen",
+    "journey.s6_1": "Du weißt jetzt, was du willst.",
+    "journey.s6_2": "Dich begehrt zu fühlen.",
+    "journey.s6_3": "Dich selbstsicher zu fühlen.",
+    "journey.s6_4": "Die Verbindung zu verstehen, die du aufbaust.",
+    "journey.s6_5": "Aufhören, jeden Schritt zu hinterfragen.",
+    "journey.s6_6": "Also…",
+    "journey.finalBtn": "Zeig mir, wie →",
     "buy.desc1": "Du brauchst keinen weiteren Dating-Tipp.",
     "buy.desc2": "Du musst verstehen, warum er sich zurückzieht… warum er das Interesse verliert… und warum manche Frauen einem Mann noch lange im Kopf bleiben, nachdem sie den Raum verlassen haben.",
     "buy.desc3": "Dieser Guide basiert nicht auf Manipulation, Spielchen oder falschen Textnachrichten-Tricks.",
@@ -7311,7 +7732,7 @@ const STATIC_STRINGS = {
     "buy.l3_1": "Lies auf jedem Handy, Tablet oder Computer.",
     "buy.l3_2": "In einem Abend durchlesen.",
     "buy.l3_3": "Wende es sofort auf deine aktuelle oder zukünftige Beziehung an.",
-    "buy.hangChip": "Zeitlich Begrenztes Angebot",
+    "buy.hangChip": "Einführungspreis",
     "wheel.teaserTitle": "Ein Rabatt Wartet Auf Dich",
     "wheel.teaserSub": "Dreh am Glücksrad und gewinne bis zu 100% Rabatt auf das Buch.",
     "wheel.spinBtn": "Rad Drehen",
@@ -7338,6 +7759,11 @@ const STATIC_STRINGS = {
     "buy.faq3a": "Es ist ein 17-seitiger Guide, kurz und praxisnah, gedacht zum Lesen in etwa 20-30 Minuten.",
     "buy.ctaBtn": "Sofortiger Zugriff",
     "buy.footerNote": "Sofortiger digitaler Zugriff, beginne in wenigen Minuten mit dem Lesen.",
+    "buy.trustLine": "🔒 Sichere Zahlung · 17 Seiten · 20–30 Min. Lesezeit",
+    "buy.refundLink": "Alle Verkäufe sind endgültig · Rückerstattungsrichtlinie",
+    "buy.insideLink": "Sieh dir den Inhalt an ↓",
+    "buy.tocTitle": "Was du lernen wirst",
+    "buy.tocTakeaway": "<strong>Kernaussage:</strong> In diesem Buch geht es darum, so geerdet, interessant und emotional intelligent zu werden, dass Anziehung ein natürlicher Nebeneffekt wird – keine Inszenierung.",
 
     "guides.quizBtn": "Zum Quiz →",
     "guides.eyebrow": "Kostenlose Guides",
@@ -7623,6 +8049,8 @@ function openRouteScreen(name){
     else goTo('gate', true);
     return;
   }
+  // Free guides are standalone reading pages: never divert them into a saved quiz.
+  if(name === 'guides' || /^guide[1-7]$/.test(name)){ goTo(name, true); return; }
   if(saved){ resumeQuizProgress(name); return; }
   goTo(name, true);
   if(name === 'proof'){
@@ -7845,6 +8273,9 @@ function goTo(name, fromBack){
     if (name === 'story') {
       gtag('event', 'story_page_view');
     }
+    if (name === 'journey') {
+      gtag('event', 'journey_page_view');
+    }
     if (name === 'buy') {
       gtag('event', 'book_page_view');
     }
@@ -7881,12 +8312,13 @@ function goTo(name, fromBack){
     const toast = document.getElementById('proofToast');
     if(toast) toast.classList.remove('show');
   }
-  if(name === 'story'){
-    // Story Journey page: same toast suppression as Reviews — this page
-    // must stay completely quiet, no popups or notifications of any kind
+  if(name === 'story' || name === 'journey'){
+    // Story Journey pages (Our Story + Your Story): same toast suppression as
+    // Reviews — these pages must stay completely quiet, no popups or
+    // notifications of any kind
     const toast = document.getElementById('proofToast');
     if(toast) toast.classList.remove('show');
-    renderStoryPage();
+    renderStoryPage(name);
   }
   if(name === 'buy'){
     renderBuyPage();
@@ -8197,16 +8629,26 @@ function renderResults(){
   document.getElementById('strengthText').textContent =
     resultCopy[strongest].label + ': ' + resultCopy[strongest][band(computed[strongest])];
 
-  // Intentionally a teaser, not the full warning copy: only the first clause
-  // is shown (and it sits behind a blur), so the results screen raises a
-  // question instead of fully answering it. The complete read is revealed,
-  // in full, on the Book page (see renderBuyPage()), derived from this same
-  // weakest axis so it can never mismatch what's teased here.
+  // Intentionally a teaser, not the full warning copy: the first clause is
+  // readable (so the results screen gives one real, specific insight instead
+  // of a wall of blur) and the rest of the warning stays blurred. The complete
+  // read is revealed, in full, on the Book page (see renderBuyPage()), derived
+  // from this same weakest axis so it can never mismatch what's teased here.
   const fullWarning = warningCopy[weakest][weakestBand];
   const teaserSplit = fullWarning.match(/[,.]\s/);
-  const teaserWarning = teaserSplit ? fullWarning.slice(0, teaserSplit.index + 1) : fullWarning;
+  let teaserWarning, teaserRest;
+  if(teaserSplit){
+    teaserWarning = fullWarning.slice(0, teaserSplit.index + 1);
+    teaserRest = fullWarning.slice(teaserSplit.index + 1).trim();
+  } else {
+    const words = fullWarning.split(/\s+/);
+    const cut = Math.max(4, Math.ceil(words.length / 3));
+    teaserWarning = words.slice(0, cut).join(' ');
+    teaserRest = words.slice(cut).join(' ');
+  }
   document.getElementById('issueText').textContent =
-    warningCopy[weakest].label + ': ' + teaserWarning + '…';
+    warningCopy[weakest].label + ': ' + teaserWarning;
+  document.getElementById('issueTextRest').textContent = teaserRest;
 
   // offerBridge is now a fixed line (set in HTML) rather than per-axis
   // personalized copy from cfg().bridgeMap, per the reviews-page rewrite.
@@ -8242,23 +8684,41 @@ function renderBuyPage(){
 }
 
 /* ============ STORY JOURNEY: personalized warning + cinematic scroll reveal ============ */
-function renderStoryPage(){
+function renderStoryPage(screenName){
   const { warningCopy, weakest, weakestBand } = getPersonalization();
   const labelEl = document.getElementById('sjWarningLabel');
   const textEl = document.getElementById('sjWarningText');
   if(labelEl) labelEl.textContent = warningCopy[weakest].label;
   if(textEl) textEl.textContent = warningCopy[weakest][weakestBand];
-  initStoryJourney();
+  initStoryJourney(screenName || 'story');
 }
 
 // (storyJourneyInitialized and the SJ_* constants used below now live near
 // the top of the script — see the comment there — for the same reason
 // HEADLINE_BASE/CARD_LABELS were moved.)
 
-function initStoryJourney(){
-  const track = document.querySelector('#screen-story .sj-track');
-  if(!track || storyJourneyInitialized) return;
-  storyJourneyInitialized = true;
+function initStoryJourney(screenName){
+  screenName = screenName || 'story';
+  const track = document.querySelector('#screen-' + screenName + ' .sj-track');
+  if(!track || storyJourneyInitialized[screenName]) return;
+  storyJourneyInitialized[screenName] = true;
+
+  // Your Story only: the "Talk to Rita" step opens the existing chat, and the
+  // final button continues to the Book page.
+  const ritaBtn = document.getElementById('sjRitaBtn');
+  if(ritaBtn && track.contains(ritaBtn)){
+    ritaBtn.addEventListener('click', function(){
+      if (typeof gtag === 'function') gtag('event', 'story_rita_click');
+      toggleChat();
+    });
+  }
+  const finalCta = document.getElementById('sjFinalCta');
+  if(finalCta && track.contains(finalCta)){
+    finalCta.addEventListener('click', function(){
+      if (typeof gtag === 'function') gtag('event', 'story_final_cta_click');
+      goTo('buy');
+    });
+  }
 
   const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const trackedSections = new Set();
@@ -8323,7 +8783,7 @@ function initStoryJourney(){
     endScrollFrame = requestAnimationFrame(function(){
       endScrollFrame = null;
       const atStoryEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 12;
-      if(atStoryEnd && document.body.getAttribute('data-screen') === 'story'){
+      if(atStoryEnd && document.body.getAttribute('data-screen') === screenName){
         pieces.forEach(queuePiece);
         scheduleReveal();
       }
@@ -8334,7 +8794,7 @@ function initStoryJourney(){
 function activateStoryStep(el, trackedSections){
   if(el.classList.contains('sj-active')) return;
   el.classList.add('sj-active');
-  document.querySelectorAll('#screen-story .sj-current-heart').forEach(function(active){
+  document.querySelectorAll('.sj-current-heart').forEach(function(active){
     if(active !== el) active.classList.remove('sj-current-heart');
   });
   if(el.classList.contains('sj-step')){
@@ -8345,8 +8805,9 @@ function activateStoryStep(el, trackedSections){
   const stepNum = el.getAttribute('data-sj-step');
   if(stepNum && !trackedSections.has(stepNum) && typeof gtag === 'function'){
     trackedSections.add(stepNum);
-    gtag('event', 'story_section_reached', { section: stepNum });
-    if(stepNum === '4') gtag('event', 'story_warning_viewed');
+    const onJourney = !!el.closest('#screen-journey');
+    gtag('event', 'story_section_reached', { section: stepNum, screen: onJourney ? 'journey' : 'story' });
+    if(stepNum === '4' && onJourney) gtag('event', 'story_warning_viewed');
   }
 }
 
@@ -8376,7 +8837,7 @@ function playHeartbeatSfx(){
 }
 
 function sjPlayHeartbeatBeat(el){
-  if(!el || sjHeartbeatDriverEl !== el || document.body.getAttribute('data-screen') !== 'story' || document.hidden) return;
+  if(!el || sjHeartbeatDriverEl !== el || ['story','journey'].indexOf(document.body.getAttribute('data-screen')) === -1 || document.hidden) return;
   const node = el.querySelector('.sj-node');
   const connector = el.previousElementSibling && el.previousElementSibling.classList.contains('sj-connector') ? el.previousElementSibling : null;
   if(node){
@@ -9265,7 +9726,7 @@ function showProofToast(){
   if(langScreen && langScreen.classList.contains('active')) return;
   // Story Journey page: must stay completely quiet, see the page's own
   // "no interruptions" requirement — no toasts, popups, or notifications.
-  if(document.body.dataset.screen === 'story') return;
+  if(document.body.dataset.screen === 'story' || document.body.dataset.screen === 'journey') return;
   displayProofToast(nextProofNotification());
 }
 
@@ -9421,7 +9882,7 @@ function getFreeGuide(){
     if (!tipEl || chatOpen) return;
     // Story Journey page: no automatic chat message/notification should
     // ever appear here — Rita is only introduced as part of the story.
-    if (document.body.dataset.screen === 'story') return;
+    if (document.body.dataset.screen === 'story' || document.body.dataset.screen === 'journey') return;
     const tips = fabTipsForLang();
     currentFabTip = tips[fabTipIndex % tips.length];
     tipEl.textContent = currentFabTip.display;
@@ -9755,6 +10216,14 @@ function getFreeGuide(){
       if(SCREEN_ROUTES[currentScreenName] === a.getAttribute('data-path')){ window.scrollTo(0, 0); return; }  // already on it
       goTo(screen);
     });
+  });
+})();
+</script>
+<script>
+/* Book-page refund links: built absolute because of the <base> tag, same as the menu/footer links. */
+(function(){
+  Array.prototype.forEach.call(document.querySelectorAll('a.buy-refund-link[data-path]'), function(a){
+    a.href = location.origin + ROUTE_BASE + '/' + a.getAttribute('data-path');
   });
 })();
 </script>
