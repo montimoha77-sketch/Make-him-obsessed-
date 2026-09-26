@@ -546,11 +546,19 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
         <path d="M3 5.5h14v9H3v-9z" stroke="#F3E9E4" stroke-width="1.4" stroke-linejoin="round"/>
         <path d="M3.5 6l6.5 5 6.5-5" stroke="#F3E9E4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <input type="email" class="field-input" id="emailInput" placeholder="Email (optional) — we'll send a free chapter to your inbox" data-i18n-ph="name.emailPlaceholder" autocomplete="email" name="femail" inputmode="email" enterkeyhint="go" maxlength="120" onkeydown="if(event.key==='Enter'){event.preventDefault();submitName();}">
+      <input type="email" class="field-input" id="emailInput" placeholder="Email (optional)" data-i18n-ph="name.emailPlaceholder" autocomplete="email" name="femail" inputmode="email" enterkeyhint="go" maxlength="120" onkeydown="if(event.key==='Enter'){event.preventDefault();submitName();}">
+    </div>
+
+    <div class="name-privacy-badge">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M3 5.5h14v9H3v-9z" stroke="#E4C97A" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M3.5 6l6.5 5 6.5-5" stroke="#E4C97A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span data-i18n="name.emailBadge">We'll send a free chapter straight to your inbox</span>
     </div>
 
     <button class="btn btn-gold btn-glow" onclick="submitName()" data-i18n="name.btn">Unlock My Results</button>
-    <p class="name-microcopy" data-i18n="name.micro">Takes 2 seconds. Add your email and we'll send a free chapter straight to your inbox.</p>
+    <p class="name-microcopy" data-i18n="name.micro">Takes 2 seconds. Email is optional.</p>
   </section>
 
   <!-- SCREEN 5: RESULTS -->
