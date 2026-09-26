@@ -969,7 +969,7 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
     <div class="quick-buy-extras">
       <div class="quick-buy-note" data-i18n="buy.footerNote">Instant digital access, start reading in minutes.</div>
       <div class="buy-trust">
-        <span data-i18n="buy.trustLine">🔒 Secure checkout · 17 pages · 20–30 min read</span>
+        <span data-i18n="buy.trustLine">🔒 Secure checkout · 50 pages</span>
         <a class="buy-refund-link" data-path="refund" target="_blank" rel="noopener" data-i18n="buy.refundLink">All sales are final · Refund Policy</a>
       </div>
       <p class="buy-tagline quick-buy-tagline" data-i18n="buy.tagline">Make Him Feel The Difference.</p>
@@ -1059,7 +1059,7 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
       </div>
     </div>
 
-    <!-- Look inside: the book's 10 chapters, so buyers can see exactly what they get. -->
+    <!-- Look inside: the book's 10 chapters plus 2 bonus sections, so buyers can see exactly what they get. -->
     <div class="book-toc" id="bookToc">
       <div class="book-toc-title" data-i18n="buy.tocTitle">What You'll Learn</div>
       <ol class="book-toc-list">
@@ -1073,6 +1073,8 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
         <li><span class="book-toc-num">08</span><span lang="en">How to Stay on His Mind</span></li>
         <li><span class="book-toc-num">09</span><span lang="en">Build a Life He Wants to Be Part Of</span></li>
         <li><span class="book-toc-num">10</span><span lang="en">Attraction vs. Obsession</span></li>
+        <li><span class="book-toc-num">B1</span><span lang="en">Bonus: 10 Texts That Spark Curiosity</span></li>
+        <li><span class="book-toc-num">B2</span><span lang="en">Bonus: 7 Signs He's Becoming Emotionally Attached</span></li>
       </ol>
       <div class="book-toc-takeaway" data-i18n="buy.tocTakeaway"><strong>Key Takeaway:</strong> This book is about becoming so grounded, interesting, and emotionally intelligent that attraction becomes a natural side effect — not a performance.</div>
     </div>
@@ -1091,7 +1093,7 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
     <button class="btn btn-gold btn-glow" id="ebookBtn" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()" data-i18n="buy.ctaBtn">Get Instant Access</button>
     <p class="footer-note" data-i18n="buy.footerNote">Instant digital access, start reading in minutes.</p>
     <div class="buy-trust buy-trust-center">
-      <span data-i18n="buy.trustLine">🔒 Secure checkout · 17 pages · 20–30 min read</span>
+      <span data-i18n="buy.trustLine">🔒 Secure checkout · 50 pages</span>
       <a class="buy-refund-link" data-path="refund" target="_blank" rel="noopener" data-i18n="buy.refundLink">All sales are final · Refund Policy</a>
     </div>
     <p class="buy-tagline" data-i18n="buy.tagline">Make Him Feel The Difference.</p>
@@ -1130,7 +1132,7 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <p data-i18n="buy.faq3a">It's a 17-page guide that's short, practical, and designed to be read in about 20-30 minutes.</p>
+          <p data-i18n="buy.faq3a">It's a 50-page guide that's short and practical.</p>
         </div>
       </div>
 
@@ -1196,8 +1198,8 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
 <div class="whop-checkout-overlay" id="whopCheckoutOverlay" role="dialog" aria-modal="true" aria-label="Checkout">
   <div class="whop-checkout-modal">
     <button type="button" class="whop-checkout-close" id="whopCheckoutCloseBtn" onclick="closeCheckoutModal()" aria-label="Close">&times;</button>
-    <div class="whop-checkout-mount show" id="whopCheckoutUSD" data-whop-checkout-plan-id="plan_EqN1VxeLY97TD"></div>
-    <div class="whop-checkout-mount" id="whopCheckoutEUR" data-whop-checkout-plan-id="plan_MPbZsrvVkTiMD"></div>
+    <div class="whop-checkout-mount show" id="whopCheckoutUSD" data-whop-checkout-plan-id="plan_EqN1VxeLY97TD" data-whop-checkout-theme="light" data-whop-checkout-theme-background-color="#F3E9E4" data-whop-checkout-theme-accent-color="#C9A24B" data-whop-checkout-theme-border-radius="16"></div>
+    <div class="whop-checkout-mount" id="whopCheckoutEUR" data-whop-checkout-plan-id="plan_MPbZsrvVkTiMD" data-whop-checkout-theme="light" data-whop-checkout-theme-background-color="#F3E9E4" data-whop-checkout-theme-accent-color="#C9A24B" data-whop-checkout-theme-border-radius="16"></div>
   </div>
 </div>
 
@@ -1271,6 +1273,15 @@ const CHECKOUT_URL_EUR = "checkout-eu.html";
 // safe-fallback pattern as GOOGLE_FORM_EMAIL_ENTRY above.
 const WHOP_PLAN_ID_USD = "plan_EqN1VxeLY97TD";
 const WHOP_PLAN_ID_EUR = "plan_MPbZsrvVkTiMD"; // only sell one plan? paste that same plan_ id in both
+// Checkout embed theming (docs.whop.com/payments/checkout-embed): matches
+// the site's own palette (--parchment / --gold from the :root CSS vars
+// above) so the embedded iframe doesn't look like a different product.
+// "light" is correct here because the background below is a light
+// parchment tone — the embed picks legible (dark) text to go with it.
+const WHOP_CHECKOUT_THEME = "light";
+const WHOP_CHECKOUT_BG_COLOR = "#F3E9E4";      // --parchment
+const WHOP_CHECKOUT_ACCENT_COLOR = "#C9A24B";  // --gold
+const WHOP_CHECKOUT_BORDER_RADIUS = "16";      // px, matches the site's card radius
 const PRICE_EUR_OLD = "€21";
 const PRICE_EUR_NEW = "€8.99";
 // Country codes treated as "Europe" for EUR pricing + the EU checkout.
@@ -1313,6 +1324,10 @@ const PRICE_USD_ORIGINALS = { old: null, new: null };
     if(!el) return;
     el.setAttribute('data-whop-checkout-plan-id', i === 0 ? WHOP_PLAN_ID_USD : WHOP_PLAN_ID_EUR);
     el.setAttribute('data-whop-checkout-return-url', returnUrl);
+    el.setAttribute('data-whop-checkout-theme', WHOP_CHECKOUT_THEME);
+    el.setAttribute('data-whop-checkout-theme-background-color', WHOP_CHECKOUT_BG_COLOR);
+    el.setAttribute('data-whop-checkout-theme-accent-color', WHOP_CHECKOUT_ACCENT_COLOR);
+    el.setAttribute('data-whop-checkout-theme-border-radius', WHOP_CHECKOUT_BORDER_RADIUS);
   });
 })();
 /* =============================================== */
@@ -6019,10 +6034,10 @@ const STATIC_STRINGS = {
     "buy.faq2q": "Est-ce que ça marchera s'il a déjà perdu tout intérêt ?",
     "buy.faq2a": "Ça dépend de pourquoi il a perdu intérêt. Le guide ne peut pas garantir de résultats, mais il peut t'aider à éviter les erreurs courantes et à améliorer ton approche.",
     "buy.faq3q": "Ce guide fait combien de pages ?",
-    "buy.faq3a": "C'est un guide de 17 pages, court et pratique, conçu pour être lu en 20 à 30 minutes environ.",
+    "buy.faq3a": "C'est un guide de 50 pages, court et pratique.",
     "buy.ctaBtn": "Accès Instantané",
     "buy.footerNote": "Accès numérique instantané, commence ta lecture en quelques minutes.",
-    "buy.trustLine": "🔒 Paiement sécurisé · 17 pages · 20 à 30 min de lecture",
+    "buy.trustLine": "🔒 Paiement sécurisé · 50 pages",
     "buy.refundLink": "Toutes les ventes sont définitives · Politique de remboursement",
     "buy.insideLink": "Voir ce qu'il y a dedans ↓",
     "buy.tocTitle": "Ce que tu vas apprendre",
@@ -6207,10 +6222,10 @@ const STATIC_STRINGS = {
     "buy.faq2q": "Werkt dit ook als hij al interesse heeft verloren?",
     "buy.faq2a": "Dat hangt af van waarom hij interesse verloor. De gids kan geen resultaten garanderen, maar helpt je veelgemaakte fouten te vermijden en je aanpak te verbeteren.",
     "buy.faq3q": "Hoe lang is deze gids?",
-    "buy.faq3a": "Het is een gids van 17 pagina's, kort, praktisch en bedoeld om in ongeveer 20 tot 30 minuten te lezen.",
+    "buy.faq3a": "Het is een gids van 50 pagina's, kort en praktisch.",
     "buy.ctaBtn": "Directe Toegang",
     "buy.footerNote": "Directe digitale toegang, begin binnen enkele minuten met lezen.",
-    "buy.trustLine": "🔒 Veilig afrekenen · 17 pagina's · 20–30 min leestijd",
+    "buy.trustLine": "🔒 Veilig afrekenen · 50 pagina's",
     "buy.refundLink": "Alle verkopen zijn definitief · Terugbetalingsbeleid",
     "buy.insideLink": "Bekijk wat erin zit ↓",
     "buy.tocTitle": "Wat je gaat leren",
@@ -6413,10 +6428,10 @@ const STATIC_STRINGS = {
     "buy.faq2q": "¿Funcionará si él ya perdió el interés?",
     "buy.faq2a": "Depende de por qué perdió el interés. La guía no puede garantizar resultados, pero puede ayudarte a evitar errores comunes y a mejorar tu enfoque.",
     "buy.faq3q": "¿Qué tan larga es esta guía?",
-    "buy.faq3a": "Es una guía de 17 páginas, corta y práctica, diseñada para leerse en unos 20 a 30 minutos.",
+    "buy.faq3a": "Es una guía de 50 páginas, corta y práctica.",
     "buy.ctaBtn": "Acceso Instantáneo",
     "buy.footerNote": "Acceso digital instantáneo, empieza a leer en minutos.",
-    "buy.trustLine": "🔒 Pago seguro · 17 páginas · 20–30 min de lectura",
+    "buy.trustLine": "🔒 Pago seguro · 50 páginas",
     "buy.refundLink": "Todas las ventas son definitivas · Política de reembolso",
     "buy.insideLink": "Mira qué incluye ↓",
     "buy.tocTitle": "Lo que aprenderás",
@@ -6509,10 +6524,10 @@ const STATIC_STRINGS = {
     "buy.faq2q": "Apakah ini akan berhasil jika dia sudah kehilangan minat?",
     "buy.faq2a": "Tergantung mengapa dia kehilangan minat. Panduan ini tidak bisa menjamin hasil, tetapi bisa membantumu menghindari kesalahan umum dan memperbaiki pendekatanmu.",
     "buy.faq3q": "Seberapa panjang panduan ini?",
-    "buy.faq3a": "Ini adalah panduan 17 halaman yang singkat, praktis, dan dirancang untuk dibaca dalam waktu sekitar 20-30 menit.",
+    "buy.faq3a": "Ini adalah panduan 50 halaman yang singkat dan praktis.",
     "buy.ctaBtn": "Akses Instan",
     "buy.footerNote": "Akses digital instan, mulai membaca dalam hitungan menit.",
-    "buy.trustLine": "🔒 Pembayaran aman · 17 halaman · 20–30 menit baca",
+    "buy.trustLine": "🔒 Pembayaran aman · 50 halaman",
     "buy.refundLink": "Semua penjualan bersifat final · Kebijakan Pengembalian Dana",
     "buy.insideLink": "Lihat isinya ↓",
     "buy.tocTitle": "Yang akan kamu pelajari",
@@ -6687,10 +6702,10 @@ const STATIC_STRINGS = {
     "buy.faq2q": "Funzionerà se ha già perso interesse?",
     "buy.faq2a": "Dipende dal motivo per cui ha perso interesse. La guida non può garantire risultati, ma può aiutarti a evitare errori comuni e a migliorare il tuo approccio.",
     "buy.faq3q": "Quanto è lunga questa guida?",
-    "buy.faq3a": "È una guida di 17 pagine, breve e pratica, pensata per essere letta in circa 20-30 minuti.",
+    "buy.faq3a": "È una guida di 50 pagine, breve e pratica.",
     "buy.ctaBtn": "Accesso Istantaneo",
     "buy.footerNote": "Accesso digitale istantaneo, inizia a leggere in pochi minuti.",
-    "buy.trustLine": "🔒 Pagamento sicuro · 17 pagine · 20–30 min di lettura",
+    "buy.trustLine": "🔒 Pagamento sicuro · 50 pagine",
     "buy.refundLink": "Tutte le vendite sono definitive · Politica di rimborso",
     "buy.insideLink": "Guarda cosa contiene ↓",
     "buy.tocTitle": "Cosa imparerai",
@@ -6796,10 +6811,10 @@ const STATIC_STRINGS = {
     "buy.faq2q": "अगर उसकी रुचि पहले ही खत्म हो चुकी है तो क्या यह काम करेगा?",
     "buy.faq2a": "यह इस बात पर निर्भर करता है कि उसकी रुचि क्यों खत्म हुई। यह गाइड परिणामों की गारंटी नहीं दे सकती, लेकिन यह आपको आम गलतियों से बचने और अपने तरीके को बेहतर बनाने में मदद कर सकती है।",
     "buy.faq3q": "यह गाइड कितनी लंबी है?",
-    "buy.faq3a": "यह 17 पन्नों की एक छोटी, व्यावहारिक गाइड है, जिसे लगभग 20-30 मिनट में पढ़ा जा सकता है।",
+    "buy.faq3a": "यह 50 पन्नों की एक छोटी, व्यावहारिक गाइड है।",
     "buy.ctaBtn": "तुरंत एक्सेस",
     "buy.footerNote": "तुरंत डिजिटल एक्सेस, कुछ ही मिनटों में पढ़ना शुरू करें।",
-    "buy.trustLine": "🔒 सुरक्षित चेकआउट · 17 पेज · 20–30 मिनट का पठन",
+    "buy.trustLine": "🔒 सुरक्षित चेकआउट · 50 पेज",
     "buy.refundLink": "सभी बिक्री अंतिम हैं · रिफंड पॉलिसी",
     "buy.insideLink": "अंदर क्या है देखें ↓",
     "buy.tocTitle": "आप क्या सीखेंगी",
@@ -6987,10 +7002,10 @@ const STATIC_STRINGS = {
     "buy.faq2q": "Funktioniert das auch, wenn er das Interesse schon verloren hat?",
     "buy.faq2a": "Das hängt davon ab, warum er das Interesse verloren hat. Der Guide kann keine Ergebnisse garantieren, hilft dir aber, häufige Fehler zu vermeiden und deine Herangehensweise zu verbessern.",
     "buy.faq3q": "Wie lang ist dieser Guide?",
-    "buy.faq3a": "Es ist ein 17-seitiger Guide, kurz und praxisnah, gedacht zum Lesen in etwa 20-30 Minuten.",
+    "buy.faq3a": "Es ist ein 50-seitiger Guide, kurz und praxisnah.",
     "buy.ctaBtn": "Sofortiger Zugriff",
     "buy.footerNote": "Sofortiger digitaler Zugriff, beginne in wenigen Minuten mit dem Lesen.",
-    "buy.trustLine": "🔒 Sichere Zahlung · 17 Seiten · 20–30 Min. Lesezeit",
+    "buy.trustLine": "🔒 Sichere Zahlung · 50 Seiten",
     "buy.refundLink": "Alle Verkäufe sind endgültig · Rückerstattungsrichtlinie",
     "buy.insideLink": "Sieh dir den Inhalt an ↓",
     "buy.tocTitle": "Was du lernen wirst",
