@@ -546,11 +546,11 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
         <path d="M3 5.5h14v9H3v-9z" stroke="#F3E9E4" stroke-width="1.4" stroke-linejoin="round"/>
         <path d="M3.5 6l6.5 5 6.5-5" stroke="#F3E9E4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <input type="email" class="field-input" id="emailInput" placeholder="Email (optional) — get your reading + a free bonus chapter" data-i18n-ph="name.emailPlaceholder" autocomplete="email" name="femail" inputmode="email" enterkeyhint="go" maxlength="120" onkeydown="if(event.key==='Enter'){event.preventDefault();submitName();}">
+      <input type="email" class="field-input" id="emailInput" placeholder="Email (optional) — we'll send a free chapter to your inbox" data-i18n-ph="name.emailPlaceholder" autocomplete="email" name="femail" inputmode="email" enterkeyhint="go" maxlength="120" onkeydown="if(event.key==='Enter'){event.preventDefault();submitName();}">
     </div>
 
     <button class="btn btn-gold btn-glow" onclick="submitName()" data-i18n="name.btn">Unlock My Results</button>
-    <p class="name-microcopy" data-i18n="name.micro">Takes 2 seconds. Email is optional and only used to send your reading.</p>
+    <p class="name-microcopy" data-i18n="name.micro">Takes 2 seconds. Add your email and we'll send a free chapter straight to your inbox.</p>
   </section>
 
   <!-- SCREEN 5: RESULTS -->
@@ -1258,7 +1258,7 @@ const GOOGLE_FORM_NAME_ENTRY = "entry.434968993";
 // Answer question called "Email" to that same form, then repeat those
 // steps for it). Left as PASTE_ so submitName() below skips sending email
 // until this is filled in — nothing breaks if it's left as-is.
-const GOOGLE_FORM_EMAIL_ENTRY = "entry.PASTE_EMAIL_ENTRY_ID";
+const GOOGLE_FORM_EMAIL_ENTRY = "entry.1339731481";
 
 /* ---- Region pricing & checkout (EU vs rest-of-world) ----
    EDIT THESE to change the Euro price or which checkout file EU
@@ -1311,15 +1311,17 @@ const PRICE_USD_ORIGINALS = { old: null, new: null };
   if(oldEl) PRICE_USD_ORIGINALS.old = oldEl.textContent;
   if(newEl) PRICE_USD_ORIGINALS.new = newEl.textContent;
 })();
-// Sync the two checkout mounts' plan-id (and set a return URL for the rare
-// off-site 3DS/bank-redirect step) from the WHOP_PLAN_ID_USD/EUR config
-// above, so that's the only place you ever need to paste your real ids.
+// Sync the two checkout mounts' plan-id (and set the post-purchase return
+// URL) from the WHOP_PLAN_ID_USD/EUR config above, so that's the only place
+// you ever need to paste your real ids. This return-url is where Whop sends
+// the buyer once payment succeeds — set to the book's permanent download
+// link so buyers land straight on their purchased file.
 // Runs immediately (this <script> sits right after the mount divs in the
 // page), before the async loader tag in <head> needs to find them.
 (function configureWhopCheckoutMounts(){
   const usdEl = document.getElementById('whopCheckoutUSD');
   const eurEl = document.getElementById('whopCheckoutEUR');
-  const returnUrl = window.location.origin + window.location.pathname;
+  const returnUrl = "https://assets-2-prod.whop.com/public/uploads/2026-09-26/a924082e-ef5e-4dec-8e54-2de0dd56bf21/application.pdf";
   [usdEl, eurEl].forEach((el, i) => {
     if(!el) return;
     el.setAttribute('data-whop-checkout-plan-id', i === 0 ? WHOP_PLAN_ID_USD : WHOP_PLAN_ID_EUR);
