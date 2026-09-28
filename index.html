@@ -158,24 +158,64 @@ body[data-screen="journey"] .proof-toast{display:none !important}
 @keyframes sjWarningPulse{0%,100%{box-shadow:0 0 0 1px rgba(201,162,75,0.08) inset,0 10px 26px rgba(0,0,0,0.38),0 0 16px rgba(228,201,122,0.1)}50%{box-shadow:0 0 0 1px rgba(201,162,75,0.08) inset,0 10px 26px rgba(0,0,0,0.38),0 0 23px rgba(228,201,122,0.23)}}
 .sj-warning-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);font-weight:800;margin-bottom:8px}
 .sj-warning-text{font-size:14.5px;line-height:1.6;color:var(--parchment)}
-.sj-rita{width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;background:linear-gradient(160deg,rgba(201,162,75,0.1),rgba(59,15,26,0.24));border:1px solid rgba(201,162,75,0.35);border-radius:20px;padding:26px 22px 24px;margin:2px auto 0}
-.sj-rita-title,.sj-rita-sub,.sj-rita-body,.sj-rita .sj-reveal-btn{opacity:0;filter:blur(5px);transform:translate3d(0,11px,0) scale(.995);transition:opacity 1.45s cubic-bezier(.16,1,.3,1),filter 1.6s cubic-bezier(.16,1,.3,1),transform 1.6s cubic-bezier(.16,1,.3,1)}
-.sj-rita-title{font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.35;color:var(--parchment)}
-.sj-rita-sub{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:16px;color:var(--gold-soft)}
-.sj-rita-body{font-size:13.5px;line-height:1.6;color:rgba(243,233,228,0.78);max-width:270px}
-.sj-rita .sj-reveal-btn{margin-top:6px;width:auto;padding:13px 26px}
-.sj-rita-title.sj-in,.sj-rita-sub.sj-in,.sj-rita-body.sj-in,.sj-rita .sj-reveal-btn.sj-in{opacity:1;filter:blur(0);transform:translate3d(0,0,0) scale(1)}
 .sj-step-final .sj-content{margin-top:2px}
 .sj-final-cta{margin-top:8px;width:100%;max-width:280px}
 .sj-connector-quiet{background:rgba(243,233,228,0.06)}
 @media (prefers-reduced-motion:reduce){
-  .sj-node,.sj-heart,.sj-connector-fill,.sj-connector-fill::after,.sj-phrase,.sj-dims-row,.sj-warning-card,.sj-rita-title,.sj-rita-sub,.sj-rita-body,.sj-rita .sj-reveal-btn{animation:none !important;transition:none !important;filter:none !important}
+  .sj-node,.sj-heart,.sj-connector-fill,.sj-connector-fill::after,.sj-phrase,.sj-dims-row,.sj-warning-card,.sj-fade{animation:none !important;transition:none !important;filter:none !important}
 }
 @media (max-width:420px){
   .sj-step{max-width:100%;padding:0 2px}
   .sj-phrase{font-size:clamp(17px,5.6vw,20px);max-width:290px}
-  .sj-warning-card,.sj-rita{max-width:100%}
+  .sj-warning-card{max-width:100%}
 }</style>
+<style id="journey-flow-style">
+/* ============ POST-RESULT JOURNEY (lean) ============
+   Only scoped to .sj-lean / .sj-fade / .sj-carousel / .sj-rmodal. Tighter
+   spacing and shorter reveals after the Biggest Warning. */
+.story-journey-lean{padding-top:10px;padding-bottom:0}
+.sj-lean .sj-node{width:34px;height:31px;margin-bottom:12px}
+.sj-lean .sj-connector{height:30px;margin:0 auto -4px}
+.sj-lean .sj-content{gap:10px}
+.sj-lean .sj-step-lean .sj-phrase{transition-duration:.9s,1s,1s}
+.sj-phrase.sj-h{font-size:clamp(22px,6.4vw,26px);margin-bottom:2px}
+.sj-fade{opacity:0;filter:blur(4px);transform:translate3d(0,9px,0);transition:opacity .9s cubic-bezier(.16,1,.3,1),filter 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.sj-fade.sj-in{opacity:1;filter:none;transform:none}
+.sj-rule{display:block;width:44px;height:1px;margin:6px auto 4px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.sj-step-reviews{max-width:none;min-width:0}
+.sj-step-reviews .sj-content{width:100%;min-width:0}
+.sj-reviews-title{margin:0 0 2px;max-width:100%;font-size:clamp(24px,6.6vw,30px);text-wrap:balance}
+.sj-carousel{position:relative;width:100%;min-width:0;max-width:100%;overflow:hidden;padding:4px 0 8px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+.sj-carousel-track{display:flex;align-items:center;width:max-content;animation:sjMarquee 58s linear infinite;will-change:transform}
+.sj-carousel.sj-paused .sj-carousel-track,.sj-carousel.sj-offscreen .sj-carousel-track{animation-play-state:paused}
+@media (hover:hover){.sj-carousel:hover .sj-carousel-track{animation-play-state:paused}}
+@keyframes sjMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.sj-rcard{flex:0 0 auto;width:min(64vw,250px);margin-right:12px;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;transition:border-color .2s ease}
+.sj-rcard:hover{border-color:rgba(201,162,75,0.45)}
+.sj-rcard:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
+.sj-more{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:2px}
+.sj-more-q{font-size:13px;color:rgba(243,233,228,0.6)}
+.sj-more-btn{width:auto;min-height:46px;padding:12px 26px;box-shadow:none}
+.sj-book{width:min(52vw,180px);margin:2px auto 0}
+.sj-cta-wrap{width:100%;max-width:280px;margin-top:2px}
+.sj-cta-wrap .sj-final-cta{margin-top:0}
+.sj-step-final .sj-rule{margin-top:10px}
+#screen-proof > .btn[hidden]{display:none !important}
+.sj-rmodal{position:fixed;inset:0;z-index:1200;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(6,4,5,0);visibility:hidden;pointer-events:none;overscroll-behavior:contain;touch-action:none;transition:background .4s ease,visibility 0s linear .45s}
+.sj-rmodal.open{visibility:visible;pointer-events:auto;background:rgba(6,4,5,0.92);transition:background .4s ease}
+.sj-rmodal-card{width:min(94vw,540px);max-height:86dvh;overflow:auto;touch-action:pan-y;transform-origin:0 0;background:linear-gradient(160deg,rgba(59,15,26,0.9),rgba(15,11,13,0.96));border-color:rgba(201,162,75,0.4);box-shadow:0 24px 60px rgba(0,0,0,0.6),0 0 24px rgba(228,201,122,0.12)}
+.sj-rmodal-close{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(201,162,75,0.5);background:rgba(15,11,13,0.85);color:var(--gold-soft);font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .3s ease .1s;-webkit-tap-highlight-color:transparent}
+.sj-rmodal.open .sj-rmodal-close{opacity:1}
+.sj-rmodal-close:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
+html.sj-lock,html.sj-lock body{overflow:hidden}
+@media (prefers-reduced-motion:reduce){
+  .sj-carousel{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .sj-carousel-track{animation:none}
+  .sj-rcard-dup{display:none}
+  .sj-fade{opacity:1;filter:none;transform:none;transition:none}
+  .sj-rmodal,.sj-rmodal-close{transition:none}
+}
+</style>
 <style>
 /* ============ SITE MENU (hamburger + slide-in panel) ============
    Same gold-on-ink glass look as the language switcher / back button. The
@@ -625,7 +665,7 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
         <div class="card-label" data-i18n="results.strengthLabel">Biggest Strength</div>
         <div class="card-text" id="strengthText"></div>
       </div>
-      <div class="card card-locked" id="warningCard" onclick="goTo('proof')">
+      <div class="card card-locked" id="warningCard" onclick="goTo('journey')">
         <div class="card-label" data-i18n="results.warningLabel">Biggest Warning</div>
         <div class="card-text" id="issueText"></div>
         <div class="card-text card-text-blurred card-text-rest" id="issueTextRest" aria-hidden="true"></div>
@@ -635,7 +675,7 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
         </div>
       </div>
     </div>
-    <button class="btn btn-gold btn-glow results-primary" onclick="goTo('proof')" data-i18n="results.nextBtn">What Did I Miss?</button>
+    <button class="btn btn-gold btn-glow results-primary" onclick="goTo('journey')" data-i18n="results.nextBtn">What Did I Miss?</button>
     <button type="button" class="text-link" style="display:block; margin:16px auto 0; text-align:center;" onclick="goTo('buy')" data-i18n="landing.skipToBook2">Seen enough? Go straight to the book →</button>
   </section>
 
@@ -702,7 +742,8 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
       </div>
     </div>
 
-    <button class="btn btn-gold btn-glow" onclick="goTo('journey')" data-i18n="proof.nextBtn">Reveal Your Biggest Warning</button>
+    <button class="btn btn-gold btn-glow" id="proofRevealBtn" onclick="goTo('journey')" data-i18n="proof.nextBtn">Reveal Your Biggest Warning</button>
+    <button class="btn btn-gold btn-glow" id="proofBookBtn" hidden onclick="goTo('buy')" data-i18n="journey.finalBtn">Show Me How →</button>
     <button type="button" class="text-link" style="display:block; margin:16px auto 0; text-align:center;" onclick="goTo('buy')" data-i18n="landing.skipToBook2">Seen enough? Go straight to the book →</button>
     <p class="footer-note" data-i18n="proof.footerNote">Your results were unique to your answers, this isn't generic advice.</p>
   <div class="social-footer" aria-label="Social media">
@@ -839,73 +880,34 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
     </div>
   </section>
 
-  <!-- ============ YOUR STORY (added) ============
-       The personal, viewer-centred journey shown after Reviews (screen-proof) and
-       before the Book (screen-buy). "Our Story" (screen-story, in the menu) is the
-       brand's own story; this one is about the visitor and shows their Biggest Warning. -->
+  <!-- ============ POST-RESULT JOURNEY (revised) ============
+       Shown after the visitor taps the blurred Biggest Warning on the Results
+       screen. Short bridge, the existing personalized Biggest Warning card
+       (#sjWarningCard, filled by renderStoryPage()), what it means, a short
+       transition, a moving reviews carousel, then the book. No section
+       heading, no Ask Rita. "Our Story" (screen-story, in the menu) is
+       untouched. -->
   <section class="screen" id="screen-journey">
-    <div class="story-journey">
-      <div class="sj-intro">
-        <div class="sj-eyebrow" data-i18n="journey.eyebrow">Your Story</div>
-      </div>
+    <div class="story-journey story-journey-lean">
+      <div class="sj-track sj-lean">
 
-      <div class="sj-track">
-
-        <!-- 1. Why she came here -->
+        <!-- 1. Short emotional bridge -->
         <div class="sj-step" data-sj-step="1">
           <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
           <div class="sj-content">
-            <p class="sj-phrase" data-i18n="journey.s1_1">You came here because you wanted to know.</p>
-            <p class="sj-phrase" data-i18n="journey.s1_2">Does he really like you?</p>
-            <p class="sj-phrase" data-i18n="journey.s1_3">Does he actually want you?</p>
-            <p class="sj-phrase" data-i18n="journey.s1_4">Why does he act this way?</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s1_5">You didn't want another guess.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s1_6">You wanted an answer.</p>
-            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s1_7">So you decided to find out.</p>
+            <p class="sj-phrase" data-i18n="jf.b1">You came here looking for an answer.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="jf.b2">Not another guess.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="jf.b3">You wanted to understand what was really happening.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="jf.b4">And now you can.</p>
           </div>
         </div>
 
         <div class="sj-connector" data-sj-connector="1"><span class="sj-connector-fill"></span></div>
 
-        <!-- 2. The analysis -->
-        <div class="sj-step" data-sj-step="2">
+        <!-- 2. Biggest Warning (existing, personalized) -->
+        <div class="sj-step sj-step-warning" data-sj-step="2">
           <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
           <div class="sj-content">
-            <p class="sj-phrase" data-i18n="journey.s2_1">You took the 60-second analysis.</p>
-            <p class="sj-phrase" data-i18n="journey.s2_2">And suddenly, his behavior started making more sense.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s2_3">You could see the pattern behind his actions.</p>
-            <div class="sj-dims-row">
-              <span class="sj-dim-chip" data-i18n="journey.chip1">Interest</span>
-              <span class="sj-dim-chip" data-i18n="journey.chip2">Communication</span>
-              <span class="sj-dim-chip" data-i18n="journey.chip3">Effort</span>
-            </div>
-            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s2_4">His actions were telling you something.</p>
-            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s2_5">You just needed to know how to read them.</p>
-          </div>
-        </div>
-
-        <div class="sj-connector" data-sj-connector="2"><span class="sj-connector-fill"></span></div>
-
-        <!-- 3. What she realized -->
-        <div class="sj-step" data-sj-step="3">
-          <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
-          <div class="sj-content">
-            <p class="sj-phrase" data-i18n="journey.s3_1">But understanding him is only half of it.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s3_2">Because attraction isn't just about whether he likes you.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s3_3">It's also about the connection you create.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s3_4">The way you communicate.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s3_5">The way he feels around you.</p>
-            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s3_6">And whether the attraction keeps growing.</p>
-          </div>
-        </div>
-
-        <div class="sj-connector" data-sj-connector="3"><span class="sj-connector-fill"></span></div>
-
-        <!-- 4. Biggest Warning (personalized — moved from screen-buy) -->
-        <div class="sj-step sj-step-warning" data-sj-step="4">
-          <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
-          <div class="sj-content">
-            <p class="sj-phrase" data-i18n="journey.s4_1">And then there was one thing you couldn't ignore…</p>
             <p class="sj-phrase sj-phrase-label" data-i18n="journey.s4_2">Your Biggest Warning</p>
             <div class="sj-warning-card" id="sjWarningCard">
               <div class="sj-warning-label" id="sjWarningLabel"></div>
@@ -914,48 +916,64 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
           </div>
         </div>
 
-        <div class="sj-connector" data-sj-connector="4"><span class="sj-connector-fill"></span></div>
+        <div class="sj-connector" data-sj-connector="2"><span class="sj-connector-fill"></span></div>
 
-        <!-- 5. The future she actually wants -->
-        <div class="sj-step" data-sj-step="5">
+        <!-- 3. What it means, then a short transition toward the solution -->
+        <div class="sj-step sj-step-lean" data-sj-step="3">
           <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
           <div class="sj-content">
-            <p class="sj-phrase" data-i18n="journey.s5_1">Now imagine something different.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_2">A relationship where you don't have to chase his attention.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_3">Where you don't overthink every text.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_4">Where you feel wanted instead of wondering where you stand.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_5">Where communication feels natural.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_6">Where attraction feels mutual.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s5_7">Where you feel confident in the connection you're creating.</p>
+            <p class="sj-phrase sj-phrase-em sj-h" data-i18n="jf.m1">What this actually means.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="jf.m2">This does not automatically mean he does not like you.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="jf.m3">It means there is something in the way this connection is developing that you need to understand.</p>
+            <p class="sj-phrase" data-i18n="jf.m4">Because knowing what he feels is only half of it.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="jf.m5">Knowing what to do next is the other half.</p>
+            <span class="sj-rule sj-fade" aria-hidden="true"></span>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="jf.t1">Imagine not having to chase his attention.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="jf.t2">Not overthinking every text.</p>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="jf.t3">Not wondering where you stand.</p>
             <p class="sj-phrase sj-phrase-em" data-i18n="journey.s5_8">Not because you learned how to chase harder.</p>
             <p class="sj-phrase sj-phrase-em" data-i18n="journey.s5_9">Because you learned how to create a stronger connection.</p>
           </div>
         </div>
 
-        <!-- 6. Rita — reuses the existing Ask Rita chat (toggleChat()); no
-             floating bubble, notification, or auto-message on this screen,
-             see the .chat-fab / .chat-fab-tip rules and the showFabTip()/
-             showProofToast() screen checks. -->
-        <div class="sj-rita" data-sj-step="rita" id="sjRitaCard">
-          <p class="sj-rita-title" data-i18n="journey.rita1">Still wondering what his behavior means?</p>
-          <p class="sj-rita-sub" data-i18n="journey.rita2">Ask Rita.</p>
-          <p class="sj-rita-body" data-i18n="journey.rita3">Tell her what happened. She'll help you make sense of it.</p>
-          <button type="button" class="btn btn-outline sj-reveal-btn" id="sjRitaBtn" data-i18n="journey.ritaBtn">Talk to Rita</button>
-        </div>
+        <div class="sj-connector" data-sj-connector="3"><span class="sj-connector-fill"></span></div>
 
-        <div class="sj-connector" data-sj-connector="6"><span class="sj-connector-fill"></span></div>
-
-        <!-- 7. Final desire-based CTA -->
-        <div class="sj-step sj-step-final" data-sj-step="6">
+        <!-- 4. Reviews: slow moving carousel, tap a card to enlarge -->
+        <div class="sj-step sj-step-lean sj-step-reviews" data-sj-step="4">
           <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
           <div class="sj-content">
-            <p class="sj-phrase" data-i18n="journey.s6_1">You know what you want now.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s6_2">To feel wanted.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s6_3">To feel confident.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s6_4">To understand the connection you're creating.</p>
-            <p class="sj-phrase sj-phrase-quiet" data-i18n="journey.s6_5">To stop second-guessing every move.</p>
-            <p class="sj-phrase sj-phrase-em" data-i18n="journey.s6_6">So…</p>
-            <button type="button" class="btn btn-gold btn-glow sj-final-cta sj-reveal-btn" id="sjFinalCta" data-i18n="journey.finalBtn">Show Me How →</button>
+            <h2 class="testimonials-title sj-reviews-title sj-fade" data-i18n="proof.testimonialsTitle">WHAT <em>WOMEN</em> ARE SAYING ♥️</h2>
+            <div class="sj-carousel sj-fade" id="sjCarousel" role="region" aria-label="Reader reviews">
+              <div class="sj-carousel-track" id="sjCarouselTrack">
+                <div class="testimonial-shot sj-rcard" role="button" tabindex="0" aria-label="Enlarge review"><div class="testimonial-stars">★★★★★</div><img src="sophie-uk-review.jpg" width="736" height="214" alt="Sophie, UK review" decoding="async"><div class="testimonial-name">Sophie, UK 🇬🇧</div><div class="verified-tag">✓ Verified Reader</div></div>
+                <div class="testimonial-shot sj-rcard" role="button" tabindex="0" aria-label="Enlarge review"><div class="testimonial-stars">★★★★★</div><img src="testimonial-1.jpg" width="828" height="292" alt="Emily, 29, reader message" decoding="async"><div class="testimonial-name">Emily, 29</div><div class="verified-tag">✓ Verified Reader</div></div>
+                <div class="testimonial-shot sj-rcard" role="button" tabindex="0" aria-label="Enlarge review"><div class="testimonial-stars">★★★★★</div><img src="anna-review.jpg" width="731" height="218" alt="Anna, Germany review" decoding="async"><div class="testimonial-name">Anna, Germany 🇩🇪</div><div class="verified-tag">✓ Verified Reader</div></div>
+                <div class="testimonial-shot sj-rcard" role="button" tabindex="0" aria-label="Enlarge review"><div class="testimonial-stars">★★★★★</div><img src="jessica-review.jpg" width="828" height="362" alt="Jessica, USA review" decoding="async"><div class="testimonial-name">Jessica, USA 🇺🇸</div><div class="verified-tag">✓ Verified Reader</div></div>
+                <div class="testimonial-shot sj-rcard" role="button" tabindex="0" aria-label="Enlarge review"><div class="testimonial-stars">★★★★★</div><img src="clara-review.jpg" width="713" height="190" alt="Clara, Spain review" decoding="async"><div class="testimonial-name">Clara, Spain 🇪🇸</div><div class="verified-tag">✓ Verified Reader</div></div>
+              </div>
+            </div>
+            <div class="sj-more sj-fade">
+              <p class="sj-more-q" data-i18n="jf.r1">Want to read more?</p>
+              <button type="button" class="btn btn-outline sj-more-btn" id="sjSeeAll" data-i18n="jf.r2">See All Reviews →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sj-connector" data-sj-connector="4"><span class="sj-connector-fill"></span></div>
+
+        <!-- 5. Book, then a very short close -->
+        <div class="sj-step sj-step-lean sj-step-final" data-sj-step="5">
+          <div class="sj-node"><svg class="sj-heart"><use href="#sjHeartShape"></use></svg></div>
+          <div class="sj-content">
+            <p class="sj-phrase" data-i18n="jf.k1">You understand the pattern.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="jf.k2">Now learn what to do with it.</p>
+            <div class="sj-book sj-fade"><img class="buy-cover-img" src="book-cover.webp" alt="Make Him Obsessed" width="700" height="1034" loading="lazy" decoding="async"></div>
+            <div class="sj-cta-wrap sj-fade">
+              <button type="button" class="btn btn-gold btn-glow sj-final-cta" id="sjFinalCta" data-i18n="journey.finalBtn">Show Me How →</button>
+            </div>
+            <span class="sj-rule sj-fade" aria-hidden="true"></span>
+            <p class="sj-phrase sj-phrase-quiet" data-i18n="jf.c1">You came here because you wanted clarity.</p>
+            <p class="sj-phrase sj-phrase-em" data-i18n="jf.c2">Now you know where to start.</p>
           </div>
         </div>
 
@@ -1252,6 +1270,12 @@ body[data-screen="gate"] .site-footer,body[data-screen="quiz"] .site-footer,body
     <p class="site-footer-copy">&copy; <span data-year>2026</span> Make Him Obsessed. All rights reserved.</p>
   </footer>
 
+</div>
+
+<!-- Review lightbox for the post-result carousel. Sits at body level so
+     position:fixed is never affected by an ancestor. Filled by openJourneyReview(). -->
+<div class="sj-rmodal" id="sjReviewModal" role="dialog" aria-modal="true" aria-label="Review" aria-hidden="true">
+  <button type="button" class="sj-rmodal-close" id="sjReviewClose" aria-label="Close">&times;</button>
 </div>
 
 <div class="sticky-action" id="stickyAction" aria-hidden="true">
@@ -1770,6 +1794,7 @@ const HEADLINE_BASE = {
 const CARD_LABELS = {
               
 };
+let sjWarningRevealed = false;  // true once the visitor has reached the post-result journey
 let storyJourneyInitialized = {};  // per screen: 'story' (Our Story) and 'journey' (Your Story)
 const SJ_REVEAL_MARGIN = '0px 0px -29% 0px';
 const SJ_REVEAL_GAP = 210;
@@ -2436,7 +2461,7 @@ function updateStickyAction(){
   if(!bar || !button) return;
   const sources = {
     results: '#screen-results .results-primary',
-    proof: '#screen-proof > .btn-gold',
+    proof: '#screen-proof > .btn-gold:not([hidden])',
     buy: '#screen-buy #ebookBtn'
   };
   const selector = sources[currentScreenName];
@@ -2517,19 +2542,19 @@ function goTo(name, fromBack){
     if (name === 'results') {
       gtag('event', 'quiz_complete');
     }
-    if (name === 'proof') {
-      gtag('event', 'biggest_warning_click');
-    }
     if (name === 'story') {
       gtag('event', 'story_page_view');
     }
     if (name === 'journey') {
+      gtag('event', 'biggest_warning_click');
       gtag('event', 'journey_page_view');
     }
     if (name === 'buy') {
       gtag('event', 'book_page_view');
     }
   }
+  if(typeof closeJourneyReview === 'function') closeJourneyReview(true);
+  if(name === 'journey') sjWarningRevealed = true;
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   target.classList.add('active');
   window.scrollTo(0, 0);
@@ -2561,6 +2586,14 @@ function goTo(name, fromBack){
     // Reviews page: suppress any notification toast that might currently be showing
     const toast = document.getElementById('proofToast');
     if(toast) toast.classList.remove('show');
+    // Once the warning has been revealed, the bottom button leads on to the
+    // book instead of looping back into the journey.
+    const revealBtn = document.getElementById('proofRevealBtn');
+    const bookBtn = document.getElementById('proofBookBtn');
+    if(revealBtn && bookBtn){
+      revealBtn.hidden = sjWarningRevealed;
+      bookBtn.hidden = !sjWarningRevealed;
+    }
   }
   if(name === 'story' || name === 'journey'){
     // Story Journey pages (Our Story + Your Story): same toast suppression as
@@ -2981,13 +3014,13 @@ function initStoryJourney(screenName){
   if(!track || storyJourneyInitialized[screenName]) return;
   storyJourneyInitialized[screenName] = true;
 
-  // Your Story only: the "Talk to Rita" step opens the existing chat, and the
-  // final button continues to the Book page.
-  const ritaBtn = document.getElementById('sjRitaBtn');
-  if(ritaBtn && track.contains(ritaBtn)){
-    ritaBtn.addEventListener('click', function(){
-      if (typeof gtag === 'function') gtag('event', 'story_rita_click');
-      toggleChat();
+  // Post-result journey only: reviews carousel and the two CTAs.
+  if(screenName === 'journey'){ initJourneyReviews(track); }
+  const seeAll = document.getElementById('sjSeeAll');
+  if(seeAll && track.contains(seeAll)){
+    seeAll.addEventListener('click', function(){
+      if (typeof gtag === 'function') gtag('event', 'journey_see_all_reviews_click');
+      goTo('proof');
     });
   }
   const finalCta = document.getElementById('sjFinalCta');
@@ -3000,8 +3033,8 @@ function initStoryJourney(screenName){
 
   const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const trackedSections = new Set();
-  const steps = Array.prototype.slice.call(track.querySelectorAll('.sj-step, .sj-rita'));
-  const pieces = Array.prototype.slice.call(track.querySelectorAll('.sj-phrase, .sj-dims-row, .sj-warning-card, .sj-rita-title, .sj-rita-sub, .sj-rita-body, .sj-reveal-btn'));
+  const steps = Array.prototype.slice.call(track.querySelectorAll('.sj-step'));
+  const pieces = Array.prototype.slice.call(track.querySelectorAll('.sj-phrase, .sj-dims-row, .sj-warning-card, .sj-fade'));
 
   if(reduceMotion || !('IntersectionObserver' in window)){
     steps.forEach(function(el){ activateStoryStep(el, trackedSections); });
@@ -3069,6 +3102,131 @@ function initStoryJourney(screenName){
   }, { passive:true });
 }
 
+/* ============ POST-RESULT JOURNEY: reviews carousel + enlarge ============
+   The carousel is a slow CSS marquee over the cards already in the markup.
+   initJourneyReviews() clones that set once so the loop is seamless. Tapping
+   a card pauses the marquee and opens a lightbox that grows out of the card
+   (FLIP transform). Closing shrinks it back and resumes the marquee. */
+let sjOpenCard = null;
+let sjCloseTimer = null;
+
+function initJourneyReviews(track){
+  const carousel = track.querySelector('#sjCarousel');
+  const strip = track.querySelector('#sjCarouselTrack');
+  if(!carousel || !strip || strip.getAttribute('data-ready')) return;
+  strip.setAttribute('data-ready', '1');
+
+  const originals = Array.prototype.slice.call(strip.children);
+  originals.forEach(function(card){
+    const dup = card.cloneNode(true);
+    dup.classList.add('sj-rcard-dup');
+    dup.setAttribute('aria-hidden', 'true');
+    dup.setAttribute('tabindex', '-1');
+    strip.appendChild(dup);
+  });
+
+  strip.addEventListener('click', function(e){
+    const card = e.target.closest('.sj-rcard');
+    if(card && strip.contains(card)) openJourneyReview(card);
+  });
+  strip.addEventListener('keydown', function(e){
+    if(e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('.sj-rcard');
+    if(card && !card.classList.contains('sj-rcard-dup')){
+      e.preventDefault();
+      openJourneyReview(card);
+    }
+  });
+
+  // No need to animate while the carousel is off screen.
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ carousel.classList.toggle('sj-offscreen', !en.isIntersecting); });
+    }, { threshold: 0 }).observe(carousel);
+  }
+
+  const modal = document.getElementById('sjReviewModal');
+  const closeBtn = document.getElementById('sjReviewClose');
+  if(modal && closeBtn && !modal.getAttribute('data-ready')){
+    modal.setAttribute('data-ready', '1');
+    closeBtn.addEventListener('click', function(){ closeJourneyReview(); });
+    modal.addEventListener('click', function(e){
+      if(!e.target.closest('.sj-rmodal-card') && e.target !== closeBtn) closeJourneyReview();
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && sjOpenCard) closeJourneyReview();
+    });
+  }
+}
+
+function openJourneyReview(card){
+  const modal = document.getElementById('sjReviewModal');
+  const carousel = document.getElementById('sjCarousel');
+  if(!modal || !carousel || sjOpenCard) return;
+  if(sjCloseTimer){ clearTimeout(sjCloseTimer); sjCloseTimer = null; }
+  sjOpenCard = card;
+  carousel.classList.add('sj-paused');
+  if (typeof gtag === 'function') gtag('event', 'journey_review_open');
+
+  const old = modal.querySelector('.sj-rmodal-card');
+  if(old) old.remove();
+  const big = card.cloneNode(true);
+  big.classList.remove('sj-rcard', 'sj-rcard-dup');
+  big.classList.add('sj-rmodal-card');
+  ['role', 'tabindex', 'aria-label', 'aria-hidden'].forEach(function(a){ big.removeAttribute(a); });
+  modal.appendChild(big);
+  modal.setAttribute('aria-hidden', 'false');
+  document.documentElement.classList.add('sj-lock');
+
+  const reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const from = card.getBoundingClientRect();
+  const to = big.getBoundingClientRect();
+  if(!reduce && to.width > 0){
+    big.style.transition = 'none';
+    big.style.transform = 'translate(' + (from.left - to.left) + 'px,' + (from.top - to.top) + 'px) scale(' + (from.width / to.width) + ')';
+    void big.offsetWidth;
+    big.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1)';
+  }
+  modal.classList.add('open');
+  requestAnimationFrame(function(){ big.style.transform = 'none'; });
+  const closeBtn = document.getElementById('sjReviewClose');
+  if(closeBtn) closeBtn.focus({ preventScroll: true });
+}
+
+function closeJourneyReview(instant){
+  const modal = document.getElementById('sjReviewModal');
+  const carousel = document.getElementById('sjCarousel');
+  if(!modal || !sjOpenCard) return;
+  const card = sjOpenCard;
+  sjOpenCard = null;
+  const big = modal.querySelector('.sj-rmodal-card');
+
+  function finish(){
+    sjCloseTimer = null;
+    if(big && big.parentNode) big.remove();
+    modal.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('sj-lock');
+    if(carousel) carousel.classList.remove('sj-paused');
+  }
+
+  modal.classList.remove('open');
+  const reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if(instant || reduce || !big){
+    finish();
+  } else {
+    const from = card.getBoundingClientRect();
+    big.style.transform = 'none';
+    const to = big.getBoundingClientRect();
+    if(to.width > 0){
+      big.style.transition = 'transform .42s cubic-bezier(.22,1,.36,1), opacity .3s ease .12s';
+      big.style.transform = 'translate(' + (from.left - to.left) + 'px,' + (from.top - to.top) + 'px) scale(' + (from.width / to.width) + ')';
+      big.style.opacity = '0';
+    }
+    sjCloseTimer = setTimeout(finish, 460);
+  }
+  try{ card.focus({ preventScroll: true }); }catch(e){}
+}
+
 function activateStoryStep(el, trackedSections){
   if(el.classList.contains('sj-active')) return;
   el.classList.add('sj-active');
@@ -3085,14 +3243,14 @@ function activateStoryStep(el, trackedSections){
     trackedSections.add(stepNum);
     const onJourney = !!el.closest('#screen-journey');
     gtag('event', 'story_section_reached', { section: stepNum, screen: onJourney ? 'journey' : 'story' });
-    if(stepNum === '4' && onJourney) gtag('event', 'story_warning_viewed');
+    if(onJourney && el.querySelector('#sjWarningCard')) gtag('event', 'story_warning_viewed');
   }
 }
 
 function growConnectorIfStepDone(piece){
-  const step = piece.closest('.sj-step, .sj-rita');
+  const step = piece.closest('.sj-step');
   if(!step) return;
-  const stepPieces = step.querySelectorAll('.sj-phrase, .sj-dims-row, .sj-warning-card, .sj-rita-title, .sj-rita-sub, .sj-rita-body, .sj-reveal-btn');
+  const stepPieces = step.querySelectorAll('.sj-phrase, .sj-dims-row, .sj-warning-card, .sj-fade');
   const allIn = Array.prototype.every.call(stepPieces, function(p){ return p.classList.contains('sj-in'); });
   if(allIn) growConnectorAfter(step);
 }
