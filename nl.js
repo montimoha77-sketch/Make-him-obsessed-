@@ -424,6 +424,7 @@
     "name.btn": "Ontgrendel Mijn Resultaten",
     "name.privacyBadge": "Alleen je voornaam — geen e-mail, geen registratie",
     "name.micro": "Kost 2 seconden. We vragen nooit om je e-mailadres.",
+    "name.emailNote": "Tip: kijk ook in je spamfolder.",
     "results.eyebrow": "Jouw Analyse",
     "results.strengthLabel": "Grootste Kracht",
     "results.warningLabel": "Grootste Waarschuwing",

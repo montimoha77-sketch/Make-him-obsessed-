@@ -424,6 +424,7 @@
     "name.btn": "Sblocca I Miei Risultati",
     "name.privacyBadge": "Solo il tuo nome — niente email, niente registrazione",
     "name.micro": "Bastano 2 secondi. Non ti chiederemo mai la tua email.",
+    "name.emailNote": "Consiglio: controlla anche la cartella spam.",
     "results.eyebrow": "La Tua Lettura",
     "results.strengthLabel": "Punto di Forza Principale",
     "results.warningLabel": "Avvertimento Principale",
