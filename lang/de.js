@@ -252,6 +252,7 @@
     "name.btn": "Meine Ergebnisse Freischalten",
     "name.privacyBadge": "Nur dein Vorname — keine E-Mail, keine Anmeldung",
     "name.micro": "Dauert 2 Sekunden. Wir fragen nie nach deiner E-Mail.",
+    "name.emailNote": "Tipp: Schau auch in deinem Spam-Ordner nach.",
     "results.eyebrow": "Deine Analyse",
     "results.strengthLabel": "Größte Stärke",
     "results.warningLabel": "Größte Warnung",

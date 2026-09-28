@@ -424,6 +424,7 @@
     "name.btn": "Débloquer Mes Résultats",
     "name.privacyBadge": "Juste ton prénom — pas d'email, pas d'inscription",
     "name.micro": "Ça prend 2 secondes. On ne te demandera jamais ton email.",
+    "name.emailNote": "Astuce : pense aussi à vérifier tes spams.",
     "results.eyebrow": "Ta Lecture",
     "results.strengthLabel": "Plus Grande Force",
     "results.warningLabel": "Plus Grand Avertissement",
