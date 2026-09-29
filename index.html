@@ -576,6 +576,7 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
 /* Checkout modal: spinner while the payment iframe is still mounting (no more blank box) */
 .whop-checkout-mount.show:empty::after{content:'';display:block;width:34px;height:34px;margin:90px auto;border-radius:50%;border:3px solid rgba(201,162,75,.25);border-top-color:#C9A24B;animation:spin .8s linear infinite}
 </style>
+<style>.inside-gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:2px 2px 10px;margin:0 0 6px;scroll-padding:0 2px}.inside-gallery::-webkit-scrollbar{height:4px}.inside-gallery::-webkit-scrollbar-thumb{background:rgba(201,162,75,0.35);border-radius:99px}.inside-gallery img{flex:0 0 auto;height:440px;width:auto;max-width:none;scroll-snap-align:center;cursor:pointer;border-radius:14px;border:1px solid rgba(201,162,75,0.3);box-shadow:0 14px 30px -14px rgba(0,0,0,0.7);background:var(--ink)}.inside-hint{text-align:center;font-size:11.5px;color:rgba(243,233,228,0.42);margin:0 0 26px}@media(max-width:360px){.inside-gallery img{height:400px}}</style>
 </head>
 <body>
 
@@ -1434,6 +1435,19 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
         </div>
       </div>
     </div>
+
+    <div class="buy-mini-testimonials-label">✦ What's Inside The Book</div>
+<div class="inside-gallery" role="region" aria-label="Book contents preview">
+  <img src="guide.webp" width="800" height="1000" alt="How to Make Him Obsessed With You: The Complete Guide" loading="lazy" decoding="async" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()">
+  <img src="part-1.webp" width="800" height="1000" alt="Part 1: Stop Chasing & The Power of Mystery" loading="lazy" decoding="async" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()">
+  <img src="part-2.webp" width="640" height="1000" alt="Part 2: Become the Prize & Build Real Connection" loading="lazy" decoding="async" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()">
+  <img src="part-3.webp" width="800" height="1000" alt="Part 3: Scarcity, Attraction & Self-Preservation" loading="lazy" decoding="async" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()">
+  <img src="part-4.webp" width="800" height="1000" alt="Part 4: Stay on His Mind & Build a Life Worth Sharing" loading="lazy" decoding="async" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()">
+  <img src="part-5.webp" width="800" height="1000" alt="Part 5: Attraction vs. Obsession" loading="lazy" decoding="async" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()">
+  <img src="bonus-1.webp" width="800" height="1000" alt="Bonus 1: 10 Text Messages That Spark Curiosity" loading="lazy" decoding="async" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()" onerror="this.remove()">
+  <img src="bonus-2.webp" width="667" height="1000" alt="Bonus 2: 7 Signs He's Becoming Emotionally Attached" loading="lazy" decoding="async" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()">
+</div>
+<p class="inside-hint">Swipe to see every part and bonus</p>
 
     <!-- Look inside: the book's 10 chapters plus 2 bonus sections, so buyers can see exactly what they get. -->
     <div class="book-toc" id="bookToc">
