@@ -1703,7 +1703,7 @@ const PRICE_USD_ORIGINALS = { old: null, new: null };
 (function configureWhopCheckoutMounts(){
   const usdEl = document.getElementById('whopCheckoutUSD');
   const eurEl = document.getElementById('whopCheckoutEUR');
-  const returnUrl = "https://drive.google.com/uc?export=download&id=1lG6A363LfNHPRaZN546Ar0WH3iVjiozg";
+  const returnUrl = window.location.origin + "/thank-you.html";   // thank-you page with the download button (upload thank-you.html next to index.html)
   [usdEl, eurEl].forEach((el, i) => {
     if(!el) return;
     el.setAttribute('data-whop-checkout-plan-id', i === 0 ? WHOP_PLAN_ID_USD : WHOP_PLAN_ID_EUR);
