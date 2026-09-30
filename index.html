@@ -4319,11 +4319,47 @@ function ensureWhopCheckout(){
     }
   });
   if(!active || active.querySelector('iframe')) return;   // already mounted
+  // If the loader already ran earlier (e.g. it mounted the USD plan before the EU
+  // detection finished), it will NOT rescan the page, so the EUR box stays empty
+  // and the spinner never ends. Load a fresh copy so it mounts the active plan.
+  document.querySelectorAll('script[data-whop-loader]').forEach(function(n){ n.remove(); });
   const s = document.createElement('script');
   s.async = true;
-  s.src = 'https://js.whop.com/static/checkout/loader.js';
+  s.setAttribute('data-whop-loader', '1');
+  s.src = 'https://js.whop.com/static/checkout/loader.js' + (whopLoaderInjected ? ('?r=' + Date.now()) : '');
   document.head.appendChild(s);
   whopLoaderInjected = true;
+}
+
+/* Safety net: if the embedded checkout has not mounted a few seconds after opening,
+   retry once, then show a plain "pay on Whop" link so nobody is ever stuck on the spinner. */
+let whopWatchdogTimers = [];
+function startWhopWatchdog(){
+  whopWatchdogTimers.forEach(clearTimeout); whopWatchdogTimers = [];
+  const modal = document.querySelector('#whopCheckoutOverlay .whop-checkout-modal');
+  if(!modal) return;
+  let link = document.getElementById('whopFallbackLink');
+  if(!link){
+    link = document.createElement('a');
+    link.id = 'whopFallbackLink';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.style.cssText = 'display:none;text-align:center;margin:10px 16px 18px;color:#C9A24B;text-decoration:underline;';
+    modal.appendChild(link);
+  }
+  link.style.display = 'none';
+  const plan = IS_EU_USER ? WHOP_PLAN_ID_EUR : WHOP_PLAN_ID_USD;
+  const active = document.getElementById(IS_EU_USER ? 'whopCheckoutEUR' : 'whopCheckoutUSD');
+  const mounted = function(){ return active && active.querySelector('iframe'); };
+  whopWatchdogTimers.push(setTimeout(function(){
+    if(!mounted()){ try{ ensureWhopCheckout(); }catch(e){} }
+  }, 4000));
+  whopWatchdogTimers.push(setTimeout(function(){
+    if(mounted()) return;
+    link.href = 'https://whop.com/checkout/' + plan;
+    link.textContent = 'Checkout not loading? Tap here to pay securely on Whop \u2192';
+    link.style.display = 'block';
+  }, 9000));
 }
 function scheduleWhopWarmup(){
   if(whopWarmTimer) return;
@@ -4357,12 +4393,14 @@ function openCheckoutModal(){
   if(usd) usd.classList.toggle('show', !IS_EU_USER);
   if(eur) eur.classList.toggle('show', IS_EU_USER);
   ensureWhopCheckout();
+  startWhopWatchdog();
   const overlay = document.getElementById('whopCheckoutOverlay');
   if(overlay) overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
 function closeCheckoutModal(){
+  whopWatchdogTimers.forEach(clearTimeout); whopWatchdogTimers = [];
   const overlay = document.getElementById('whopCheckoutOverlay');
   if(overlay) overlay.classList.remove('active');
   document.body.style.overflow = '';
