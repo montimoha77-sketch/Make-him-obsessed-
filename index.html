@@ -1580,8 +1580,8 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
 <div class="whop-checkout-overlay" id="whopCheckoutOverlay" role="dialog" aria-modal="true" aria-label="Checkout">
   <div class="whop-checkout-modal">
     <button type="button" class="whop-checkout-close" id="whopCheckoutCloseBtn" onclick="closeCheckoutModal()" aria-label="Close">&times;</button>
-    <div class="whop-checkout-mount show" id="whopCheckoutUSD" data-whop-checkout-plan-id="plan_EqN1VxeLY97TD" data-whop-checkout-theme="light" data-whop-checkout-theme-background-color="#F3E9E4" data-whop-checkout-theme-accent-color="#C9A24B" data-whop-checkout-theme-border-radius="16"></div>
-    <div class="whop-checkout-mount" id="whopCheckoutEUR" data-whop-checkout-plan-id="plan_MPbZsrvVkTiMD" data-whop-checkout-theme="light" data-whop-checkout-theme-background-color="#F3E9E4" data-whop-checkout-theme-accent-color="#C9A24B" data-whop-checkout-theme-border-radius="16"></div>
+    <div class="whop-checkout-mount show" id="whopCheckoutUSD" data-whop-checkout-plan-id="plan_EqN1VxeLY97TD" data-whop-checkout-hide-address="true" data-whop-checkout-theme="light" data-whop-checkout-theme-background-color="#F3E9E4" data-whop-checkout-theme-accent-color="#C9A24B" data-whop-checkout-theme-border-radius="16"></div>
+    <div class="whop-checkout-mount" id="whopCheckoutEUR" data-whop-checkout-plan-id="plan_MPbZsrvVkTiMD" data-whop-checkout-hide-address="true" data-whop-checkout-theme="light" data-whop-checkout-theme-background-color="#F3E9E4" data-whop-checkout-theme-accent-color="#C9A24B" data-whop-checkout-theme-border-radius="16"></div>
   </div>
 </div>
 
@@ -1708,6 +1708,7 @@ const PRICE_USD_ORIGINALS = { old: null, new: null };
     if(!el) return;
     el.setAttribute('data-whop-checkout-plan-id', i === 0 ? WHOP_PLAN_ID_USD : WHOP_PLAN_ID_EUR);
     el.setAttribute('data-whop-checkout-return-url', returnUrl);
+    el.setAttribute('data-whop-checkout-hide-address', 'true');   // digital product: no billing address form
     el.setAttribute('data-whop-checkout-theme', WHOP_CHECKOUT_THEME);
     el.setAttribute('data-whop-checkout-theme-background-color', WHOP_CHECKOUT_BG_COLOR);
     el.setAttribute('data-whop-checkout-theme-accent-color', WHOP_CHECKOUT_ACCENT_COLOR);
