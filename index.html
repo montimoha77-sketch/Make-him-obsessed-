@@ -122,6 +122,11 @@ body[data-screen="journey"] .chat-fab,
 body[data-screen="journey"] .chat-fab-tip{display:none !important}
 body[data-screen="story"] .proof-toast,
 body[data-screen="journey"] .proof-toast{display:none !important}
+/* Book page: calm and quiet - no chat button, chat tip, chat panel or pop-up notifications */
+body[data-screen="buy"] .chat-fab,
+body[data-screen="buy"] .chat-fab-tip,
+body[data-screen="buy"] .chat-panel,
+body[data-screen="buy"] .proof-toast{display:none !important}
 #screen-story,#screen-journey{padding-top:6px}
 #screen-story .brand-header,#screen-journey .brand-header{margin-bottom:10px;min-height:64px}
 #screen-story .logo-img,#screen-journey .logo-img{max-height:64px}
@@ -589,11 +594,6 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
 .guarantee-box .bonus-toggle-title{margin-bottom:6px}
 .guarantee-box .quick-buy-note{line-height:1.5}
 .guarantee-box a{color:var(--gold-soft);font-weight:700;text-decoration:underline;text-underline-offset:2px}
-.sticky-trust{margin-top:12px;padding:6px 10px 8px;border-radius:12px;background:rgba(15,11,13,.88)}
-.sticky-trust[hidden]{display:none}
-.sticky-trust .pay-logos{margin-top:0}
-.sticky-trust .pay-logos{gap:10px;transform:scale(.9)}
-.sticky-trust .buy-trust{margin-top:4px}
 .email-capture{margin-top:22px;padding:16px;border:1.5px solid rgba(201,162,75,.32);border-radius:16px;background:linear-gradient(135deg,rgba(201,162,75,.10),rgba(59,15,26,.16))}
 .email-capture .bonus-toggle-title{margin-bottom:4px}
 .email-capture .bonus-toggle-sub{display:block;margin-bottom:12px}
@@ -1571,7 +1571,6 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
 
 <div class="sticky-action" id="stickyAction" aria-hidden="true">
   <button class="btn btn-gold btn-glow" id="stickyActionBtn" type="button"></button>
-  <div class="sticky-trust" id="stickyTrust" hidden><div class="pay-logos" aria-label="Accepted cards: Visa, Mastercard, American Express, Discover"><span class="pay-logo pay-visa" role="img" aria-label="Visa"></span><span class="pay-logo pay-mc" role="img" aria-label="Mastercard"></span><span class="pay-logo pay-amex" role="img" aria-label="American Express"></span><span class="pay-logo pay-discover" role="img" aria-label="Discover"></span></div><div class="buy-trust buy-trust-center">Secure checkout · Instant delivery · 60-day money-back guarantee</div></div>
 </div>
 
 <!-- Whop embedded checkout modal (added): the loader script tag in <head>
@@ -2773,8 +2772,6 @@ function updateStickyAction(){
   button.onclick = () => source.click();
   bar.classList.add('show');
   bar.setAttribute('aria-hidden', 'false');
-  const trust = document.getElementById('stickyTrust');
-  if(trust) trust.hidden = currentScreenName !== 'buy';
 }
 
 function goToPreviousQuestion(){
@@ -2904,6 +2901,10 @@ function goTo(name, fromBack){
     renderStoryPage(name);
   }
   if(name === 'buy'){
+    const buyToast = document.getElementById('proofToast');
+    if(buyToast) buyToast.classList.remove('show');
+    const buyTip = document.getElementById('chatFabTip');
+    if(buyTip) buyTip.classList.remove('show');
     renderBuyPage();
   }
 
@@ -4635,7 +4636,7 @@ function showProofToast(){
   if(langScreen && langScreen.classList.contains('active')) return;
   // Story Journey page: must stay completely quiet, see the page's own
   // "no interruptions" requirement — no toasts, popups, or notifications.
-  if(document.body.dataset.screen === 'story' || document.body.dataset.screen === 'journey') return;
+  if(['story','journey','buy'].indexOf(document.body.dataset.screen) > -1) return;
   displayProofToast(nextProofNotification());
 }
 
@@ -4776,7 +4777,7 @@ initSocialProof();
     if (!tipEl || chatOpen) return;
     // Story Journey page: no automatic chat message/notification should
     // ever appear here — Rita is only introduced as part of the story.
-    if (document.body.dataset.screen === 'story' || document.body.dataset.screen === 'journey') return;
+    if (['story','journey','buy'].indexOf(document.body.dataset.screen) > -1) return;
     const tips = fabTipsForLang();
     currentFabTip = tips[fabTipIndex % tips.length];
     tipEl.textContent = currentFabTip.display;
