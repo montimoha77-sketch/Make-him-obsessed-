@@ -577,6 +577,30 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
 .whop-checkout-mount.show:empty::after{content:'';display:block;width:34px;height:34px;margin:90px auto;border-radius:50%;border:3px solid rgba(201,162,75,.25);border-top-color:#C9A24B;animation:spin .8s linear infinite}
 </style>
 <style>.inside-gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:2px 2px 10px;margin:0 0 6px;scroll-padding:0 2px}.inside-gallery::-webkit-scrollbar{height:4px}.inside-gallery::-webkit-scrollbar-thumb{background:rgba(201,162,75,0.35);border-radius:99px}.inside-gallery img{flex:0 0 auto;height:440px;width:auto;max-width:none;scroll-snap-align:center;cursor:pointer;border-radius:14px;border:1px solid rgba(201,162,75,0.3);box-shadow:0 14px 30px -14px rgba(0,0,0,0.7);background:var(--ink)}.inside-hint{text-align:center;font-size:11.5px;color:rgba(243,233,228,0.42);margin:0 0 26px}@media(max-width:360px){.inside-gallery img{height:400px}}</style>
+<style id="oct-2026-brief">
+.pay-logos{display:flex;align-items:center;justify-content:center;gap:6px;margin:8px 0 0;filter:grayscale(1);opacity:.7}
+.pay-logos{gap:12px}
+.pay-logo{display:inline-block;flex:0 0 auto;background-repeat:no-repeat;background-size:contain;background-position:center}
+.pay-visa{width:46.0px;height:15.0px;background-image:url(data:image/png;base64,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)}
+.pay-mc{width:30.0px;height:18.5px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAlCAYAAAAeJYohAAAEqElEQVR42s2aS2hcVRjHf/fMnUnampJWY0yLNlRqpFofEB9UBREXgggiuKrtUly4cyF00S4EV7UbdwUpoiCCCxd1IYoaEQUfUajUZ7HGtmnAxLR12mbmzh0X93/S08udmTuTc8APhtw7k3vu+Z/v/z3PiS4unI7oLTHQdO7vBB4BHgBuA24EhoAEWAL+AL4HZoBvgBVnnBRoO2NF+s7+PgHcDIwDo8AwUNHYl4F/gHngjP7asUxu3EKJegCuAC0NtBnYCzwHTFNeTgLvAW8AvxUAbwObgLuAKWAMqOn/ihbH6PoKsACcAI4Ddf0edQPeDbDVahV4CXhZK74WOQIcBM7pfgPwMHCvrhN9UucZ41znv69pnsvA18CXmnMsRZUGbMFOA0dFYV9yHngB+Ap4RsxZcSZo+hgrdZi4DjgNfADMdaJ4HnCkh5ui7luEkXngfeCsgBoPY6bSeBs4BswWgc6/qCqwLwYE+4uoNwls8ziuARpawKeBh7QIUSfAsai1D3g9ENhTwI/y6A154+2aZOQJdCpv/oRM8hrQxqGytdk3A4FdVKgaEs2MPO1WhaKGR9B27CfFolSminFeMgy8TTj5tsCEjLzyNuC6Tp51DTYN8BSw3t4bIU8VeqYCgT0O/Kt3FcXIGnCLZ8BGJjoOPGipbVd4HNgfCOxl2W6tS0KQKOHY7Bl0RaCnldyk1m3vk9pDyMkS9mkdy5YA728BI8A9Vu0xsCeg7Z7VO9o96JcAG5VApJ7nkMhcY6Mc9u6AnrluPWTJxGHUY5hyF/MGYKsBHguo3b8HeGZjgHnYxZw0wH0BAS/3qYmWKF0tU+r1KW1gwgC3BgRcH4CaQ06o9BmiWsCoUUgKJUmv+rRAC5WSNj8IrdcZ0SeUDErLKNB8IpNr3fwfJA1gv6sKMAN60rJinU/Uh2bbnrMt146vGDXcQsmGAZ5peGwK5DO5ZQN8FxDwSB/0tCXcJc+Jh6vhBQN8GhDw2ADPXAiQWlpfNWfI+sY/BQQ8XNImK6Lz+S5l5KB0jsn62X9a5O8G1PIWJx73ovMFUdp4nkMM/Ao0bcfjaCDPCLCjRLVkY/Z8KO+s9tJqeTgHvBYI8Hq1cDppOVX4WlLu7TPLasmkZhV+jXFCwKuqXUPILuXIRd7XdhrnAlVIS8AXUuxqo9rIWewNBLhCtp2SdnAopxxn5ZPKFbKmfB24HRgzjuqrwCdkzbwQMgHslD25ndIFsp1AnyVhqrE/4uoG3s/AoslVNlXgMPBKINBT+lySZs/Je1Y8AoWs5TsjKlsWJ0DLFBh5DBwIqOldwG6B/d2jVi1La8CHwMdcu7cUURDv2g7ow2TbFSFCxSF9Gk6+nQ6o0dTJ2y8C7wCfU3L3MB+sm2S94oNkG2xrTQiOke0zn9D9JuBR4A558aYWPHUcTyfa2pAayy/MCmidLqcBypwASHS9HXgeeFbXZWVRQI+Q7RrastEFdpO8+A6yrmXFqYvzm+CRM69Fst3IH5wyt+vRh6jEGQ97zCBxPOtu4HHgfvXErheIVMnDX8rRZ4DPnMnkz3hEOa0Nk+0oTsqrj0jzNlavaPx5hbIzXD0/UuqMx38ZS028qpyP/gAAAABJRU5ErkJggg==)}
+.pay-amex{width:40.0px;height:11.0px;background-image:url(data:image/png;base64,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)}
+.pay-discover{width:50.0px;height:8.5px;background-image:url(data:image/png;base64,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)}
+.guarantee-box{margin:0 0 16px;padding:14px 16px;text-align:center;border:1px solid rgba(201,162,75,.3);border-radius:16px;background:linear-gradient(160deg,rgba(201,162,75,.09),rgba(243,233,228,.02))}
+.guarantee-box .bonus-toggle-title{margin-bottom:6px}
+.guarantee-box .quick-buy-note{line-height:1.5}
+.guarantee-box a{color:var(--gold-soft);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.sticky-trust{margin-top:12px;padding:6px 10px 8px;border-radius:12px;background:rgba(15,11,13,.88)}
+.sticky-trust[hidden]{display:none}
+.sticky-trust .pay-logos{margin-top:0}
+.sticky-trust .pay-logos{gap:10px;transform:scale(.9)}
+.sticky-trust .buy-trust{margin-top:4px}
+.email-capture{margin-top:22px;padding:16px;border:1.5px solid rgba(201,162,75,.32);border-radius:16px;background:linear-gradient(135deg,rgba(201,162,75,.10),rgba(59,15,26,.16))}
+.email-capture .bonus-toggle-title{margin-bottom:4px}
+.email-capture .bonus-toggle-sub{display:block;margin-bottom:12px}
+.email-capture .btn-outline{margin-top:12px}
+.q-count-center{justify-content:center}
+.q-count-center::before{display:none}
+</style>
 </head>
 <body>
 
@@ -628,9 +652,9 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
 <!-- BOOK PAGE ONLY: returns directly to the very first/start page.
      Uses the exact same persistent Back button styling, but is shown only
      while the final Book/Buy screen is active. -->
-<button class="back-nav" id="bookBackToStart" onclick="goTo('gate')" aria-label="Back to Quiz">
+<button class="back-nav" id="bookBackToStart" onclick="goTo('gate')" aria-label="Back to Analysis">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-  <span>Back to Quiz</span>
+  <span>Back to Analysis</span>
 </button>
 
 <!-- SITE MENU: hamburger button (fixed top-right, next to the language switcher)
@@ -716,6 +740,7 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
        then goes straight into the quiz. -->
   <section class="screen" id="screen-gate">
     <div class="eyebrow">Make Him Obsessed</div>
+    <div class="q-count q-count-center">Question 1 of 7</div>
     <h1 data-i18n="gate.h1">What's Your Situation With <em>Him</em>?</h1>
     <p class="sub" data-i18n="gate.sub">We'll tailor your reading to exactly where you stand.</p>
     <div style="display:flex; flex-direction:column; gap:12px;">
@@ -723,16 +748,16 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
       <button class="btn btn-outline" onclick="chooseGate('single')" data-i18n="gate.no">👀 We're not officially together</button>
     </div>
     <div class="live-badge"><span class="live-dot"></span><span class="live-badge-heart">❤</span><strong class="live-badge-number">1,000+</strong><span data-i18n="shared.liveBadge">readers exploring their signals</span></div>
-    <button type="button" class="text-link" style="display:block; margin:16px auto 0; text-align:center;" onclick="goTo('buy')" data-i18n="landing.skipToBook">Already know you want the book? Skip straight to it →</button>
+    <button type="button" class="text-link" style="display:block; margin:16px auto 0; text-align:center;" onclick="goTo('buy')" data-i18n="landing.skipToBook">Skip the analysis and go straight to the book →</button>
   </section>
 
   <!-- SCREEN 1: LANDING, now the first screen the visitor lands on. -->
   <section class="screen" id="screen-landing">
     <div class="eyebrow" data-i18n="landing.eyebrow">Make Him Obsessed</div>
     <h1 data-i18n="landing.h1">Does He Like You? <em>Stop Guessing. See What His Behavior Is Actually Telling You.</em></h1>
-    <p class="sub" data-i18n="landing.sub">Take the free 60-second reading, then get the full <strong>Make Him Obsessed</strong> guide to the psychology behind his behavior, attraction &amp; mixed signals.</p>
+    <p class="sub" data-i18n="landing.sub">Take the free 60-second analysis, then get the full <strong>Make Him Obsessed</strong> guide to the psychology behind his behavior, attraction &amp; mixed signals.</p>
     <button class="btn btn-gold btn-glow" onclick="goTo('gate')" data-i18n="landing.startBtn">Find Out Now</button>
-    <button type="button" class="text-link" style="display:block; margin:14px auto 0; text-align:center;" onclick="goTo('buy')" data-i18n="landing.skipToBook">Already know you want the book? Skip straight to it →</button>
+    <button type="button" class="text-link" style="display:block; margin:14px auto 0; text-align:center;" onclick="goTo('buy')" data-i18n="landing.skipToBook">Skip the analysis and go straight to the book →</button>
 
     <div class="preview-row">
       <div class="preview-item"><span class="preview-dot"></span><span class="preview-label" data-i18n="landing.previewInterest">Interest</span></div>
@@ -762,9 +787,9 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
   <section class="screen" id="screen-landing-single">
     <div class="eyebrow" data-i18n="landingSingle.eyebrow">Make Him Obsessed</div>
     <h1 data-i18n="landingSingle.h1">Does He Like You? <em>Stop Guessing. See What His Behavior Is Actually Telling You.</em></h1>
-    <p class="sub" data-i18n="landingSingle.sub">Take the free 60-second reading, then get the full <strong>Make Him Obsessed</strong> guide to the psychology behind his behavior, attraction &amp; mixed signals.</p>
+    <p class="sub" data-i18n="landingSingle.sub">Take the free 60-second analysis, then get the full <strong>Make Him Obsessed</strong> guide to the psychology behind his behavior, attraction &amp; mixed signals.</p>
     <button class="btn btn-gold btn-glow" onclick="goTo('quiz')" data-i18n="landingSingle.startBtn">Find Out Now</button>
-    <button type="button" class="text-link" style="display:block; margin:14px auto 0; text-align:center;" onclick="goTo('buy')" data-i18n="landing.skipToBook">Already know you want the book? Skip straight to it →</button>
+    <button type="button" class="text-link" style="display:block; margin:14px auto 0; text-align:center;" onclick="goTo('buy')" data-i18n="landing.skipToBook">Skip the analysis and go straight to the book →</button>
 
     <div class="preview-row">
       <div class="preview-item"><span class="preview-dot"></span><span class="preview-label axis-check-label" data-i18n="landingSingle.previewConfidence">Interest</span></div>
@@ -816,7 +841,7 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
     </div>
     <div class="dots-row" id="dotsRow"></div>
     <div class="q-block" id="qBlock">
-      <div class="q-count" id="qCount">Question 1 of 6</div>
+      <div class="q-count" id="qCount">Question 2 of 7</div>
       <div class="q-text" id="qText"></div>
       <div class="options" id="qOptions"></div>
       <div class="micro-insight" id="microInsight"></div>
@@ -866,18 +891,7 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
   <section class="screen" id="screen-name">
     <div class="eyebrow" data-i18n="name.eyebrow">Almost There</div>
     <h1 id="nameHeadline">Your reading is ready.</h1>
-    <p class="sub" id="nameSub">Enter your name so your results speak directly to you, Interest, Communication, His Effort, and your biggest relationship blind spot.</p>
-
-    <!-- Shown immediately, before the locked preview or the input, so the
-         "is this asking for my email?" objection is answered before anyone
-         can bounce over it. Email isn't asked at all unless the visitor
-         actively opts into the free-chapter card further down. -->
-    <div class="name-privacy-badge">
-      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <path d="M4 10.3L8 14.3L16 5.3" stroke="#E4C97A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span data-i18n="name.privacyBadge">Just your first name — that's all you need</span>
-    </div>
+    <p class="sub" id="nameSub">Enter your first name so your results speak directly to you. Takes 2 seconds.</p>
 
     <div class="locked-preview">
       <div class="locked-rings" id="lockedRingsWrap"></div>
@@ -895,39 +909,25 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
         <path d="M10 10a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" stroke="#F3E9E4" stroke-width="1.4"/>
         <path d="M3.5 17c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5" stroke="#F3E9E4" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
-      <input type="text" class="field-input" id="nameInput" placeholder="Type your first name…" data-i18n-ph="name.placeholder" autocomplete="given-name" name="fname" inputmode="text" enterkeyhint="go" maxlength="24" onkeydown="if(event.key==='Enter'){event.preventDefault();submitName();}">
+      <input type="text" class="field-input" id="nameInput" placeholder="Type your first name…" data-i18n-ph="name.placeholder" autocomplete="given-name" name="fname" oninput="updateEmailTitle()" inputmode="text" enterkeyhint="go" maxlength="24" onkeydown="if(event.key==='Enter'){event.preventDefault();submitName();}">
     </div>
     <div class="err" id="nameErr" data-i18n="name.err">Enter your name to continue.</div>
 
-    <!-- OPTIONAL bonus opt-in: a collapsed, unchecked-by-default toggle card.
-         Email is only asked for — and only sent anywhere — once the visitor
-         actively taps this to request the free chapter. Name above stays the
-         only REQUIRED field. Wired into the same Google Form + Sheet as the
-         name field, see GOOGLE_FORM_EMAIL_ENTRY in the CONFIG block below
-         for the one-time setup Monti still needs to do (same steps as
-         GOOGLE_FORM_NAME_ENTRY was set up). -->
-    <button type="button" class="bonus-toggle" id="bonusToggle" onclick="toggleBonusEmail()" aria-expanded="false" aria-controls="bonusEmailWrap">
-      <span class="bonus-toggle-icon" aria-hidden="true">🎁</span>
-      <span class="bonus-toggle-copy">
-        <span class="bonus-toggle-title" data-i18n="name.emailBadge">Also get a free chapter</span>
-        <span class="bonus-toggle-sub" data-i18n="name.emailBadgeSub">Optional — sent straight to your inbox</span>
-      </span>
-      <span class="bonus-toggle-switch" aria-hidden="true"></span>
-    </button>
-
-    <div class="bonus-email-wrap" id="bonusEmailWrap">
+    <button class="btn btn-gold btn-glow" onclick="submitName()" data-i18n="name.btn">Unlock My Results</button>
+    <div class="email-capture" id="emailCapture">
+      <div class="bonus-toggle-title" id="emailCaptureTitle">Want your full reading in your inbox?</div>
+      <p class="bonus-toggle-sub">I'll send your complete results, the 3 patterns I see most in situations like yours, and a free chapter of the book.</p>
       <div class="name-field-wrap">
         <svg class="name-field-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M3 5.5h14v9H3v-9z" stroke="#F3E9E4" stroke-width="1.4" stroke-linejoin="round"/>
           <path d="M3.5 6l6.5 5 6.5-5" stroke="#F3E9E4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <input type="email" class="field-input" id="emailInput" placeholder="Your email address" data-i18n-ph="name.emailPlaceholder" autocomplete="email" name="femail" inputmode="email" enterkeyhint="go" maxlength="120" onkeydown="if(event.key==='Enter'){event.preventDefault();submitName();}">
+        <input type="email" class="field-input" id="emailInput" placeholder="Your email address" autocomplete="email" name="femail" inputmode="email" enterkeyhint="go" maxlength="120" onkeydown="if(event.key==='Enter'){event.preventDefault();sendReading();}">
       </div>
-      <p class="email-spam-note" data-i18n="name.emailNote">Tip: check your spam folder too, just in case.</p>
+      <div class="err" id="emailErr">Enter a valid email, or tap Unlock My Results to continue without it.</div>
+      <button type="button" class="btn btn-outline" onclick="sendReading()">Send my reading</button>
+      <p class="email-spam-note">No spam, ever. Unsubscribe anytime.</p>
     </div>
-
-    <button class="btn btn-gold btn-glow" onclick="submitName()" data-i18n="name.btn">Unlock My Results</button>
-    <p class="name-microcopy" data-i18n="name.micro">Takes 2 seconds. That's all you need.</p>
   </section>
 
   <!-- SCREEN 5: RESULTS -->
@@ -952,7 +952,6 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
       </div>
     </div>
     <button class="btn btn-gold btn-glow results-primary" onclick="goTo('journey')" data-i18n="results.nextBtn">What Did I Miss?</button>
-    <button type="button" class="text-link" style="display:block; margin:16px auto 0; text-align:center;" onclick="goTo('buy')" data-i18n="landing.skipToBook2">Seen enough? Go straight to the book →</button>
   </section>
 
   <!-- SCREEN 6: OFFER -->
@@ -1300,12 +1299,14 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
       </div>
       <div class="quick-buy-info">
         <div class="quick-buy-price-row">
-          <span class="quick-buy-price-old">$23</span>
-          <span class="quick-buy-price-new">$8.99</span>
+          <span class="quick-buy-price-old">$47</span>
+          <span class="quick-buy-price-new">$27</span>
         </div>
         <div class="quick-buy-btn-wrap">
           <button class="btn btn-gold btn-glow quick-buy-btn" id="ebookBtnTop" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()" data-i18n="buy.ctaBtn">Get Instant Access</button><span class="cbf cbf-small" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><defs><radialGradient id="cbfRoseA" gradientUnits="userSpaceOnUse" cx="20" cy="20" r="21"><stop offset="0" stop-color="#F6DAD6"/><stop offset=".55" stop-color="#E8C4C4"/><stop offset="1" stop-color="#E4C97A"/></radialGradient></defs><g class="cbf-wings"><path fill="url(#cbfRoseA)" d="M19 19C15 9 6 4 3 9C1 14 7 19 19 21Z"/><path fill="url(#cbfRoseA)" d="M19 22C9 22 5 30 9 34C13 36 18 29 19 24Z"/><path fill="url(#cbfRoseA)" d="M21 19C25 9 34 4 37 9C39 14 33 19 21 21Z"/><path fill="url(#cbfRoseA)" d="M21 22C31 22 35 30 31 34C27 36 22 29 21 24Z"/><path class="cbf-vein" d="M19 20C14 15 9 11 5 9M19 21C13 18 8 17 4 15M21 20C26 15 31 11 35 9M21 21C27 18 32 17 36 15M19 23C14 25 11 29 9.5 33M21 23C26 25 29 29 30.5 33"/><circle class="cbf-spot" cx="8.5" cy="10.5" r="1.7"/><circle class="cbf-spot" cx="31.5" cy="10.5" r="1.7"/><circle class="cbf-spot" cx="11" cy="30" r="1.2"/><circle class="cbf-spot" cx="29" cy="30" r="1.2"/></g><ellipse class="cbf-body" cx="20" cy="21" rx="1.3" ry="6.6"/><path class="cbf-ant" d="M20 15C19 11 17 9 15.5 8.5M20 15C21 11 23 9 24.5 8.5"/></svg></span>
         </div>
+        <div class="pay-logos" aria-label="Accepted cards: Visa, Mastercard, American Express, Discover"><span class="pay-logo pay-visa" role="img" aria-label="Visa"></span><span class="pay-logo pay-mc" role="img" aria-label="Mastercard"></span><span class="pay-logo pay-amex" role="img" aria-label="American Express"></span><span class="pay-logo pay-discover" role="img" aria-label="Discover"></span></div>
+        <div class="buy-trust buy-trust-center">Secure checkout · Instant delivery · 60-day money-back guarantee</div>
         <div class="offer-timer-row">
           <span class="offer-timer-label" data-i18n="buy.timerLabel">Launch price ends in</span>
           <span class="offer-card-timer" id="launchTimer">24:00:00</span>
@@ -1325,14 +1326,12 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
       </div>
     </div>
 
+    <div class="guarantee-box"><div class="bonus-toggle-title">Read it risk-free.</div><p class="quick-buy-note">If you finish Make Him Obsessed and don't feel clearer about him — what he's doing, why he's doing it, and what to do next — <a href="mailto:makehimobsessed.co@outlook.com?subject=Refund%20request">email me</a> within 60 days and I'll refund you. No forms, no hard feelings.</p></div>
+
     <!-- Small secondary box under the card: delivery note, checkout/refund info, tagline, prize wheel. -->
     <div class="quick-buy-extras">
       <p class="buy-tagline quick-buy-tagline" data-i18n="buy.tagline">Make Him Feel The Difference.</p>
       <div class="quick-buy-note" data-i18n="buy.footerNote">Instant digital access, start reading in minutes.</div>
-      <div class="buy-trust">
-        <span data-i18n="buy.trustLine">🔒 Secure checkout · 50 pages</span>
-        <a class="buy-refund-link" data-path="refund" target="_blank" rel="noopener" data-i18n="buy.refundLink">All sales are final · See Policy</a>
-      </div>
       <div class="quick-buy-extras-divider"></div>
       <button type="button" class="quick-buy-wheel-btn" id="openWheelBtn" onclick="openWheelModal()" data-i18n="wheel.spinBtn">Spin The Wheel</button>
     </div>
@@ -1463,13 +1462,16 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
         <li><span class="book-toc-num">08</span><span lang="en">How to Stay on His Mind</span></li>
         <li><span class="book-toc-num">09</span><span lang="en">Build a Life He Wants to Be Part Of</span></li>
         <li><span class="book-toc-num">10</span><span lang="en">Attraction vs. Obsession</span></li>
-        <li><span class="book-toc-num">B1</span><span lang="en">Bonus: 10 Texts That Spark Curiosity</span></li>
-        <li><span class="book-toc-num">B2</span><span lang="en">Bonus: 7 Signs He's Becoming Emotionally Attached</span></li>
+        <li><span class="book-toc-num">B1</span><span lang="en">Bonus: 10 Texts That Spark Curiosity (Value $19 — yours free)</span></li>
+        <li><span class="book-toc-num">B2</span><span lang="en">Bonus: 7 Signs He's Becoming Emotionally Attached (Value $19 — yours free)</span></li>
       </ol>
       <div class="book-toc-takeaway" data-i18n="buy.tocTakeaway"><strong>Key Takeaway:</strong> This book is about becoming so grounded, interesting, and emotionally intelligent that attraction becomes a natural side effect — not a performance.</div>
     </div>
 
     <div class="cta-bf-wrap"><button class="btn btn-gold btn-glow" id="ebookBtn" onclick="gtag('event','get_instant_access_click'); openCheckoutModal()" data-i18n="buy.ctaBtn">Get Instant Access</button><span class="cbf cbf-small cbf-small-b" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><defs><radialGradient id="cbfRoseB" gradientUnits="userSpaceOnUse" cx="20" cy="20" r="21"><stop offset="0" stop-color="#F6DAD6"/><stop offset=".55" stop-color="#E8C4C4"/><stop offset="1" stop-color="#E4C97A"/></radialGradient></defs><g class="cbf-wings"><path fill="url(#cbfRoseB)" d="M19 19C15 9 6 4 3 9C1 14 7 19 19 21Z"/><path fill="url(#cbfRoseB)" d="M19 22C9 22 5 30 9 34C13 36 18 29 19 24Z"/><path fill="url(#cbfRoseB)" d="M21 19C25 9 34 4 37 9C39 14 33 19 21 21Z"/><path fill="url(#cbfRoseB)" d="M21 22C31 22 35 30 31 34C27 36 22 29 21 24Z"/><path class="cbf-vein" d="M19 20C14 15 9 11 5 9M19 21C13 18 8 17 4 15M21 20C26 15 31 11 35 9M21 21C27 18 32 17 36 15M19 23C14 25 11 29 9.5 33M21 23C26 25 29 29 30.5 33"/><circle class="cbf-spot" cx="8.5" cy="10.5" r="1.7"/><circle class="cbf-spot" cx="31.5" cy="10.5" r="1.7"/><circle class="cbf-spot" cx="11" cy="30" r="1.2"/><circle class="cbf-spot" cx="29" cy="30" r="1.2"/></g><ellipse class="cbf-body" cx="20" cy="21" rx="1.3" ry="6.6"/><path class="cbf-ant" d="M20 15C19 11 17 9 15.5 8.5M20 15C21 11 23 9 24.5 8.5"/></svg></span></div>
+    <div class="pay-logos" aria-label="Accepted cards: Visa, Mastercard, American Express, Discover"><span class="pay-logo pay-visa" role="img" aria-label="Visa"></span><span class="pay-logo pay-mc" role="img" aria-label="Mastercard"></span><span class="pay-logo pay-amex" role="img" aria-label="American Express"></span><span class="pay-logo pay-discover" role="img" aria-label="Discover"></span></div>
+    <div class="buy-trust buy-trust-center">Secure checkout · Instant delivery · 60-day money-back guarantee</div>
+    <div class="guarantee-box"><div class="bonus-toggle-title">Read it risk-free.</div><p class="quick-buy-note">If you finish Make Him Obsessed and don't feel clearer about him — what he's doing, why he's doing it, and what to do next — <a href="mailto:makehimobsessed.co@outlook.com?subject=Refund%20request">email me</a> within 60 days and I'll refund you. No forms, no hard feelings.</p></div>
     <p class="footer-note" data-i18n="buy.footerNote">Instant digital access, start reading in minutes.</p>
     <p class="buy-tagline" data-i18n="buy.tagline">Make Him Feel The Difference.</p>
 
@@ -1569,6 +1571,7 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
 
 <div class="sticky-action" id="stickyAction" aria-hidden="true">
   <button class="btn btn-gold btn-glow" id="stickyActionBtn" type="button"></button>
+  <div class="sticky-trust" id="stickyTrust" hidden><div class="pay-logos" aria-label="Accepted cards: Visa, Mastercard, American Express, Discover"><span class="pay-logo pay-visa" role="img" aria-label="Visa"></span><span class="pay-logo pay-mc" role="img" aria-label="Mastercard"></span><span class="pay-logo pay-amex" role="img" aria-label="American Express"></span><span class="pay-logo pay-discover" role="img" aria-label="Discover"></span></div><div class="buy-trust buy-trust-center">Secure checkout · Instant delivery · 60-day money-back guarantee</div></div>
 </div>
 
 <!-- Whop embedded checkout modal (added): the loader script tag in <head>
@@ -1641,6 +1644,9 @@ const GOOGLE_FORM_NAME_ENTRY = "entry.1460889876";
 // steps for it). Left as PASTE_ so submitName() below skips sending email
 // until this is filled in — nothing breaks if it's left as-is.
 const GOOGLE_FORM_EMAIL_ENTRY = "entry.939350362";
+// RESULTS SUMMARY (added): paste the entry.XXXX id of a new short-answer Form question called "Results".
+// Left as PASTE_ it is skipped, nothing breaks. It lets your Apps Script email each person THEIR OWN reading.
+const GOOGLE_FORM_RESULTS_ENTRY = "entry.726296303";
 
 /* ---- Region pricing & checkout (EU vs rest-of-world) ----
    EDIT THESE to change the Euro price or which checkout file EU
@@ -1664,8 +1670,8 @@ const WHOP_CHECKOUT_THEME = "light";
 const WHOP_CHECKOUT_BG_COLOR = "#F3E9E4";      // --parchment
 const WHOP_CHECKOUT_ACCENT_COLOR = "#C9A24B";  // --gold
 const WHOP_CHECKOUT_BORDER_RADIUS = "16";      // px, matches the site's card radius
-const PRICE_EUR_OLD = "€23";
-const PRICE_EUR_NEW = "€8.99";
+const PRICE_EUR_OLD = "€47";
+const PRICE_EUR_NEW = "€27";
 // Country codes treated as "Europe" for EUR pricing + the EU checkout.
 // EU-27 plus UK, Switzerland, Norway, Iceland, Liechtenstein.
 const EUROPE_COUNTRY_CODES = new Set([
@@ -1999,7 +2005,7 @@ const QUIZ_CONFIG = {
     loadingLine: "Analyzing your answers…",
     loadingSubtext: "Comparing your answers with 10,000+ relationship patterns…",
     nameHeadline: "Your reading is ready.",
-    nameSub: "Just your first name — nothing else. It personalizes your Interest, Communication, and His Effort scores below. No email, no sign-up."
+    nameSub: "Enter your first name so your results speak directly to you. Takes 2 seconds."
   },
   single: {
     questions: QUESTIONS_SINGLE,
@@ -2013,7 +2019,7 @@ const QUIZ_CONFIG = {
     loadingLine: "Analyzing your patterns…",
     loadingSubtext: "Comparing your answers with 10,000+ dating patterns…",
     nameHeadline: "Your reading is ready.",
-    nameSub: "Just your first name — nothing else. It personalizes your Interest, Communication, and His Effort scores below. No email, no sign-up."
+    nameSub: "Enter your first name so your results speak directly to you. Takes 2 seconds."
   }
 };
 
@@ -2767,6 +2773,8 @@ function updateStickyAction(){
   button.onclick = () => source.click();
   bar.classList.add('show');
   bar.setAttribute('aria-hidden', 'false');
+  const trust = document.getElementById('stickyTrust');
+  if(trust) trust.hidden = currentScreenName !== 'buy';
 }
 
 function goToPreviousQuestion(){
@@ -2872,6 +2880,7 @@ function goTo(name, fromBack){
   if(name === 'name'){
     document.getElementById('nameHeadline').textContent = cfg().nameHeadline;
     document.getElementById('nameSub').textContent = cfg().nameSub;
+    updateEmailTitle();
   }
   if(name === 'proof'){
     // Reviews page: suppress any notification toast that might currently be showing
@@ -2992,7 +3001,7 @@ function updateDots(){
 function renderQuestion(){
   const activeQuestions = cfg().questions;
   const q = activeQuestions[currentQ];
-  document.getElementById('qCount').textContent = `Question ${currentQ + 1} of ${activeQuestions.length}`;
+  document.getElementById('qCount').textContent = `Question ${currentQ + 2} of ${activeQuestions.length + 1}`;
   // GA4: track each question separately
   if (typeof gtag === 'function') {
     gtag('event', `quiz_q${currentQ + 1}`, {
@@ -3135,20 +3144,25 @@ function showReviewPlatform(platform, btn){
   if(panel) panel.classList.add('active');
 }
 
-// Toggles the optional "free chapter" email card on the name-gate screen.
-// Collapsed and unchecked by default — email is only ever asked for, or
-// sent anywhere, once the visitor actively taps this card open.
-function toggleBonusEmail(){
-  const toggle = document.getElementById('bonusToggle');
-  const wrap = document.getElementById('bonusEmailWrap');
-  if(!toggle || !wrap) return;
-  const open = toggle.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  wrap.classList.toggle('open', open);
-  if(open){
-    const input = document.getElementById('emailInput');
-    if(input) setTimeout(() => input.focus(), 320);
-  }
+// Personalizes the visible email block's heading with the first name as it is typed.
+function updateEmailTitle(){
+  const t = document.getElementById('emailCaptureTitle');
+  const n = document.getElementById('nameInput');
+  if(!t) return;
+  const v = n ? n.value.trim() : '';
+  t.textContent = v ? 'Want your full reading in your inbox, ' + v + '?' : 'Want your full reading in your inbox?';
+}
+
+// "Send my reading": needs a first name and a valid email, then submits both.
+function sendReading(){
+  const nameEl = document.getElementById('nameInput');
+  const emailEl = document.getElementById('emailInput');
+  const err = document.getElementById('emailErr');
+  if(nameEl && !nameEl.value.trim()){ document.getElementById('nameErr').style.display = 'block'; nameEl.focus(); return; }
+  const v = emailEl ? emailEl.value.trim() : '';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ if(err) err.style.display = 'block'; if(emailEl) emailEl.focus(); return; }
+  if(err) err.style.display = 'none';
+  submitName();
 }
 
 function submitName(){
@@ -3183,6 +3197,13 @@ function submitName(){
       // until then this is skipped entirely so nothing is lost/mis-sent.
       if(email && GOOGLE_FORM_EMAIL_ENTRY && GOOGLE_FORM_EMAIL_ENTRY.indexOf('PASTE_') === -1){
         body.append(GOOGLE_FORM_EMAIL_ENTRY, email);
+        if(GOOGLE_FORM_RESULTS_ENTRY && GOOGLE_FORM_RESULTS_ENTRY.indexOf('PASTE_') === -1){
+          try{
+            computeResults();
+            const pz = getPersonalization();
+            body.append(GOOGLE_FORM_RESULTS_ENTRY, 'track=' + quizMode + '; ' + cfg().axes.map(a => a + '=' + computed[a]).join('; ') + '; strongest=' + pz.strongest + '; weakest=' + pz.weakest);
+          }catch(e){}
+        }
       }
       fetch(GOOGLE_FORM_ACTION_URL, {
         method: 'POST', mode: 'no-cors',
@@ -4257,8 +4278,8 @@ document.getElementById('shareCardOverlay').addEventListener('click', function(e
 
 async function shareSite(btn){
   const shareData = {
-    title: 'Make Him Obsessed — Relationship Quiz',
-    text: 'I just took this relationship quiz, try it for yourself:',
+    title: 'Make Him Obsessed — Relationship Analysis',
+    text: 'I just took this free relationship analysis, try it for yourself:',
     url: siteRootUrl()
   };
   if(navigator.share){
@@ -5089,14 +5110,6 @@ initSocialProof();
       if(SCREEN_ROUTES[currentScreenName] === a.getAttribute('data-path')){ window.scrollTo(0, 0); return; }  // already on it
       goTo(screen);
     });
-  });
-})();
-</script>
-<script>
-/* Book-page refund links: built absolute because of the <base> tag, same as the menu/footer links. */
-(function(){
-  Array.prototype.forEach.call(document.querySelectorAll('a.buy-refund-link[data-path]'), function(a){
-    a.href = location.origin + ROUTE_BASE + '/' + a.getAttribute('data-path');
   });
 })();
 </script>
