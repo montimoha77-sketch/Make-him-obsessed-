@@ -1281,16 +1281,16 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
       </div>
     </div>
 
-    <!-- Video under the buy card. Upload buy-video.mp4 (H.264 + AAC, ideally 1080p, faststart)
-         next to index.html. If the file is missing the whole block hides itself. -->
+    <!-- Video under the buy card. Upload buy-video.mp4, buy-video-poster.jpg and buy-video.vtt
+         next to index.html. Nothing here is downloaded while the page loads: the script
+         "buy-video-lazy" (bottom of the page) only starts fetching once this block is on screen.
+         If buy-video.mp4 is missing the whole block hides itself. -->
     <div class="buy-video" id="buyVideo">
       <div class="buy-video-frame">
-        <video controls playsinline preload="metadata" poster="buy-video-poster.jpg" width="720" height="1280" controlslist="nodownload" disablepictureinpicture
+        <video controls playsinline preload="none" width="720" height="1280" controlslist="nodownload" disablepictureinpicture
+               data-poster="buy-video-poster.jpg" data-src="buy-video.mp4" data-track="buy-video.vtt"
                aria-label="A message from Chloe about Make Him Obsessed"
-               onplay="if(!this.dataset.t){this.dataset.t=1;try{gtag('event','buy_video_play')}catch(e){}}">
-          <source src="buy-video.mp4#t=0.1" type="video/mp4" onerror="var b=document.getElementById('buyVideo');if(b)b.style.display='none'">
-          <track kind="captions" src="buy-video.vtt" srclang="en" label="English">
-        </video>
+               onplay="if(!this.dataset.t){this.dataset.t=1;try{gtag('event','buy_video_play')}catch(e){}}"></video>
       </div>
     </div>
 
@@ -4932,6 +4932,28 @@ function recomputeEuStatus(){
     es.forEach(function(e){ e.target.classList.toggle('anim-off', !e.isIntersecting); });
   }, { rootMargin: '60px' });
   document.querySelectorAll('.cbf, .hang-item, .btn-glow, .particles').forEach(function(el){ io.observe(el); });
+})();
+</script>
+<script id="buy-video-lazy">
+(function(){
+  var box=document.getElementById('buyVideo'); if(!box) return;
+  var v=box.querySelector('video'); if(!v) return;
+  var armed=false;
+  function arm(){
+    if(armed) return; armed=true;
+    // hide the block only if the video file itself is missing (not if just the captions are)
+    v.addEventListener('error',function(e){ if(e.target && e.target.tagName==='SOURCE') box.style.display='none'; },true);
+    v.poster=v.getAttribute('data-poster');
+    var src=document.createElement('source'); src.src=v.getAttribute('data-src')+'#t=0.1'; src.type='video/mp4'; v.appendChild(src);
+    var tr=document.createElement('track'); tr.kind='captions'; tr.src=v.getAttribute('data-track'); tr.srclang='en'; tr.label='English'; v.appendChild(tr);
+    v.preload='metadata'; v.load();
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){ if(en[0].isIntersecting){ io.disconnect(); arm(); } },{rootMargin:'600px 0px'});
+    io.observe(box);   // a hidden (display:none) screen never intersects, so nothing loads until the Book page is shown
+  } else {
+    window.addEventListener('load',function(){ setTimeout(arm,2500); });
+  }
 })();
 </script>
 </body>
