@@ -584,6 +584,11 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
 .q-count-center{justify-content:center}
 .q-count-center::before{display:none}
 .lite .particles,.lite #butterflyLayer{display:none}.lite .btn-glow::before{animation:none;opacity:.35}.lite .star,.lite .hang-item,.lite .live-badge,.lite .live-dot::after,.lite .cbf,.lite .cbf-wings{animation:none}.lite .sj-carousel-track{animation-duration:90s}</style>
+<style id="buy-video-style">
+.buy-video{position:relative;width:100%;max-width:380px;margin:0 auto 16px;padding:10px;border:1px solid rgba(201,162,75,.35);border-radius:18px;background:linear-gradient(135deg,rgba(201,162,75,.12),rgba(59,15,26,.2));box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.buy-video-frame{position:relative;overflow:hidden;border-radius:12px;background:#000;line-height:0;aspect-ratio:9/16}
+.buy-video video{display:block;width:100%;height:100%;object-fit:cover;background:#000;border-radius:12px;-webkit-tap-highlight-color:transparent}
+</style>
 </head>
 <body>
 
@@ -1273,6 +1278,19 @@ body[data-screen="buy"] .particle{animation:none;opacity:0}
           <img class="platform-badge-img platform-badge-apple" loading="lazy" decoding="async" src="badge-apple.png" alt="Apple iOS" width="1050" height="1227">
           <img class="platform-badge-img platform-badge-kindle" loading="lazy" decoding="async" src="badge-kindle.png" alt="Kindle" width="296" height="170">
         </div>
+      </div>
+    </div>
+
+    <!-- Video under the buy card. Upload buy-video.mp4 (H.264 + AAC, ideally 1080p, faststart)
+         next to index.html. If the file is missing the whole block hides itself. -->
+    <div class="buy-video" id="buyVideo">
+      <div class="buy-video-frame">
+        <video controls playsinline preload="metadata" poster="buy-video-poster.jpg" width="720" height="1280" controlslist="nodownload" disablepictureinpicture
+               aria-label="A message from Chloe about Make Him Obsessed"
+               onplay="if(!this.dataset.t){this.dataset.t=1;try{gtag('event','buy_video_play')}catch(e){}}">
+          <source src="buy-video.mp4#t=0.1" type="video/mp4" onerror="var b=document.getElementById('buyVideo');if(b)b.style.display='none'">
+          <track kind="captions" src="buy-video.vtt" srclang="en" label="English">
+        </video>
       </div>
     </div>
 
